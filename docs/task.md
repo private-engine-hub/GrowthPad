@@ -2,12 +2,12 @@
 
 - [x] **Phase 1: Foundation (Solito + NativeWind v4)**
 - [x] **Phase 2: Productization & SaaS Shell**
-- [x] **Phase 2.5: Universal Layout Hardening**
+- [x] **Phase 2.5: Universal Layout Hardening (Kanban Pivot)**
     - [x] Install Dependencies (@gorhom/bottom-sheet, framer-motion)
-    - [x] Implement "The Pillar Canvas" (UniversalCanvas)
+    - [x] Implement "Universal Board" (ScrollView horizontal)
     - [x] Build "Platform Slot" System (Surface)
     - [x] Standardize Z-Axis (Sheet)
-    - [x] Refactor Workboard to new Engine
+    - [x] Refactor Workboard to new Kanban Engine
 
 - [ ] **Phase 3: Logic & Data Hardening**
     - [ ] Connect Authentication (Supabase/Clerk)

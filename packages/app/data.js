@@ -1,7 +1,7 @@
 // packages/app/data.ts
 // Single Source of Truth for the Strategic Workboard [MOCK DB]
 export const PILLARS = [
-    { id: 'financial', title: 'Financial', description: 'The Fuel - Cash, Margin, Profit' },
+    { id: 'financial', title: 'Financial', description: 'Fuel - Cash, Margin, Profit' },
     { id: 'operational', title: 'Operational', description: 'The Machine - Efficiency, Quality, Speed' },
     { id: 'market', title: 'Market', description: 'The Context - Reputation, Share, Brand' },
 ];

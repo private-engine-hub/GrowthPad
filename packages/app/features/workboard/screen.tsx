@@ -1,16 +1,18 @@
+'use client';
 
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Platform } from 'react-native';
 import { Text, H1, H3, Small } from '../../ui/typography';
 import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../ui/accordion';
 import { PILLARS, THEMES, MOCK_OBJECTIVES, type Job } from '../../data';
 import { cn } from '../../utils';
 import { useState } from 'react';
-import { UniversalCanvas } from '../../ui/layout/universal-canvas';
 import { Sheet } from '../../ui/layout/sheet';
+import { UniversalGrid } from '../../ui/layout/universal-grid';
+import { PillarColumn } from './components/pillar-column';
 
-// BEST PRACTICE: Universal Layout Engine
-// Replaced ScrollView + Grid with FlatList-based UniversalCanvas
+// BEST PRACTICE: Structural Platform Fix
+// Using UniversalCanvas as a Layout Switcher (Web Grid / Native Pager)
 export function WorkboardScreen() {
     const [selectedJob, setSelectedJob] = useState<Job | null>(null);
 
@@ -23,19 +25,50 @@ export function WorkboardScreen() {
 
     return (
         <View className="flex-1 bg-white">
-            <UniversalCanvas
-                data={PILLARS}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                    <PillarColumn
-                        pillar={item}
-                        onJobPress={setSelectedJob}
-                    />
-                )}
-                ListHeaderComponent={renderHeader}
-            // contentContainerClassName is handled inside UniversalCanvas to fix the web scroll bug
-            // We pass specific padding via the primitive if needed, but it has defaults.
-            />
+            {/* Header is outside on mobile, or could be part of layout. 
+                For now keeping it separate but UniversalCanvas takes full height.
+                Maybe put header inside a wrapper if needed? 
+                Actually UniversalCanvas on web is h-screen. 
+                On web, we probably want the header above the columns.
+                For simplicity, let's put the header inside the return but above Canvas.
+            */}
+            {/* Note: UniversalCanvas on Web is h-screen. If we put header above, we might overflow.
+                Ideally UniversalCanvas is flex-1. 
+                My implementation: md:h-screen. 
+                Let's adjust Workboard to be a flex container.
+            */}
+
+            <View className="flex-1">
+                {/* Main Screen Header - Scrollable? 
+                     On Web, this should probably be outside the columns. 
+                     On Native, inside the Pager? No, sticky top.
+                 */}
+                <View className="md:hidden">
+                    {/* Native Header */}
+                    {renderHeader()}
+                </View>
+
+                <View className="hidden md:block">
+                    {/* Web Header */}
+                    {renderHeader()}
+                </View>
+
+                <UniversalGrid>
+                    {PILLARS.map((pillar) => (
+                        <PillarColumn
+                            key={pillar.id}
+                            header={
+                                <View className="p-4 border-b border-slate-100 bg-blue-600">
+                                    <H3 className="text-white font-bold">{pillar.title}</H3>
+                                    <Small className="text-blue-100">{pillar.description}</Small>
+                                </View>
+                            }
+                        >
+                            <PillarContent pillarId={pillar.id} onJobPress={setSelectedJob} />
+                        </PillarColumn>
+                    ))}
+                </UniversalGrid>
+            </View>
 
             <Sheet
                 isOpen={!!selectedJob}
@@ -79,23 +112,16 @@ export function WorkboardScreen() {
     );
 }
 
-function PillarColumn({
-    pillar,
+function PillarContent({
+    pillarId,
     onJobPress
 }: {
-    pillar: typeof PILLARS[0],
+    pillarId: string,
     onJobPress: (job: Job) => void
 }) {
     return (
-        <View className="flex-1 min-w-[300px] gap-4">
-            {/* Pillar Header */}
-            <View className="rounded-xl bg-blue-600 p-4 shadow-lg shadow-blue-200">
-                <H3 className="text-white font-bold">{pillar.title}</H3>
-                <Small className="text-blue-100">{pillar.description}</Small>
-            </View>
-
-            {/* Themes Cascade */}
-            {THEMES.filter((t) => t.pillarId === pillar.id).map((theme) => {
+        <View className="gap-4">
+            {THEMES.filter((t) => t.pillarId === pillarId).map((theme) => {
                 const themeObjectives = MOCK_OBJECTIVES.filter(
                     (o) => o.themeId === theme.id
                 );
@@ -126,7 +152,6 @@ function PillarColumn({
         </View>
     );
 }
-
 
 function ObjectiveItem({
     objective,
@@ -197,3 +222,5 @@ function StatusBadge({ status }: { status: Job['status'] }) {
         </View>
     )
 }
+
+

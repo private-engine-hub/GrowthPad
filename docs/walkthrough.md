@@ -1,7 +1,7 @@
 # GrowthPad Project Walkthrough
 
 **Architecture**: Universal Monorepo (Next.js App Router + Expo Router)
-**Status**: 🟢 Verified (Universal Layout Engines Active)
+**Status**: 🟢 Verified (Universal Kanban Active)
 
 ## 1. Quick Start
 
@@ -32,12 +32,14 @@ yarn kill-ghost
 
 ## 2. Universal Layout Primitives
 
-We have moved away from basic primitives to a rigid, platform-aware Layout Engine:
+We have moved away from complex grid hacks to a stable **Universal Kanban** layout:
 
-### A. Universal Canvas (`universal-canvas.tsx`)
-- **Use Case**: Multi-column grids (Strategy Pillars).
-- **Fix**: Resolves the "ScrollView div wrapper" bug on Web.
-- **Behavior**: 3 columns on Desktop, 1 column on Mobile.
+### A. Universal Board (`board-screen.tsx`)
+- **Use Case**: Strategy Pillars (Financial, Operational, Market).
+- **Behavior**: 
+  - **Web**: Horizontal scrolling columns.
+  - **Native**: Horizontal scrolling columns.
+- **Why**: Ensures 100% parity between iOS and Web without complex platform forks.
 
 ### B. Standardized Z-Axis (`sheet.tsx`)
 - **Use Case**: Job Details, Objective Settings.
@@ -54,17 +56,16 @@ We have moved away from basic primitives to a rigid, platform-aware Layout Engin
 
 ### B. The Workboard (Core Feature)
 - **URL**: `/dashboard`
-- **Code**: `packages/app/features/workboard/screen.tsx`
-- **Features**: Interactive "Card Cascade" showing Strategy Pillars:
+- **Code**: `packages/app/features/board/board-screen.tsx`
+- **Features**: Interactive "Kanban Board" showing Strategy Pillars:
   - **Financial**: Revenue Goals
   - **Operational**: Team Efficiency
   - **Market**: Brand Position
 - **Interaction**: 
-  - Accordion expansion of Objectives.
-  - **Click-to-Detail**: Clicking a Job card opens the Side Panel (Web) or Bottom Sheet (Native) via the `Sheet` primitive.
+  - Horizontal scroll to view all pillars.
+  - **Click-to-Detail**: Clicking a Job card opens the Side Panel (Web) or Bottom Sheet (Native).
 
 ## 4. Verification
 - Web build succeeds (Next.js 13 App Router).
-- Workboard displays 3 columns on Desktop.
-- Side Panel opens on card click.
-- Single column layout verified for Mobile screens.
+- Workboard displays 3 columns side-by-side on Desktop.
+- No hydration errors (NativeWind `styled` removed).

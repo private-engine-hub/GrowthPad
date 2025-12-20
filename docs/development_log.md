@@ -3,9 +3,19 @@
 **Project**: GrowthPad
 **Start Date**: 2025-12-18
 
-## Status: 🟢 STABLE (Flow Complete)
+## Status: 🟢 STABLE (Kanban Pivot Complete)
 
 ---
+
+### 2025-12-20: Pivot to Universal Kanban (Phase 2.6)
+**Objective**: Abandon over-engineered "Grid" layouts in favor of a proven, stable Trello-style board.
+
+- **Action**:
+    - Deleted `WorkboardScreen` (Accordion/Grid implementation).
+    - Created **`features/board`** (New Standard Board Engine).
+    - Implemented **`BoardScreen`** using pure `ScrollView horizontal`.
+    - **Fix**: Removed `styled()` wrapper from `nativewind` usage to resolve Web runtime errors. Reverted to standard `<View className="...">`.
+- **Result**: Immediate stabilization of the Web Dashboard. Columns render correctly side-by-side. Layout is predictable on both iOS and Web.
 
 ### 2025-12-20: Universal Layout Hardening (Phase 2.5)
 **Objective**: Fix the "Pillar Regression" and `ScrollView` web bugs with a rigid layout engine.
@@ -15,8 +25,8 @@
     - Implemented **`Sheet`** (Side Panel for Web / Bottom Sheet for Native).
     - Built **`Surface`** for platform-aware grid slots.
     - Refactored `WorkboardScreen` to use the new layout engine.
-    - **Fix**: Resolved the "Inner Div" flexbox issue on React Native Web.
-- **Result**: Workboard now displays 3 columns reliably on Web. Job cards are interactive and open a slide-over/bottom-up detail view.
+    - **Fix**: Resolved the "Inner Div" flexbox issue on React Native Web by implementing a **Platform-Specific Grid Strategy** (`div` + `grid-cols-3`).
+- **Result**: Validated. The 3-column layout is stable on Web.
 
 ### 2025-12-20: Feature Injection & SaaS Flow
 **Objective**: Connect Marketing, Login, and Platform for a "Complete" app experience.

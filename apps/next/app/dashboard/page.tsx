@@ -1,7 +1,7 @@
 'use client'
 
-import { WorkboardScreen } from 'app/features/workboard/screen'
+import { BoardScreen } from 'app/features/board/board-screen'
 
-export default function Page() {
-    return <WorkboardScreen />
+export default function DashboardPage() {
+    return <BoardScreen />
 }

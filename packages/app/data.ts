@@ -38,7 +38,7 @@ export interface Pillar {
 }
 
 export const PILLARS: Pillar[] = [
-    { id: 'financial', title: 'Financial', description: 'The Fuel - Cash, Margin, Profit' },
+    { id: 'financial', title: 'Financial', description: 'Fuel - Cash, Margin, Profit' },
     { id: 'operational', title: 'Operational', description: 'The Machine - Efficiency, Quality, Speed' },
     { id: 'market', title: 'Market', description: 'The Context - Reputation, Share, Brand' },
 ];

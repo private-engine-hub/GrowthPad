@@ -1,51 +1,32 @@
-import { FlatList, Platform, type FlatListProps, View, ScrollView } from 'react-native';
-import { Surface } from './surface';
+import { View, ScrollView, Platform } from 'react-native';
 
-interface UniversalCanvasProps<T> extends Omit<FlatListProps<T>, 'renderItem'> {
-    data: T[];
-    renderItem: ({ item }: { item: T }) => React.ReactElement;
-    keyExtractor: (item: T) => string;
+interface Props {
+    children: React.ReactNode;
 }
 
-export function UniversalCanvas<T>({
-    data,
-    renderItem,
-    keyExtractor,
-    ListHeaderComponent,
-    ...props
-}: UniversalCanvasProps<T>) {
-
+export function UniversalCanvas({ children }: Props) {
     if (Platform.OS === 'web') {
         return (
-            <ScrollView className="flex-1" contentContainerStyle={{ flexGrow: 1 }}>
-                {ListHeaderComponent && (
-                    <View>
-                        {typeof ListHeaderComponent === 'function'
-                            ? ListHeaderComponent()
-                            : ListHeaderComponent}
-                    </View>
-                )}
-                <Surface className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-                    {data.map((item) => (
-                        <View key={keyExtractor(item)}>
-                            {renderItem({ item })}
-                        </View>
-                    ))}
-                </Surface>
-            </ScrollView>
+            // md:h-[calc(100vh-64px)] accounts for a standard SaaS header height
+            // overflow-hidden prevents the body from scrolling, enforcing inner-pillar scrolling
+            <View
+                className="flex-1 w-full md:h-screen md:overflow-hidden bg-slate-50"
+                style={{ flexDirection: 'row' }}
+            >
+                {children}
+            </View>
         );
     }
 
+    // Native: Horizontal Pager
     return (
-        <FlatList
-            data={data}
-            renderItem={renderItem}
-            keyExtractor={keyExtractor}
-            numColumns={1}
-            contentContainerClassName="p-6 gap-4"
-            showsVerticalScrollIndicator={false}
-            ListHeaderComponent={ListHeaderComponent}
-            {...props}
-        />
+        <ScrollView
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            className="flex-1 bg-slate-50"
+        >
+            {children}
+        </ScrollView>
     );
 }
