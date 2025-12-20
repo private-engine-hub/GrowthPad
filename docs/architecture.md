@@ -72,6 +72,14 @@ We use `solito/navigation` to handle routing hooks:
 - **Next/Font**: Incompatible with NativeWind Babel config. Removed in favor of standard CSS fonts.
 - **Legacy Pages**: The `pages/` directory has been deprecated and deleted.
 
+## 7. Universal Navigation Pattern
+
+We leverage a **Universal `Button` component** to handle cross-platform navigation with minimal boilerplate:
+
+- **Logic**: Components use the `<Button href="/path" />` prop. 
+- **Under the hood**: The component wraps `solito/navigation`, automatically handling `push()` on both Web and Native.
+- **Benefits**: Eliminates the need for manual `useRouter()` hooks in every feature file, making the codebase more "cloneable" and predictable.
+
 ## 7. TypeScript Solution Mode
 
 To maintain a healthy, error-free monorepo, we use a **Supplier vs. Consumer** TypeScript model:

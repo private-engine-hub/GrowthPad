@@ -3,9 +3,19 @@
 **Project**: GrowthPad
 **Start Date**: 2025-12-18
 
-## Status: 🟢 STABLE (Unified Architecture)
+## Status: 🟢 STABLE (Flow Complete)
 
 ---
+
+### 2025-12-20: Feature Injection & SaaS Flow
+**Objective**: Connect Marketing, Login, and Platform for a "Complete" app experience.
+
+- **Action**: 
+    - Created **Universal `Button` Component** (`packages/app/ui/button.tsx`) with built-in `href` navigation support.
+    - Implemented high-fidelity **`LoginScreen`** (`packages/app/features/auth/login-screen.tsx`) optimized for Supabase-style Google Auth.
+    - Rewired `LandingScreen` to move from manual `Pressable` hooks to standard `Button` navigation.
+    - Established the routing flow: `Landing` (/) -> `Login` (/login) -> `Dashboard` (/dashboard).
+- **Result**: "Zero-wiring" navigation achieved across the monorepo; app now feels like a unified product.
 
 ### 2025-12-20: The "App Router" Migration (Major Milestone)
 **Objective**: Fix split architecture (Pages vs Expo Router) and resolve CSS layout issues.

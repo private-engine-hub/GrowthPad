@@ -38,7 +38,13 @@ yarn kill-ghost
 - **Features**: Hero section, aesthetic value props, "Get Started" CTA.
 - **Architecture**: Injected into `apps/next/app/page.tsx` and `apps/expo/app/index.tsx`.
 
-### B. The Dashboard (SaaS Shell)
+### B. The Login / Sign-In Flow
+- **URL**: `http://localhost:3000/login`
+- **Code**: `packages/app/features/auth/login-screen.tsx`
+- **Features**: High-fidelity "Continue with Google" card, Supabase-ready.
+- **Architecture**: Connected via the universal `Button` component with zero manual wiring.
+
+### C. The Dashboard (SaaS Shell)
 - **URL**: `http://localhost:3000/dashboard`
 - **Code**: `packages/app/ui/dashboard-layout.tsx`
 - **Structure**: 

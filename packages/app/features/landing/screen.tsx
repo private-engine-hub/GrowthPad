@@ -4,20 +4,18 @@ import { Card, CardContent } from '../../ui/card';
 import { useRouter } from 'solito/navigation';
 import { ChevronRight, Layout, Zap, Shield, BarChart3 } from 'lucide-react-native';
 
-export function LandingScreen() {
-    const { push } = useRouter();
+import { Button } from '../../ui/button';
 
+export function LandingScreen() {
     return (
         <ScrollView className="flex-1 bg-white">
             {/* Nav Bar */}
             <View className="flex-row items-center justify-between px-6 py-4 border-b border-slate-100">
                 <H2 className="text-blue-600 font-bold tracking-tight">GrowthPad</H2>
-                <Pressable
-                    onPress={() => push('/dashboard')}
-                    className="bg-blue-600 px-4 py-2 rounded-lg active:opacity-80"
-                >
-                    <Text className="text-white font-semibold">Sign In</Text>
-                </Pressable>
+                <View className="flex-row gap-4">
+                    <Button label="Sign In" variant="ghost" href="/login" />
+                    <Button label="Get Started" variant="primary" size="sm" href="/login" />
+                </View>
             </View>
 
             {/* Hero Section */}
@@ -33,13 +31,8 @@ export function LandingScreen() {
                     Manage objectives, track jobs, and scale with conviction.
                 </Lead>
                 <View className="mt-10 flex-row gap-4">
-                    <Pressable
-                        onPress={() => push('/dashboard')}
-                        className="bg-blue-600 px-8 py-4 rounded-xl flex-row items-center shadow-lg shadow-blue-200"
-                    >
-                        <Text className="text-white font-bold text-lg mr-2">Get Started</Text>
-                        <ChevronRight color="white" size={20} />
-                    </Pressable>
+                    <Button label="Build Your Workboard" size="lg" href="/login" />
+                    <Button label="View Demo" variant="outline" size="lg" />
                 </View>
             </View>
 
