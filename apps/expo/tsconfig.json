@@ -1,12 +1,24 @@
 {
   "compilerOptions": {
-    "jsxImportSource": "nativewind"
+    "jsxImportSource": "nativewind",
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "paths": {
+      "app/*": [
+        "../../packages/app/*"
+      ]
+    }
   },
-  "extends": "../../tsconfig",
+  "extends": "expo/tsconfig.base",
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
+  ],
+  "references": [
+    {
+      "path": "../../packages/app"
+    }
   ]
 }
