@@ -1,7 +1,7 @@
 # GrowthPad Project Walkthrough
 
 **Architecture**: Universal Monorepo (Next.js App Router + Expo Router)
-**Status**: 🟢 Verified
+**Status**: 🟢 Verified (Universal Layout Engines Active)
 
 ## 1. Quick Start
 
@@ -30,39 +30,41 @@ yarn native
 yarn kill-ghost
 ```
 
-## 2. Project Tour
+## 2. Universal Layout Primitives
+
+We have moved away from basic primitives to a rigid, platform-aware Layout Engine:
+
+### A. Universal Canvas (`universal-canvas.tsx`)
+- **Use Case**: Multi-column grids (Strategy Pillars).
+- **Fix**: Resolves the "ScrollView div wrapper" bug on Web.
+- **Behavior**: 3 columns on Desktop, 1 column on Mobile.
+
+### B. Standardized Z-Axis (`sheet.tsx`)
+- **Use Case**: Job Details, Objective Settings.
+- **Behavior**: 
+  - **Web**: Slide-over Side Panel (uses `framer-motion`).
+  - **Native**: Draggable Bottom Sheet (uses `@gorhom/bottom-sheet`).
+
+## 3. Project Tour
 
 ### A. The Landing Page
 - **URL**: `http://localhost:3000/`
 - **Code**: `packages/app/features/landing/screen.tsx`
 - **Features**: Hero section, aesthetic value props, "Get Started" CTA.
-- **Architecture**: Injected into `apps/next/app/page.tsx` and `apps/expo/app/index.tsx`.
 
-### B. The Login / Sign-In Flow
-- **URL**: `http://localhost:3000/login`
-- **Code**: `packages/app/features/auth/login-screen.tsx`
-- **Features**: High-fidelity "Continue with Google" card, Supabase-ready.
-- **Architecture**: Connected via the universal `Button` component with zero manual wiring.
-
-### C. The Dashboard (SaaS Shell)
-- **URL**: `http://localhost:3000/dashboard`
-- **Code**: `packages/app/ui/dashboard-layout.tsx`
-- **Structure**: 
-  - **Sidebar**: Left column, fixed width. Blue branding.
-  - **Topbar**: Search, User Profile, Breadcrumbs.
-- **Architecture**: Enforced by `apps/next/app/dashboard/layout.tsx`.
-
-### C. The Workboard (Core Feature)
+### B. The Workboard (Core Feature)
 - **URL**: `/dashboard`
 - **Code**: `packages/app/features/workboard/screen.tsx`
 - **Features**: Interactive "Card Cascade" showing Strategy Pillars:
   - **Financial**: Revenue Goals
   - **Operational**: Team Efficiency
   - **Market**: Brand Position
-- **Interaction**: Accordion expansion of Objectives and Jobs.
+- **Interaction**: 
+  - Accordion expansion of Objectives.
+  - **Click-to-Detail**: Clicking a Job card opens the Side Panel (Web) or Bottom Sheet (Native) via the `Sheet` primitive.
 
-## 3. Verification
+## 4. Verification
 - Web build succeeds (Next.js 13 App Router).
-- Landing page renders.
-- Dashboard Sidebar renders (Blue).
-- Navigation from Landing -> Dashboard works.
+- Workboard displays 3 columns on Desktop.
+- Side Panel opens on card click.
+- Single column layout verified for Mobile screens.

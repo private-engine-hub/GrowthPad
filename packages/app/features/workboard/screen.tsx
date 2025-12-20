@@ -1,64 +1,140 @@
-import { ScrollView, View } from 'react-native';
+
+import { View, TouchableOpacity } from 'react-native';
 import { Text, H1, H3, Small } from '../../ui/typography';
 import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../ui/accordion';
 import { PILLARS, THEMES, MOCK_OBJECTIVES, type Job } from '../../data';
 import { cn } from '../../utils';
 import { useState } from 'react';
-import { DashboardLayout } from '../../ui/dashboard-layout';
+import { UniversalCanvas } from '../../ui/layout/universal-canvas';
+import { Sheet } from '../../ui/layout/sheet';
 
+// BEST PRACTICE: Universal Layout Engine
+// Replaced ScrollView + Grid with FlatList-based UniversalCanvas
 export function WorkboardScreen() {
+    const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+
+    const renderHeader = () => (
+        <View className="mb-8 px-6 pt-6">
+            <H1 className="text-slate-900 font-black tracking-tight">Growth Workboard</H1>
+            <Text className="text-slate-400 text-lg">Unified Strategic Command Center</Text>
+        </View>
+    );
+
     return (
-        <DashboardLayout>
-            <ScrollView className="flex-1 p-6">
-                <View className="mb-8">
-                    <H1 className="text-slate-900 font-black tracking-tight">Strategy Workboard</H1>
-                    <Text className="text-slate-400 text-lg">Manage your growth cascade</Text>
-                </View>
+        <View className="flex-1 bg-white">
+            <UniversalCanvas
+                data={PILLARS}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <PillarColumn
+                        pillar={item}
+                        onJobPress={setSelectedJob}
+                    />
+                )}
+                ListHeaderComponent={renderHeader}
+            // contentContainerClassName is handled inside UniversalCanvas to fix the web scroll bug
+            // We pass specific padding via the primitive if needed, but it has defaults.
+            />
 
-                <View className="gap-6 pb-12">
-                    {PILLARS.map((pillar) => (
-                        <View key={pillar.id} className="gap-4">
-                            {/* Pillar Header "Jira Blue" style */}
-                            <View className="rounded-lg bg-[#0052cc] p-3 shadow-sm">
-                                <H3 className="text-white">{pillar.title}</H3>
-                                <Small className="text-blue-100">{pillar.description}</Small>
-                            </View>
-
-                            {/* Themes Cascade */}
-                            {THEMES.filter((t) => t.pillarId === pillar.id).map((theme) => {
-                                const themeObjectives = MOCK_OBJECTIVES.filter(
-                                    (o) => o.themeId === theme.id
-                                );
-
-                                if (themeObjectives.length === 0) return null;
-
-                                return (
-                                    <Card key={theme.id} className="border-l-4 border-l-blue-500">
-                                        <CardHeader className="pb-2">
-                                            <CardTitle className="text-lg text-slate-700">
-                                                {theme.title}
-                                            </CardTitle>
-                                        </CardHeader>
-                                        <CardContent>
-                                            <Accordion className="gap-2">
-                                                {themeObjectives.map((objective) => (
-                                                    <ObjectiveItem key={objective.id} objective={objective} />
-                                                ))}
-                                            </Accordion>
-                                        </CardContent>
-                                    </Card>
-                                );
-                            })}
+            <Sheet
+                isOpen={!!selectedJob}
+                onClose={() => setSelectedJob(null)}
+                title={selectedJob?.title || 'Job Details'}
+            >
+                {selectedJob && (
+                    <View className="gap-4">
+                        <View className="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                            <Text className="text-sm font-medium text-slate-500 uppercase tracking-wider mb-1">Status</Text>
+                            <StatusBadge status={selectedJob.status} />
                         </View>
-                    ))}
-                </View>
-            </ScrollView>
-        </DashboardLayout>
+
+                        <View>
+                            <Text className="text-sm font-medium text-slate-500 uppercase tracking-wider mb-1">Value Estimate</Text>
+                            <Text className="text-lg font-semibold text-slate-900">{selectedJob.valueEst}</Text>
+                        </View>
+
+                        <View>
+                            <Text className="text-sm font-medium text-slate-500 uppercase tracking-wider mb-1">Why Now?</Text>
+                            <Text className="text-base text-slate-700">{selectedJob.whyNow}</Text>
+                        </View>
+
+                        <View>
+                            <Text className="text-sm font-medium text-slate-500 uppercase tracking-wider mb-2">Next Steps</Text>
+                            <View className="gap-2">
+                                {selectedJob.steps.map((step, i) => (
+                                    <View key={i} className="flex-row gap-3 items-start">
+                                        <View className="w-6 h-6 rounded-full bg-blue-100 items-center justify-center mt-0.5">
+                                            <Text className="text-xs font-bold text-blue-700">{i + 1}</Text>
+                                        </View>
+                                        <Text className="text-slate-600 flex-1 leading-6">{step}</Text>
+                                    </View>
+                                ))}
+                            </View>
+                        </View>
+                    </View>
+                )}
+            </Sheet>
+        </View>
     );
 }
 
-function ObjectiveItem({ objective }: { objective: any }) {
+function PillarColumn({
+    pillar,
+    onJobPress
+}: {
+    pillar: typeof PILLARS[0],
+    onJobPress: (job: Job) => void
+}) {
+    return (
+        <View className="flex-1 min-w-[300px] gap-4">
+            {/* Pillar Header */}
+            <View className="rounded-xl bg-blue-600 p-4 shadow-lg shadow-blue-200">
+                <H3 className="text-white font-bold">{pillar.title}</H3>
+                <Small className="text-blue-100">{pillar.description}</Small>
+            </View>
+
+            {/* Themes Cascade */}
+            {THEMES.filter((t) => t.pillarId === pillar.id).map((theme) => {
+                const themeObjectives = MOCK_OBJECTIVES.filter(
+                    (o) => o.themeId === theme.id
+                );
+
+                if (themeObjectives.length === 0) return null;
+
+                return (
+                    <Card key={theme.id} className="border-l-4 border-l-blue-400 bg-white">
+                        <CardHeader className="pb-2">
+                            <CardTitle className="text-base text-slate-700 font-semibold">
+                                {theme.title}
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <Accordion className="gap-2">
+                                {themeObjectives.map((objective) => (
+                                    <ObjectiveItem
+                                        key={objective.id}
+                                        objective={objective}
+                                        onJobPress={onJobPress}
+                                    />
+                                ))}
+                            </Accordion>
+                        </CardContent>
+                    </Card>
+                );
+            })}
+        </View>
+    );
+}
+
+
+function ObjectiveItem({
+    objective,
+    onJobPress
+}: {
+    objective: any,
+    onJobPress: (job: Job) => void
+}) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -69,7 +145,11 @@ function ObjectiveItem({ objective }: { objective: any }) {
             <AccordionContent isOpen={isOpen}>
                 <View className="gap-3 pt-2">
                     {objective.jobs.map((job: Job) => (
-                        <JobCard key={job.id} job={job} />
+                        <JobCard
+                            key={job.id}
+                            job={job}
+                            onPress={() => onJobPress(job)}
+                        />
                     ))}
                 </View>
             </AccordionContent>
@@ -77,9 +157,13 @@ function ObjectiveItem({ objective }: { objective: any }) {
     );
 }
 
-function JobCard({ job }: { job: Job }) {
+function JobCard({ job, onPress }: { job: Job, onPress: () => void }) {
     return (
-        <View className="rounded-md border border-slate-200 bg-white p-3 shadow-sm">
+        <TouchableOpacity
+            onPress={onPress}
+            activeOpacity={0.7}
+            className="rounded-md border border-slate-200 bg-white p-3 shadow-sm hover:border-blue-400 transition-colors"
+        >
             <View className="flex-row justify-between">
                 <Text className="font-medium text-slate-900">{job.title}</Text>
                 <StatusBadge status={job.status} />
@@ -89,19 +173,11 @@ function JobCard({ job }: { job: Job }) {
                 <Small className="text-slate-600 font-medium">Next Step:</Small>
                 <Text className="text-xs text-slate-500">{job.steps[0]}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 }
 
 function StatusBadge({ status }: { status: Job['status'] }) {
-    const colors = {
-        todo: 'bg-slate-100 text-slate-600',
-        in_progress: 'bg-blue-100 text-blue-700',
-        done: 'bg-green-100 text-green-700',
-    };
-
-    // We can't put text classes on View, so we split or just use View styles
-    // Simpler: Just styled View + Text
     const bgColors = {
         todo: 'bg-slate-100',
         in_progress: 'bg-blue-100',

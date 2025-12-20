@@ -52,13 +52,19 @@ We utilize the **App Router** paradigm on both platforms to ensure mental model 
 All UI components live in `packages/app/ui`. They use:
 - `react-native` primitives (`View`, `Text`, `Pressable`).
 - `nativewind` classNames (`className="bg-blue-500"`).
-- **No HTML elements** (`div`, `span`) are allowed in shared code.
+- **No raw HTML elements** (`div`, `span`) should be used directly in features; use the `Surface` layout primitive for platform-specific container logic.
 
-### C. 3-Column SaaS Shell
+### C. Universal Layout Engine (Phase 2.5 Hardening)
+To ensure layout stability across Web and Native, we use rigid, platform-aware primitives:
+- **`UniversalCanvas`**: A `FlatList`-based container that fixes the `ScrollView` inner-div bug on Web and enforces a 3-column grid on Desktop.
+- **`Surface`**: A cross-platform slot that automatically switches between `div` (Web) and `View` (Native).
+- **`Sheet`**: A standardized Z-axis primitive. Renders as a **Side Panel** on Web (framer-motion) and a **Bottom Sheet** on Native (@gorhom/bottom-sheet).
+
+### D. 3-Column SaaS Shell
 The Web Dashboard enforces a professional SaaS layout:
-1.  **Sidebar**: Fixed width (`w-64`), dedicated navigation.
-2.  **Canvas**: Flexible workspace (`flex-1`).
-3.  **Panel**: Right-side details (ready for implementation).
+1.  **Sidebar**: Left navigation column.
+2.  **Canvas**: The `UniversalCanvas` workspace (3 columns of Pillars).
+3.  **Sheet/Panel**: High-fidelity detail view for Jobs/Objectives.
 
 This layout is injected via `apps/next/app/dashboard/layout.tsx` to ensure it persists across all dashboard sub-routes.
 

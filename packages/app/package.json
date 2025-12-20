@@ -3,8 +3,10 @@
   "name": "app",
   "main": "index.ts",
   "dependencies": {
+    "@gorhom/bottom-sheet": "^5.2.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.23.26",
     "lucide-react-native": "^0.562.0",
     "moti": "latest",
     "nativewind": "^4.0.13",

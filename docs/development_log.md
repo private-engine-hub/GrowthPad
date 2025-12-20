@@ -7,6 +7,17 @@
 
 ---
 
+### 2025-12-20: Universal Layout Hardening (Phase 2.5)
+**Objective**: Fix the "Pillar Regression" and `ScrollView` web bugs with a rigid layout engine.
+
+- **Action**:
+    - Created **`UniversalCanvas`** primitive to replace `ScrollView`.
+    - Implemented **`Sheet`** (Side Panel for Web / Bottom Sheet for Native).
+    - Built **`Surface`** for platform-aware grid slots.
+    - Refactored `WorkboardScreen` to use the new layout engine.
+    - **Fix**: Resolved the "Inner Div" flexbox issue on React Native Web.
+- **Result**: Workboard now displays 3 columns reliably on Web. Job cards are interactive and open a slide-over/bottom-up detail view.
+
 ### 2025-12-20: Feature Injection & SaaS Flow
 **Objective**: Connect Marketing, Login, and Platform for a "Complete" app experience.
 

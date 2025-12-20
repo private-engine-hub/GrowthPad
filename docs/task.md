@@ -1,24 +1,21 @@
-# GrowthPad Task List
+# GrowthPad Implementation Tasks
 
-## Phase 1: Foundation (Completed)
-- [x] Initialize Solito Monorepo
-- [x] Configure TypeScript Solution Mode
-- [x] Setup NativeWind v4
+- [x] **Phase 1: Foundation (Solito + NativeWind v4)**
+- [x] **Phase 2: Productization & SaaS Shell**
+- [x] **Phase 2.5: Universal Layout Hardening**
+    - [x] Install Dependencies (@gorhom/bottom-sheet, framer-motion)
+    - [x] Implement "The Pillar Canvas" (UniversalCanvas)
+    - [x] Build "Platform Slot" System (Surface)
+    - [x] Standardize Z-Axis (Sheet)
+    - [x] Refactor Workboard to new Engine
 
-## Phase 2: "Proper Website" Transformation (Completed)
-- [x] Implement Premium Landing Page
-- [x] Design Universal Dashboard Shell (Sidebar/Topbar)
-- [x] **MIGRATION**: Move Web to Next.js App Router
-- [x] Verify Sidebar Visibility & Layout
-- [x] Unify Routing Paradigm (App/App)
-- [x] Implement Universal `Button` for Zero-Wiring Navigation
-- [x] Establish SaaS Flow: Marketing -> Login -> Dashboard
+- [ ] **Phase 3: Logic & Data Hardening**
+    - [ ] Connect Authentication (Supabase/Clerk)
+    - [ ] Wire up the 5-Layer Relational Data Model (Zustand/TanStack)
+    - [ ] Implement AIC-Asset Generation (OpenAI/RAG)
+    - [ ] Build Onboarding Wizard (Playbook Matching)
 
-## Phase 3: Core Features (Next)
-- [ ] Connect Authentication (Supabase/Clerk)
-- [ ] Implement Detail Panel (3rd Column)
-- [ ] Wire up real data model
-
-## Phase 4: Polish
-- [ ] Dark Mode Theme
-- [ ] Mobile Responsive Drawer refinement
+- [ ] **Phase 4: Optimization & Polish**
+    - [ ] Real-time Collaboration (Presence)
+    - [ ] Dark Mode Support
+    - [ ] Native Push Notifications

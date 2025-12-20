@@ -39,6 +39,7 @@ The platform is designed to house a RAG (Retrieval Augmented Generation) engine:
 4.  **Generation**: LLM customizes the Playbook into specific **Objectives** and **Jobs** for the user's Workboard.
 
 ## 4. UI Implementation Details
-- **Dashboard Layout**: Enforces a 3-column "Pillar" view on large screens.
-- **Progressive Disclosure**: Detailed Job info is hidden behind the "Canvas" or a right-side "Detail Panel" to maintain focus on the high-level strategy.
+- **Universal Canvas**: Enforces a 3-column "Pillar" view on large screens using the `UniversalCanvas` primitive.
+- **Standardized Z-Axis**: Detailed Job info is displayed in a right-side **Side Panel** (Web) or **Bottom Sheet** (Native) via the `Sheet` primitive.
+- **Progressive Disclosure**: Keeps the main Workboard clean while allowing deep-dive into execution steps without losing context.
 - **Platform Parity**: The Card-Cascade scales from a multi-column desktop "Canvas" to a single-column mobile "Feed".
