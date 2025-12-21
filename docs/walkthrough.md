@@ -12,13 +12,25 @@ npm install
 ```
 
 ### Running the Project
+
+If you are on Windows, you may need to bypass the execution policy:
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force; yarn web
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force; yarn stop-web
+```
+
 ```bash
 # Web Shell (localhost:3000)
-# Use Bypass if running on restricted Windows profiles
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force; npm run dev --workspace next-app
+yarn web
 
-# Mobile Shell (iOS/Android)
-npm run native --workspace expo-app
+# Mobile Shell (Expo Go)
+yarn native
+
+# Mobile Shell (Native iOS/Android)
+cd apps/expo && yarn ios
+# or
+cd apps/expo && yarn android
 ```
 
 ---

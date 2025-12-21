@@ -19,6 +19,13 @@
 - [x] **Brain Integration**: Connected Web Dashboard to shared `useWorkboard` hook.
 - [x] **UI Polish**: Fixed container centering and logo alignment issues.
 
+## 🎨 Phase 2.6: Trello Blue UI Overhaul
+Objective: Pivot to "SlothUI" aesthetic with Trello Blue identity and capsule hierarchy.
+- [ ] **Trello Sidebar**: `bg-[#0079BF]` frame + `bg-white/20` active states + "Go Pro" footer.
+- [ ] **Capsule Pillars**: `rounded-full` status badges (Purple/Amber/Emerald) replacing border headers.
+- [ ] **Leaf Card Hardening**: `rounded-xl` cards + Priority Badge + Avatar/Stats footer.
+- [ ] **Environmental Depth**: Maintain `bg-slate-100` canvas for contrast.
+
 ## ✅ Phase 3: Documentation & Audit
 - [x] **Architecture Update**: Audited `docs/architecture.md` for v3.0 accuracy.
 - [x] **Blueprint Sync**: Updated `docs/blueprint.md` to reflect decoupled strategy.

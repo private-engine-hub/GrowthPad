@@ -3,7 +3,7 @@
 ## 0. Running Commands (Windows/PowerShell)
 If you encounter script execution errors, use the Bypass scope:
 ```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force; npm run dev
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 ```
 
 ---

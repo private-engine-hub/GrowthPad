@@ -6,6 +6,7 @@ module.exports = {
   content: [
     './app/**/*.{js,jsx,ts,tsx}',
     './pages/**/*.{js,jsx,ts,tsx}',
+    './components/**/*.{js,jsx,ts,tsx}',
     '../../packages/app/**/*.{js,jsx,ts,tsx}',
     '!../../packages/**/node_modules/**',
   ],
@@ -54,6 +55,13 @@ module.exports = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        trello: {
+          blue: "#0079BF",
+          gray: "#EBECF0",
+          yellow: "#FBBF24",
+          green: "#22C55E",
+          red: "#F43F5E",
         },
       },
       borderRadius: {

@@ -1,6 +1,7 @@
 'use client'
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
 
@@ -13,17 +14,19 @@ interface PillarProps {
 }
 
 export function Pillar({ title, description, icon, children, className }: PillarProps) {
+    const headerColor = getPillarHeaderColor(title)
+
     return (
-        <Card className={cn("w-[350px] shrink-0 flex flex-col h-[calc(100vh-180px)] border-t-4 border-t-primary shadow-md", className)}>
-            <CardHeader className="pb-3 border-b bg-slate-50/50">
-                <div className="flex items-center gap-2">
-                    {icon}
-                    <CardTitle className="text-lg font-bold tracking-tight text-slate-800">
-                        {title}
-                    </CardTitle>
-                </div>
-                {description && <p className="text-xs text-muted-foreground">{description}</p>}
-            </CardHeader>
+        <Card className={cn("w-[350px] shrink-0 flex flex-col h-[calc(100vh-180px)] shadow-none bg-transparent border-none", className)}>
+            {/* Chunky Capsule Header */}
+            <div className="px-1 mb-3 flex items-center justify-between">
+                <Badge className={cn("rounded-full px-4 py-1.5 text-sm font-bold shadow-sm hover:shadow-md transition-all text-white border-none", headerColor)}>
+                    {title}
+                </Badge>
+                <button className="h-8 w-8 rounded-full hover:bg-black/5 flex items-center justify-center text-slate-500">
+                    +
+                </button>
+            </div>
 
             <CardContent className="p-0 flex-1 overflow-hidden min-h-0">
                 {/* Independent Scroll Area for the Pillar */}
@@ -36,4 +39,11 @@ export function Pillar({ title, description, icon, children, className }: Pillar
             </CardContent>
         </Card>
     )
+}
+
+function getPillarHeaderColor(title: string) {
+    if (title.includes("Financial")) return "bg-trello-red hover:bg-rose-600"
+    if (title.includes("Operational")) return "bg-trello-yellow hover:bg-amber-500 text-slate-900"
+    if (title.includes("Market")) return "bg-trello-green hover:bg-emerald-600"
+    return "bg-slate-500"
 }

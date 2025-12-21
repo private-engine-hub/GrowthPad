@@ -17,6 +17,23 @@
     - **Fixes**: Verified landing page centering and horizontal workboard flow.
 - **Result**: Impeccable project state. 100% architectural alignment.
 
+### 2025-12-21: Modern Trello UI Overhaul (Phase 2.6)
+**Objective**: Transition to a high-fidelity "Trello-First" aesthetic (`#0079BF` Legacy Blue) with joyful tactile interactions.
+
+- **Action**:
+    - **Trello Identity**: Refactored `DashboardShell` to use Trello Blue sidebar and Trello Gray (`#EBECF0`) canvas.
+    - **Capsule Pillars**: Replaced border headers with floating "Chunky Capsule" badges (Red/Yellow/Green).
+    - **Tactile Cards**: Implemented "Stacked Paper" logic (`border-b-2`) with Joyful Green accents for functionality.
+- **Result**: A professional, highly recognizable workspace with distinct depth and joyful micro-interactions.
+
+### 2025-12-21: The "Modern Trello" Polish (Phase 2.9 Final)
+**Objective**: Unified Brand Identity across Landing and Dashboard.
+
+- **Action**:
+    - **Landing Page**: Refactored `app/page.tsx` to use Trello Blue (`#0079BF`) as the primary brand color and "Sunny Yellow" (`bg-amber-400`) for accents/status indicators.
+    - **Dashboard**: Confirmed stable rendering of the "Modern Trello" aesthetic (Blue Sidebar, Gray Canvas, Capsule Pillars).
+- **Status**: **WEB SHELL COMPLETE** 🟢. Ready for Mobile.
+
 ### 2025-12-21: Audit & Polish (Phase 2.8)
 **Objective**: "Professionalize" the codebase and fix architectural drift.
 
