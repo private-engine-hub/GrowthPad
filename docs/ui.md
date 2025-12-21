@@ -42,6 +42,11 @@ The Panoramic Command Center leverages maximum screen estate.
 - **Background**: Solid `bg-trello-blue`.
 - **Search**: "Glass" style (`bg-white/10`) with subtle backdrop blur.
 - **Interaction**: Nav items use `bg-white/20` when active, creating a recessed light-pool effect.
+- **Premium Footer**: A dedicated "Glass Card" (`bg-gradient-to-br`) for high-value upgrades, replacing simple text links.
+
+### Header Control Strip
+- **Zones**: Split into Utility (Title + Global Actions) and Navigation (Tabs).
+- **Tabs**: Horizontal text tabs (`TabItem`) with bottom-border active states (`border-b-2 border-trello-blue`).
 
 ### The Panoramic Canvas
 - **Background**: Classic Trello Gray (`bg-trello-gray`).
@@ -56,8 +61,8 @@ Designed to feel tactile and physical.
 - **Physics**: `border-b-2 border-slate-300 shadow-sm`.
 - **Micro-Interaction**: `hover:-translate-y-0.5 hover:shadow-md active:scale-[0.98]`.
 - **Anatomy**:
-    - **Top**: Condensed L5 Title.
-    - **Footer**: Left-aligned AI markers (`text-trello-green`) and right-aligned stacked avatars.
+    - **Top**: Condensed L5 Title + "Mood Pills" (e.g., High Priority in `bg-rose-50`).
+    - **Footer**: Left-aligned AI markers (`text-trello-green`) and right-aligned Avatar Stacks.
 
 ### Chunky Capsule Pillars
 Replacing standard headers with distinct status-badges.

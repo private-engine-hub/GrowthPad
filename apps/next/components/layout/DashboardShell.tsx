@@ -1,6 +1,6 @@
 'use client'
 
-import { LucideIcon, LayoutDashboard, BarChart3, Settings, HelpCircle, Layers, Zap } from "lucide-react"
+import { LucideIcon, LayoutDashboard, BarChart3, Settings, HelpCircle, Layers, Zap, Search, Star, Share2, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 
@@ -12,18 +12,26 @@ export function DashboardShell({ children }: DashboardShellProps) {
     return (
         <div className="flex h-screen w-full bg-background">
             {/* Sidebar (Fixed width) - Trello Blue */}
-            <aside className="w-64 bg-trello-blue text-white hidden md:flex flex-col">
-                <div className="flex items-center gap-2 font-black text-xl tracking-tight text-white/90">
-                    <div className="h-8 w-8 rounded-lg bg-white/20 flex items-center justify-center">
-                        <Zap className="h-5 w-5 text-white" />
+            <aside className="w-72 bg-trello-blue text-white hidden md:flex flex-col p-4 relative overflow-hidden">
+                {/* Brand & Search Group */}
+                <div className="flex flex-col gap-4 mb-6">
+                    <div className="flex items-center gap-3 font-black text-xl tracking-tight text-white px-2">
+                        <div className="h-9 w-9 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-inner">
+                            <Zap className="h-5 w-5 text-white fill-white" />
+                        </div>
+                        GrowthPad
                     </div>
-                    GrowthPad
-                </div>
 
-                {/* Glassy Search */}
-                <div className="px-4 mb-2">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-md px-3 py-1.5 flex items-center gap-2 border border-white/5">
-                        <span className="text-blue-100/70 text-sm">Search...</span>
+                    {/* SlothUI Glass Pill Search */}
+                    <div className="relative group">
+                        <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                            <Search className="h-4 w-4 text-blue-200 group-hover:text-white transition-colors" />
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            className="w-full bg-black/10 hover:bg-black/20 focus:bg-white/10 text-sm text-white placeholder:text-blue-200 rounded-full py-2 pl-9 pr-4 transition-all border border-transparent focus:border-white/20 focus:outline-none focus:ring-0"
+                        />
                     </div>
                 </div>
 
@@ -33,29 +41,67 @@ export function DashboardShell({ children }: DashboardShellProps) {
                     <NavItem icon={BarChart3} label="Analytics" href="/dashboard/analytics" />
                 </div>
 
-                <div className="p-4 border-t border-white/10">
-                    <div className="bg-white/10 rounded-lg p-3 mb-4 text-center">
-                        <p className="text-xs font-semibold text-blue-50">Go Pro</p>
+                <div className="mt-auto pt-6 border-t border-white/10">
+                    {/* Premium SlothUI Card */}
+                    <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white/10 to-blue-600/20 border border-white/10 p-4 mb-2 group cursor-pointer hover:border-white/20 transition-all">
+                        <div className="absolute -right-2 -top-2 h-16 w-16 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-all" />
+                        <div className="flex items-center justify-between relative z-10">
+                            <div className="flex flex-col gap-0.5">
+                                <span className="text-sm font-bold text-white">Go Pro</span>
+                                <span className="text-[10px] text-blue-100/80">Unlock Strategy AI</span>
+                            </div>
+                            <div className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center">
+                                <Star className="h-4 w-4 text-trello-yellow fill-trello-yellow" />
+                            </div>
+                        </div>
                     </div>
-                    <NavItem icon={Settings} label="Settings" href="/dashboard/settings" />
-                    <NavItem icon={HelpCircle} label="Help" href="/dashboard/help" />
+
+                    <div className="space-y-0.5">
+                        <NavItem icon={Settings} label="Settings" href="/dashboard/settings" />
+                        <NavItem icon={HelpCircle} label="Help" href="/dashboard/help" />
+                    </div>
                 </div>
             </aside>
 
             {/* Main Content Area */}
             <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
                 {/* Header */}
-                <header className="h-16 border-b border-border bg-background flex items-center justify-between px-6">
-                    <h1 className="font-semibold text-foreground">Strategic Command Center</h1>
-                    <div className="flex items-center gap-4">
-                        <div className="text-sm text-muted-foreground">Cameron M.</div>
-                        <div className="h-8 w-8 rounded-full bg-muted"></div>
+                {/* Header Control Strip */}
+                <header className="bg-background border-b border-border sticky top-0 z-10">
+                    {/* Zone 1: Utility & Title */}
+                    <div className="flex items-center justify-between px-8 py-4">
+                        <h1 className="text-2xl font-black tracking-tight text-slate-800">Command Center</h1>
+                        <div className="flex items-center gap-4">
+                            <button className="h-9 w-9 rounded-full flex items-center justify-center hover:bg-slate-100 text-slate-500 transition-colors">
+                                <Share2 className="h-5 w-5" />
+                            </button>
+                            <button className="h-9 w-9 rounded-full bg-trello-blue text-white flex items-center justify-center hover:bg-blue-700 shadow-sm hover:shadow transition-all">
+                                <Plus className="h-5 w-5" />
+                            </button>
+                            <div className="h-6 w-px bg-slate-200 mx-1" />
+                            <div className="flex items-center gap-3">
+                                <div className="text-right hidden sm:block">
+                                    <div className="text-sm font-bold text-slate-700">Cameron M.</div>
+                                    <div className="text-[10px] text-slate-500 font-medium tracking-wide">CEO</div>
+                                </div>
+                                <div className="h-9 w-9 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 border-2 border-white shadow-sm" />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Zone 2: Navigation Tabs */}
+                    <div className="px-8 flex items-center gap-6 text-sm font-medium border-t border-slate-50">
+                        <TabItem label="By Status" active />
+                        <TabItem label="By Growth Pillar" />
+                        <TabItem label="My Tasks" count={12} />
+                        <TabItem label="Backlog" />
                     </div>
                 </header>
 
                 {/* The Panoramic Canvas - Trello Gray Atmosphere */}
-                <div className="flex-1 overflow-auto p-6 bg-trello-gray">
-                    <div className="mx-auto max-w-[1600px] h-full">
+                {/* The Panoramic Canvas - Trello Gray Atmosphere */}
+                <div className="flex-1 overflow-auto bg-trello-gray p-8">
+                    <div className="mx-auto max-w-[1700px] h-full">
                         {children}
                     </div>
                 </div>
@@ -78,5 +124,24 @@ function NavItem({ icon: Icon, label, href, active }: { icon: LucideIcon, label:
             <Icon size={18} />
             {label}
         </Link>
+    )
+}
+
+function TabItem({ label, active, count }: { label: string, active?: boolean, count?: number }) {
+    return (
+        <button className={cn(
+            "relative py-3 text-slate-500 hover:text-slate-800 transition-colors flex items-center gap-2",
+            active && "text-trello-blue font-bold"
+        )}>
+            {label}
+            {count && (
+                <span className="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full text-[10px] font-bold">
+                    {count}
+                </span>
+            )}
+            {active && (
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-trello-blue rounded-t-full" />
+            )}
+        </button>
     )
 }

@@ -19,12 +19,19 @@
 - [x] **Brain Integration**: Connected Web Dashboard to shared `useWorkboard` hook.
 - [x] **UI Polish**: Fixed container centering and logo alignment issues.
 
-## 🎨 Phase 2.6: Trello Blue UI Overhaul
+## ✅ Phase 2.6: Trello Blue UI Overhaul
 Objective: Pivot to "SlothUI" aesthetic with Trello Blue identity and capsule hierarchy.
-- [ ] **Trello Sidebar**: `bg-[#0079BF]` frame + `bg-white/20` active states + "Go Pro" footer.
-- [ ] **Capsule Pillars**: `rounded-full` status badges (Purple/Amber/Emerald) replacing border headers.
-- [ ] **Leaf Card Hardening**: `rounded-xl` cards + Priority Badge + Avatar/Stats footer.
-- [ ] **Environmental Depth**: Maintain `bg-slate-100` canvas for contrast.
+- [x] **Trello Sidebar**: `bg-[#0079BF]` frame + `bg-white/20` active states + "Go Pro" footer.
+- [x] **Capsule Pillars**: `rounded-full` status badges (Purple/Amber/Emerald) replacing border headers.
+- [x] **Leaf Card Hardening**: `rounded-xl` cards + Priority Badge + Avatar/Stats footer.
+- [x] **Environmental Depth**: Maintain `bg-slate-100` canvas for contrast.
+
+## 🎨 Phase 2.7: SlothUI Refinement (CURRENT)
+Objective: Inject premium SlothUI details (Control Strip, Mood Tags, Deep Branding).
+- [ ] **Headed Control Strip**: "Zone 2" navigation tabs + Title Utility.
+- [ ] **Sidebar Composition**: Grouped Brand/Search + Premium Glass Card footer.
+- [ ] **Mood Pills**: Replace text labels with soft-colored priority badges.
+- [ ] **Spatial Tuning**: Increased gutters and vertical air.
 
 ## ✅ Phase 3: Documentation & Audit
 - [x] **Architecture Update**: Audited `docs/architecture.md` for v3.0 accuracy.

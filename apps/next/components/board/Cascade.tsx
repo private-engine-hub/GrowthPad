@@ -55,33 +55,40 @@ export function ObjectiveCascade({ objective }: ObjectiveCascadeProps) {
 function JobCard({ job }: { job: L5_Job }) {
     return (
         <Card className={cn(
-            "group relative bg-white p-3 rounded-lg shadow-sm border-b-2 border-slate-300 hover:shadow-md cursor-grab active:cursor-grabbing hover:-translate-y-0.5 transition-all duration-200 mb-2.5",
+            "group relative bg-white p-4 rounded-xl shadow-sm border-b-2 border-slate-200 hover:shadow-md cursor-grab active:cursor-grabbing hover:-translate-y-0.5 transition-all duration-200 mb-3",
             job.status === 'done' && "opacity-60 bg-slate-50 border-slate-200 shadow-none hover:shadow-none cursor-default"
         )}>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-3">
+
+                {/* SlothUI Mood Tags */}
+                <div className="flex items-center gap-2">
+                    <Badge className="bg-rose-50 text-rose-700 hover:bg-rose-100 border-rose-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider shadow-none">
+                        High Priority
+                    </Badge>
+                </div>
 
                 {/* Title */}
-                <p className={cn("text-sm font-semibold text-slate-700 leading-snug", job.status === 'done' && "line-through decoration-slate-400 font-medium")}>
+                <p className={cn("text-sm font-semibold text-slate-800 leading-snug", job.status === 'done' && "line-through decoration-slate-400 font-medium")}>
                     {job.title}
                 </p>
 
-                {/* Footer: Joy & Avatars */}
-                <div className="mt-1 flex items-center justify-between">
+                {/* SlothUI Footer: Avatar Stack & AI */}
+                <div className="mt-1 flex items-center justify-between border-t border-slate-100 pt-3">
                     <div className="flex items-center gap-2">
-                        {/* Trello Success Green AI Indicator */}
                         {job.aiGeneratedAssets && (
-                            <span className="text-trello-green text-[10px] font-bold flex items-center gap-1">
-                                ✨ AI Asset
+                            <span className="text-trello-green text-[10px] font-bold flex items-center gap-1 bg-green-50 px-1.5 py-0.5 rounded-full">
+                                ✨ AI
                             </span>
                         )}
-                        <StatusIcon status={job.status === 'done' ? 'completed' : job.status === 'in_progress' ? 'active' : 'paused'} size={14} />
                     </div>
 
-                    {/* Stacked Avatar Placeholder */}
+                    {/* Stacked Avatars */}
                     {!job.status && (
-                        <div className="flex -space-x-1.5">
-                            <div className="w-5 h-5 rounded-full bg-slate-200 border border-white" />
-                            <div className="w-5 h-5 rounded-full bg-slate-300 border border-white" />
+                        <div className="flex -space-x-2">
+                            <div className="w-6 h-6 rounded-full bg-indigo-100 border-2 border-white ring-1 ring-slate-100 flex items-center justify-center text-[8px] font-bold text-indigo-500">
+                                CM
+                            </div>
+                            <div className="w-6 h-6 rounded-full bg-slate-200 border-2 border-white ring-1 ring-slate-100" />
                         </div>
                     )}
                 </div>
