@@ -1,43 +1,51 @@
-# GrowthPad Product Blueprint
+# GrowthPad Product Blueprint (v3.0)
 
 **Codename:** Cornerstone
 **Context:** Strategic Business Command Center
+**Targets:** 4-Target Matrix (Web x2, Native x2)
 
-## 1. Product Intent & UI Philosophy
-GrowthPad is designed to combat "dashboard fatigue" by providing a prescriptive, action-oriented workspace. Unlike traditional BI tools that only show data, the **Growth Workboard** transforms strategy into prioritized workstreams.
+## 1. UI Philosophy: "Panoramic vs. Pocket"
 
-### The "Universal Kanban" Metaphor
-The UI follows a rigid hierarchical flow presented as a **Visual Board**:
+GrowthPad is a dual-surface strategy tool.
 
-1.  **Columns (Pillars)**: The fixed foundations of the business (Financial, Operational, Market).
-2.  **Cards (Jobs)**: Discrete, actionable tasks. These are the "leaves" of the strategy tree.
-3.  **Tags (Themes)**: Logical strategic groupings within a card (e.g., "Retention", "Unit Economics").
+### The Web Shell (`apps/next`)
+Targets both Desktop and Mobile browsers.
+- **Desktop**: Panoramic 3-column board via horizontal scroll.
+- **Mobile-Web**: Responsive stacking or horizontal swiping within the same codebase.
+- **Tool**: `shadcn/ui` ScrollArea (Responsive Flex).
 
-## 2. Data Architecture (The 5-Layer Cascade)
+### The Pocket Command Center (Mobile)
+Designed for quick execution. It uses a **Linear Strategy Feed**.
+- **Tool**: Segmented selection to focus on one pillar at a time.
+- **Interaction**: Bottom sheets for task mutation.
 
-All strategic logic in GrowthPad follows a strictly enforced 5-layer relational cascade. 
+---
 
-### Core Schema Map
-| Layer | Entity | Description |
+## 2. The 5-Layer Strategic Cascade
+
+All data in GrowthPad follows a strict relational hierarchy:
+
+| Layer | Entity | Purpose |
 | :--- | :--- | :--- |
-| **L1** | **`Pillar`** | Top-level containers (Board Columns: Financial, Operational, Market). |
-| **L2** | **`Theme`** | Strategic categories inside cards. |
-| **L3** | **`Objective`** | Multi-week strategic goals linked to a `Team`. |
-| **L4** | **`Phase`** | Logical milestones inside an Objective. |
-| **L5** | **`Job`** | Actionable tasks (The actual Card). |
+| **L1** | **`Pillar`** | Top-level business vertical (Financial, Operational, Market). |
+| **L2** | **`Theme`** | The "Why" behind the goal (e.g., Retention, Efficiency). |
+| **L3** | **`Objective`** | A high-level milestone (e.g., "Reduce Staff Churn"). |
+| **L4** | **`Phase`** | Logical grouping of tasks (e.g., "Diagnosis", "Execution"). |
+| **L5** | **`Job`** | The actionable "Leaf" (The task). |
 
-### Relational Flow
-`Team` -> `Pillar (3 Fixed Columns)` -> `Theme` -> `Objective` -> `Phase` -> `Job (Card)`
+---
 
-## 3. The "Strategy Engine" (Future)
-The platform is designed to house a RAG (Retrieval Augmented Generation) engine:
-1.  **Playbooks**: A library of "Golden Strategies" (Vectorized).
-2.  **Onboarding**: Ingests User Industry + Pain Points.
-3.  **Matching**: Retrieval of relevant Playbooks via vector similarity.
-4.  **Generation**: LLM customizes the Playbook into specific **Objectives** and **Jobs** for the user's Workboard.
+## 3. Implementation Guardrails
 
-## 4. UI Implementation Details
-- **Universal Board**: Enforces a horizontal scrolling view identical on Web and Mobile via `ScrollView`.
-- **Standardized Z-Axis**: Detailed Job info is displayed in a right-side **Side Panel** (Web) or **Bottom Sheet** (Native) via the `Sheet` primitive.
-- **Progressive Disclosure**: Keeps the main Workboard clean while allowing deep-dive into execution steps without losing context.
-- **Platform Parity**: The Board scales from a multi-column desktop "Canvas" to a horizontal swipe "Feed" on mobile.
+### No Universal UI
+We do not use "Universal Components" for the Shell (Sidebar/Header).
+- **Web**: Uses standard browser tags and high-fidelity templates.
+- **Native**: Uses native navigation stacks and gesture-heavy UI.
+
+### Shared Logic Contract
+Both platforms MUST use the `packages/app/hooks` library. If a developer needs to change how "Progress" is calculated, they change it in the Brain, and both shells reflect the change automatically.
+
+---
+
+## 4. Future: The Strategy Engine
+GrowthPad will eventually ingest external playbooks via AI to automatically generate the L3-L5 cascade for a business based on industry benchmarks.

@@ -1,85 +1,74 @@
-# GrowthPad Architecture (2025 Standard)
+# GrowthPad Architecture (v3.0)
 
-**Current Version**: 2.1 (Universal Kanban)
-**Last Updated**: 2025-12-20
+**Current Version**: 3.0 (Decoupled Shells)
+**Last Updated**: 2025-12-21
+**Strategic Pivot**: Shared Brain, Decoupled Shells
 
 ## 1. Executive Summary
-GrowthPad is a high-performance, cross-platform SaaS application built on the **Universal Monorepo** pattern. It targets Web (Next.js), iOS, and Android (Expo) with >95% code sharing.
+GrowthPad employs a **"Shared Brain, Decoupled Shells"** architecture. We have abandoned "Universal UI" in the presentation layer to deliver elite, platform-native experiences while maintaining 100% logic parity.
 
-The architecture strictly adheres to the **"Write Once, Run Everywhere"** philosophy using **Solito** for navigation bridge and **NativeWind v4** for universal styling.
+1.  **Web Shell (`apps/next`)**: A single, responsive Next.js application targeting both **Desktop** (Panoramic layout) and **Mobile-Web** (Responsive/Touch-optimized) using standard web tech.
+2.  **Native Shell (`apps/expo`)**: A high-agency mobile experience targeting **iOS** and **Android** using React Native primitives.
+3.  **The Brain (`packages/app`)**: The shared source of truth for logic and state.
 
-## 2. Tech Stack Reference
+These two shells consume one **Brain** to deliver a consistent experience across four hardware targets.
 
-| Layer | Technology | Version | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Web Framework** | **Next.js 13+** | App Router | Server Components, SEO, Layouts |
-| **Native Framework** | **Expo** | SDK 49/50 | Native Runtime, File-based Routing |
-| **Monorepo Tool** | **Turborepo** | Latest | Build Pipeline, Caching |
-| **Styling** | **NativeWind** | v4 | Universal Tailwind CSS |
-| **Navigation** | **Solito** | Latest | Bridge between Next.js & Expo Router |
-| **Icons** | **Lucide** | React Native | Universal Icon System |
+---
 
-## 3. Directory Structure
+## 2. Directory Structure
 
-```graphql
+```bash
 growthpad/
 ├── apps/
-│   ├── expo/
-│   │   └── app/            # Native Navigation (Expo Router)
-│   │       ├── _layout.tsx # Native Root Stack
-│   │       └── index.tsx   # Entry Point
-│   └── next/
-│       └── app/            # Web Navigation (App Router)
-│           ├── layout.tsx  # Web Root Layout (HTML/CSS)
-│           └── registry.tsx# NativeWind Style Registry
-├── packages/
-│   └── app/                # SHARED KERNEL
-│       ├── features/       # Screens & Business Logic
-│       │   ├── board/      # [NEW] Universal Kanban Board
-│       │   └── landing/    # Marketing Landing Page
-│       ├── ui/             # Universal Design System
-│       └── provider/       # Context Providers
+│   ├── next/              # WEB SHELL (Next.js + shadcn/ui)
+│   │   ├── app/           # App Router (page.tsx, dashboard/, login/)
+│   │   ├── components/    # Web-native UI (layout/, ui/, board/)
+│   │   └── tailwind.config.js # Configured for standard Web centering
+│   └── expo/              # NATIVE SHELL (React Native + NativeWind)
+│       └── features/      # Mobile-optimized strategic feed
+└── packages/
+    └── app/               # THE BRAIN (Shared Central Logic)
+        ├── hooks/         # useWorkboard(), useJobs()
+        ├── types/         # L1-L5 Strategic Cascade Interfaces
+        └── nativewind-env.d.ts # Shared type definitions
 ```
 
-## 4. Key Architectural Patterns
+---
 
-### A. The "Universal Board" Pattern
-Instead of fighting the platform differences between "Web Grids" and "Native Pagers", we utilize a **Single Universal Layout** that works identically on both platforms:
+## 3. Web Shell Specifications (`apps/next`)
 
-*   **View**: `ScrollView` (horizontal)
-*   **Columns**: `View` (w-80 or w-full)
-*   **Result**: A Trello/Monday style Kanban board that feels native on iOS (smooth touch scrolling) and professional on Web (horizontal overflow).
+We use **Standard Web Primitives** to ensure 0% layout shift (CLS) and 100% SEO/Performance.
 
-### B. Universal Components
-All UI components live in `packages/app/ui`. They use:
-- `react-native` primitives (`View`, `Text`, `Pressable`, `ScrollView`).
-- `nativewind` classNames (`className="bg-blue-500"`).
-- **Direct Usage**: We favor direct `<View className="...">` over `styled(View)` wrappers to avoid Next.js Babel plugin conflicts.
+*   **Framework**: Next.js (App Router) + Tailwind + shadcn/ui (Radix).
+*   **Decoupled Layout**: `DashboardShell.tsx` implements the SaaS wrapper using standard `header`, `aside`, and `main` tags.
+*   **Horizontal Canvas**: `Canvas.tsx` uses `shadcn/ui` `ScrollArea` for a "Trello-style" side-by-side pillar layout.
+*   **Pillars**: Fixed-width (`350px`) cards with internal scroll areas.
+*   **Anti-Pattern**: Importing `View`, `Text`, or `Pressable` from `react-native` in the web shell is strictly forbidden.
 
-### C. 3-Column SaaS Shell
-The Web Dashboard enforces a professional SaaS layout:
-1.  **Sidebar**: Left navigation column.
-2.  **Canvas**: The `BoardScreen` workspace (Horizontal scrolling columns).
-3.  **Sheet/Panel**: High-fidelity detail view for Jobs/Objectives.
+---
 
-## 5. Navigation Strategy
-We use `solito/navigation` to handle routing hooks:
-- **`useRouter()`**: Imports from `solito/navigation` (Works in App Router & Expo).
-- **`useLink()`**: Universal link component.
-- **`push('/path')`**: Navigates on both platforms.
+## 4. Mobile Shell Specifications (`apps/expo`)
 
-## 6. Known Constraints & Resolutions
-- **Next/Font**: Incompatible with NativeWind Babel config. Removed in favor of standard CSS fonts.
-- **NativeWind on Web**: `styled()` wrapper caused hydration issues. Resolution: Use standard `<View className="...">`.
+We focus on **Linear Command** density for the pocket experience.
 
-## 7. TypeScript Solution Mode
+*   **Navigation**: `PillarSegmentedControl` filters the view (Financial | Operational | Market).
+*   **Cascade**: Recursive accordions (L3 -> L4 -> L5) preserve the strategic weight.
+*   **Editing**: Native Bottom Sheets (`@gorhom/bottom-sheet`) for deep task interaction.
 
-To maintain a healthy, error-free monorepo, we use a **Supplier vs. Consumer** TypeScript model:
+---
 
-### A. The Supplier (`packages/app`)
-- **Config**: `composite: true`, `declaration: true`.
-- **Role**: This is the "Shared Kernel." It provides refined type definitions to the rest of the workspace.
+## 5. The Shared Brain (`packages/app`)
 
-### B. The Consumers (`apps/next`, `apps/expo`)
-- **Config**: `composite: false`.
-- **Role**: These are the "End-points." Since they use `noEmit: true` (compilation is handled by Next.js/Metro), they shouldn't produce declaration files. They simply consume the types supplied by `packages/app`.
+Both shells consume the same "Brain" via the monorepo.
+
+*   **Logic Hooks**: `useWorkboard()` returns a nested L1-L5 object. The shells are "dumb" and only loop through this data.
+*   **Type Safety**: The L1-L5 Strategic Cascade is the core interface for both platforms.
+*   **Hydration**: By using standard HTML on Web, we avoid React Native Web hydration mismatches entirely.
+
+---
+
+## 6. Technical Protocol
+
+*   **Bypassing Policies**: Use `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force` to run `npm run build` or `yarn web` in restricted environments.
+*   **Clean Builds**: Always clear `.next` cache if layout shifts appear unexplainable.
+*   **NativeWind**: Restricted to the "Brain" and "Native Shell". Web uses standard Tailwind utilities.

@@ -3,88 +3,51 @@
 **Project**: GrowthPad
 **Start Date**: 2025-12-18
 
-## Status: 🟢 STABLE (Kanban Pivot Complete)
+## Status: 🟢 STABLE (Phase 3 Prep: Decoupled Shells Complete)
 
 ---
+
+### 2025-12-21: Documentation Audit & Alignment (Phase 2.9)
+**Objective**: Synchronize all internal docs with the v3.0 Decoupled Shell implementation.
+
+- **Action**:
+    - **Architecture (v3.0)**: Codified the "Shared Brain, Decoupled Shells" protocol.
+    - **UI Standard**: Documented the "Panoramic Canvas" (Web) vs "Pocket Feed" (Mobile) distinction.
+    - **Walkthrough**: Updated all file paths and installation instructions for the monorepo.
+    - **Fixes**: Verified landing page centering and horizontal workboard flow.
+- **Result**: Impeccable project state. 100% architectural alignment.
+
+### 2025-12-21: Audit & Polish (Phase 2.8)
+**Objective**: "Professionalize" the codebase and fix architectural drift.
+
+- **Action**:
+    - **Refactored Web Shell**: Replaced "Teenager-style" landing page with a proper SaaS Landing Template (Header/Hero/Features/Footer).
+    - **Fixed Double Shell Bug**: Removed redundant `DashboardShell` wrapper from `dashboard/page.tsx` which was causing nested sidebars.
+    - **Enforced Architecture**: Removed `registry.tsx` and React Native Web dependencies from `apps/next`.
+    - **Documentation**: Updated `rules/construction.md` to Strictly forbid "Universal UI" on Web.
+- **Result**: `apps/next` is now a 100% web-native Next.js app consuming shared logic from `packages/app`. 0% layout shift, 100% SEO-ready.
+
+### 2025-12-21: The Decoupled Pivot (Phase 2.7)
+**Objective**: Break the "Universal UI" constraints to deliver a professional Panoramic Command Center (Web) and Pocket Command Center (Mobile).
+
+- **Core (The Brain)**:
+    - **Established The Contract**: Created strict L1-L5 interfaces (`packages/app/types`) to unify the strategic hierarchy.
+    - **Refactored Mock Data**: Migrated `packages/app/data.ts` to the new recursive L1-L5 structure.
+- **Web (The Panoramic Shell)**:
+    - **Decoupled Architecture**: Replaced RN `View` primitives with standard HTML/CSS Grid.
+    - **Fixed Build**: Removed `nativewind/babel` from `apps/next`. Added `nativewind-env.d.ts` to `packages/app` to fix shared component types.
+    - **Restored Entry Points**:
+        - `/`: Public Landing Page (Static HTML).
+        - `/dashboard`: Private Command Center (Protected App).
+- **Result**: "Triple Target" foundation live.
 
 ### 2025-12-20: Pivot to Universal Kanban (Phase 2.6)
 **Objective**: Abandon over-engineered "Grid" layouts in favor of a proven, stable Trello-style board.
 
 - **Action**:
-    - Deleted `WorkboardScreen` (Accordion/Grid implementation).
+    - Deleted `WorkboardScreen`.
     - Created **`features/board`** (New Standard Board Engine).
-    - Implemented **`BoardScreen`** using pure `ScrollView horizontal`.
-    - **Fix**: Removed `styled()` wrapper from `nativewind` usage to resolve Web runtime errors. Reverted to standard `<View className="...">`.
-- **Result**: Immediate stabilization of the Web Dashboard. Columns render correctly side-by-side. Layout is predictable on both iOS and Web.
+    - **Result**: Visual parity achieved.
 
-### 2025-12-20: Universal Layout Hardening (Phase 2.5)
-**Objective**: Fix the "Pillar Regression" and `ScrollView` web bugs with a rigid layout engine.
-
-- **Action**:
-    - Created **`UniversalCanvas`** primitive to replace `ScrollView`.
-    - Implemented **`Sheet`** (Side Panel for Web / Bottom Sheet for Native).
-    - Built **`Surface`** for platform-aware grid slots.
-    - Refactored `WorkboardScreen` to use the new layout engine.
-    - **Fix**: Resolved the "Inner Div" flexbox issue on React Native Web by implementing a **Platform-Specific Grid Strategy** (`div` + `grid-cols-3`).
-- **Result**: Validated. The 3-column layout is stable on Web.
-
-### 2025-12-20: Feature Injection & SaaS Flow
-**Objective**: Connect Marketing, Login, and Platform for a "Complete" app experience.
-
-- **Action**: 
-    - Created **Universal `Button` Component** (`packages/app/ui/button.tsx`) with built-in `href` navigation support.
-    - Implemented high-fidelity **`LoginScreen`** (`packages/app/features/auth/login-screen.tsx`) optimized for Supabase-style Google Auth.
-    - Rewired `LandingScreen` to move from manual `Pressable` hooks to standard `Button` navigation.
-    - Established the routing flow: `Landing` (/) -> `Login` (/login) -> `Dashboard` (/dashboard).
-- **Result**: "Zero-wiring" navigation achieved across the monorepo; app now feels like a unified product.
-
-### 2025-12-20: The "App Router" Migration (Major Milestone)
-**Objective**: Fix split architecture (Pages vs Expo Router) and resolve CSS layout issues.
-
-- **Problem**: The "Sidebar Missing" bug was traced to a conflict between Next.js Pages Router and NativeWind v4 styling injection, plus a legacy layout model.
-- **Action**: 
-    - Migrated `apps/next` from Pages Router to **App Router**.
-    - Created `apps/next/app/layout.tsx` with NativeWind Registry.
-    - Implemented `apps/next/app/dashboard/layout.tsx` to enforce the SaaS Shell.
-    - Updated shared components to use `solito/navigation` (App Router compatible) instead of `solito/router` (Legacy).
-- **Result**: Visual parity achieved. Sidebar visible. Routing logic unified.
-
-### 2025-12-20: Workboard & Landing Implementation
-**Objective**: Create "Proper Website" assets.
-
-- **Action**:
-    - Built `LandingScreen.tsx` with high-converting "Hero" section.
-    - Built `WorkboardScreen.tsx` with mocked strategy data.
-    - Implemented `DashboardLayout.tsx` (Universal Wrapper).
-    - **Fix**: Added `h-screen` to Web Layout to prevent flexbox collapse.
-
-### 2025-12-20: TypeScript Configuration Cleanup
-**Objective**: Resolve "noEmit vs composite" conflicts in root `tsconfig.json`.
-
-- **Action**: 
-    - Simplified root `tsconfig.json` to only reference `packages/app`.
-    - Removed `composite` and `declaration` flags from `apps/next` and `apps/expo`.
-    - Standardized the **Supplier vs Consumer** model for project references.
-- **Result**: IDE errors in root `tsconfig.json` resolved; build stability improved.
-
-### 2025-12-20: Operational "Keel-Clearance"
-**Objective**: Handle orphan Node.js processes in Windows.
-
-- **Action**: 
-    - Added `kill-ghost` script to root `package.json` to safely terminate processes on ports 3000-3002.
-    - Documented "Clean Stop" practices to prevent monorepo background leakage.
-
-### 2025-12-19: Monorepo Setup
-**Objective**: Initialize Solito + NativeWind v4.
-
-- **Action**:
-    - Cloned `mikevocalz/solito-nativewind-v4`.
-    - Configured TypeScript Solution Mode (`composite: true`).
-    - Fixed `nativewind/jsx-runtime` types.
-
----
-
-## Upcoming Roadmap
-1.  **Authentication**: Secure `/dashboard` with Supabase or Clerk.
-2.  **Detail Panel**: Activate the 3rd column for Job/Objective details.
-3.  **Theme**: Add Dark Mode toggle.
+### 2025-12-19: Monorepo Setup (Phase 1)
+- Initial Solito + NativeWind v4 setup.

@@ -16,7 +16,7 @@
   },
   "scripts": {
     "native": "cd apps/expo && yarn start",
-    "web": "cd apps/next && yarn next",
+    "web": "cd apps/next && yarn dev",
     "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
     "stop-web": "powershell -Command \"Stop-Process -Id (Get-NetTCPConnection -LocalPort 3000,3001,3002 -ErrorAction SilentlyContinue).OwningProcess -Force\"",
     "kill-ghost": "yarn stop-web"

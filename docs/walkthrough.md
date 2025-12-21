@@ -1,71 +1,55 @@
-# GrowthPad Project Walkthrough
+# GrowthPad Project Walkthrough (v3.0)
 
-**Architecture**: Universal Monorepo (Next.js App Router + Expo Router)
-**Status**: 🟢 Verified (Universal Kanban Active)
+**Architecture**: Decoupled Monorepo (Next.js App Shell + Expo Mobile Shell)
+**Status**: 🟢 Verified (Shared Brain Active)
 
 ## 1. Quick Start
 
-### Prerequisites
-- Node.js 18+
-- Yarn 3+ (Berry)
-
 ### Installation
 ```bash
-# Clean install (Recommended after migration)
-yarn clean
-yarn
+# Clean install
+npm install
 ```
 
 ### Running the Project
 ```bash
-# Web (localhost:3000) - Now uses App Router
-yarn web
- # OR If you have permission issues, use the Bypass scope:
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force; yarn web
+# Web Shell (localhost:3000)
+# Use Bypass if running on restricted Windows profiles
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force; npm run dev --workspace next-app
 
-# Native (iOS/Android Simulator)
-yarn native
-
-# Cleanup (If post-exit processes are still running)
-yarn kill-ghost
+# Mobile Shell (iOS/Android)
+npm run native --workspace expo-app
 ```
 
-## 2. Universal Layout Primitives
+---
 
-We have moved away from complex grid hacks to a stable **Universal Kanban** layout:
+## 2. Platform Architecture
 
-### A. Universal Board (`board-screen.tsx`)
-- **Use Case**: Strategy Pillars (Financial, Operational, Market).
-- **Behavior**: 
-  - **Web**: Horizontal scrolling columns.
-  - **Native**: Horizontal scrolling columns.
-- **Why**: Ensures 100% parity between iOS and Web without complex platform forks.
+### A. The Shared Brain (`packages/app`)
+- **Location**: `packages/app`
+- **Logic**: All data sourcing via `useWorkboard()`.
+- **Types**: Strategic hierarchy (L1-L5).
 
-### B. Standardized Z-Axis (`sheet.tsx`)
-- **Use Case**: Job Details, Objective Settings.
-- **Behavior**: 
-  - **Web**: Slide-over Side Panel (uses `framer-motion`).
-  - **Native**: Draggable Bottom Sheet (uses `@gorhom/bottom-sheet`).
+### B. The Panoramic Web Shell (`apps/next`)
+- **Landing Page**: `apps/next/app/page.tsx` (centered, responsive SaaS template).
+- **Dashboard**: `apps/next/app/dashboard/page.tsx` (SaaS wrapper with `DashboardShell`).
+- **Workboard Canvas**: `apps/next/components/layout/Canvas.tsx` (Horizontal Board via `ScrollArea`).
 
-## 3. Project Tour
+### C. The Pocket Mobile Shell (`apps/expo`)
+- **Structure**: NativeWind v4 + Segmented Pillar Control.
+- **Goal**: High-density execution feed.
 
-### A. The Landing Page
-- **URL**: `http://localhost:3000/`
-- **Code**: `packages/app/features/landing/screen.tsx`
-- **Features**: Hero section, aesthetic value props, "Get Started" CTA.
+---
 
-### B. The Workboard (Core Feature)
-- **URL**: `/dashboard`
-- **Code**: `packages/app/features/board/board-screen.tsx`
-- **Features**: Interactive "Kanban Board" showing Strategy Pillars:
-  - **Financial**: Revenue Goals
-  - **Operational**: Team Efficiency
-  - **Market**: Brand Position
-- **Interaction**: 
-  - Horizontal scroll to view all pillars.
-  - **Click-to-Detail**: Clicking a Job card opens the Side Panel (Web) or Bottom Sheet (Native).
+## 3. Key Feature: The Horizontal Workboard
+The Web Workboard uses a side-by-side **Pillar** layout.
+- Horizontal scroll enabled across all 3 pillars (Financial, Operational, Market).
+- Independent vertical scroll inside each pillar card.
+- Component: `shadcn/ui` ScrollArea (Web-Native).
+
+---
 
 ## 4. Verification
-- Web build succeeds (Next.js 13 App Router).
-- Workboard displays 3 columns side-by-side on Desktop.
-- No hydration errors (NativeWind `styled` removed).
+- `npm run build` succeeds for `apps/next`.
+- Zero React Native Web primitives in the Web layout.
+- Container centering applied globally to marketing routes.

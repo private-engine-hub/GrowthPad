@@ -1,21 +1,22 @@
 # GrowthPad Implementation Tasks
 
-- [x] **Phase 1: Foundation (Solito + NativeWind v4)**
-- [x] **Phase 2: Productization & SaaS Shell**
-- [x] **Phase 2.5: Universal Layout Hardening (Kanban Pivot)**
-    - [x] Install Dependencies (@gorhom/bottom-sheet, framer-motion)
-    - [x] Implement "Universal Board" (ScrollView horizontal)
-    - [x] Build "Platform Slot" System (Surface)
-    - [x] Standardize Z-Axis (Sheet)
-    - [x] Refactor Workboard to new Kanban Engine
+## 🎯 Current Objective: Productization & Audit
 
-- [ ] **Phase 3: Logic & Data Hardening**
-    - [ ] Connect Authentication (Supabase/Clerk)
-    - [ ] Wire up the 5-Layer Relational Data Model (Zustand/TanStack)
-    - [ ] Implement AIC-Asset Generation (OpenAI/RAG)
-    - [ ] Build Onboarding Wizard (Playbook Matching)
+### Phase 1: Decoupled Pivot
+- [x] Remove `NativeWindRegistry` and `StyleSheet` usage from `apps/next` <!-- id: 1 -->
+- [x] Create web-native `DashboardShell` and `Canvas` templates <!-- id: 2 -->
+- [x] Decouple `apps/next` from `packages/app` UI components <!-- id: 3 -->
 
-- [ ] **Phase 4: Optimization & Polish**
-    - [ ] Real-time Collaboration (Presence)
-    - [ ] Dark Mode Support
-    - [ ] Native Push Notifications
+### Phase 2: UI Professionalization
+- [x] Refactor Landing Page for elite SaaS aesthetic <!-- id: 4 -->
+- [x] Implement Standard Horizontal Board (Kanban) on Web <!-- id: 5 -->
+- [x] Fix container centering and logo alignment issues <!-- id: 6 -->
+
+### Phase 3: Documentation Audit (CURRENT)
+- [x] Audit `docs/architecture.md` for v3.0 accuracy <!-- id: 7 -->
+- [x] Sync `docs/walkthrough.md` with new project structure <!-- id: 8 -->
+- [x] Update `docs/development_log.md` with recent milestones <!-- id: 9 -->
+
+### Phase 4: Mobile Hardening (NEXT)
+- [ ] Implement `PillarSegmentedControl` in `apps/expo` <!-- id: 10 -->
+- [ ] Connect Mobile Feed to shared `useWorkboard` hook <!-- id: 11 -->

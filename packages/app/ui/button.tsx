@@ -3,13 +3,15 @@ import { useRouter } from 'solito/navigation';
 import { cn } from '../utils';
 import React from 'react';
 
-interface ButtonProps extends React.ComponentPropsWithoutRef<typeof Pressable> {
+interface ButtonProps extends Omit<React.ComponentPropsWithoutRef<typeof Pressable>, 'children'> {
     variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
     size?: 'sm' | 'md' | 'lg' | 'icon';
     label?: string;
     href?: string;
     icon?: React.ReactNode;
     textClassName?: string;
+    children?: React.ReactNode;
+    className?: string; // Explicitly add className for NativeWind
 }
 
 export function Button({

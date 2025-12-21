@@ -17,8 +17,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "jsxImportSource": "nativewind",
     "paths": {
+      "@/*": [
+        "./*"
+      ],
       "app/*": [
         "../../packages/app/*"
       ]

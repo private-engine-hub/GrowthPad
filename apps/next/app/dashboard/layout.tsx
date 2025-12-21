@@ -1,7 +1,7 @@
 'use client'
 
-import { DashboardLayout } from 'app/ui/dashboard-layout'
+import { DashboardShell } from '@/components/layout/DashboardShell'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-    return <DashboardLayout>{children}</DashboardLayout>
+    return <DashboardShell>{children}</DashboardShell>
 }
