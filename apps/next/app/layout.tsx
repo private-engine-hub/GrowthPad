@@ -1,10 +1,4 @@
-
 import './globals.css'
-
-export const metadata = {
-    title: 'GrowthPad',
-    description: 'The Unified Strategic Playbook Canvas',
-}
 
 import { Providers } from './providers'
 
@@ -15,7 +9,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body>
+            <body className="font-sans font-light antialiased">
                 <Providers>{children}</Providers>
             </body>
         </html>

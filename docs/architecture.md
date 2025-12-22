@@ -43,6 +43,8 @@ We use **Standard Web Primitives** to ensure 0% layout shift (CLS) and 100% SEO/
 *   **Decoupled Layout**: `DashboardShell.tsx` implements the SaaS wrapper using standard `header`, `aside`, and `main` tags.
 *   **Horizontal Canvas**: `Canvas.tsx` uses `shadcn/ui` `ScrollArea` for a "Trello-style" side-by-side pillar layout.
 *   **Pillars**: Fixed-width (`350px`) cards with internal scroll areas.
+*   **Typography**: Dashboard uses **Plus Jakarta Sans 300** (Light) for the base interface to ensure high-density scanability.
+*   **List Density**: Lower-level **Jobs (L5)** are rendered as shadowless/borderless list items to maximize information density.
 *   **Anti-Pattern**: Importing `View`, `Text`, or `Pressable` from `react-native` in the web shell is strictly forbidden.
 
 ---

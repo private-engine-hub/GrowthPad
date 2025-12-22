@@ -18,8 +18,10 @@ The brand balances legacy workplace blue with sunny growth accents.
 | **Error (Red)** | `#F43F5E` | `trello-red` | Critical blocking pillars. |
 
 ### Typography
+- **Primary Font**: **Plus Jakarta Sans** (Light 300).
 - **Headings**: `font-black` or `font-extrabold` with high tracking-tight.
-- **Body**: Standard Sans (Inter/System), optimized for density.
+- **Body**: Standard weight is **300**, using **400** only for medium emphasis and **600+** for headers.
+- **Implementation Note**: Due to the **Babel** configuration required by the `@expo/next-adapter`, SWC is disabled. Consequently, we use standard CSS `@import` in `globals.css` rather than `next/font` to avoid build conflicts.
 - **Semantic Labels**: `font-bold` and `uppercase` for Badge-style metadata.
 
 ---
@@ -70,7 +72,7 @@ Optimized for high-density scanning within Phase containers.
 - **Physics**: Static state is flat (`shadow-none`, `border-none`). Interactive state is `hover:bg-slate-50`.
 - **Layout**: "List Density" padding (`py-1.5 px-3`) with constrained text wrapping (`min-w-0`, `break-words`).
 - **Joy**: Use inline Lucide icons (🔥 Flame, ⚡ Zap, 🌱 Sprout) for priority.
-- **AI**: Inline `✨` indicator to reduce visual noise.
+- **Typography**: Dashboard uses **Plus Jakarta Sans 300** (Light) for the base interface to ensure high-density scanability.
 
 ### Chunky Capsule Pillars
 Replacing standard headers with distinct status-badges.
