@@ -11,9 +11,9 @@ The brand balances legacy workplace blue with sunny growth accents.
 
 | Element | Hex Code | Tailwind Token | Description |
 | :--- | :--- | :--- | :--- |
-| **Primary (Blue)** | `#0079BF` | `trello-blue` | Sidebar background, Header text, Primary CTAs. |
+| **Primary (Blue)** | `#00818E` | `trello-blue` | Sidebar background, Header text, Primary CTAs. |
 | **Accent (Yellow)** | `#FBBF24` | `trello-yellow` | Sunlight highlighting, status alerts, "Roadmap Mode". |
-| **Canvas (Gray)** | `#EBECF0` | `trello-gray` | The "floor" of the command center. |
+| **Canvas (Gray)** | `#EBECF0` | `trello-gray` | The "floor" of the playbook canvas. |
 | **Success (Green)** | `#22C55E` | `trello-green` | AI Success indicators, completed tasks. |
 | **Error (Red)** | `#F43F5E` | `trello-red` | Critical blocking pillars. |
 
@@ -30,13 +30,13 @@ The entry point uses the **Primary Blue** for authority and **Sunny Yellow** for
 
 - **Hero Headline**: Trello Blue base text (`text-trello-blue`) with Sunny Yellow span highlights (`text-trello-yellow`) for growth-mode emphasis (e.g., "on easy mode").
 - **Glass Elements**: Use `backdrop-blur` and `border-white/10` for floating badges.
-- **Buttons**: Primary buttons are solid `#0079BF` with high-radius corners (`rounded-lg`).
+- **Buttons**: Primary buttons are solid `#00818E` with high-radius corners (`rounded-lg`).
 
 ---
 
 ## 📊 3. Dashboard Shell (`/dashboard`)
 
-The Panoramic Command Center leverages maximum screen estate.
+The Panoramic Playbook Canvas leverages maximum screen estate.
 
 ### Sidebar (Trello Identity)
 - **Background**: Solid `bg-trello-blue`.

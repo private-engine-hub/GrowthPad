@@ -18,7 +18,7 @@
 - **Result**: Impeccable project state. 100% architectural alignment.
 
 ### 2025-12-21: Modern Trello UI Overhaul (Phase 2.6)
-**Objective**: Transition to a high-fidelity "Trello-First" aesthetic (`#0079BF` Legacy Blue) with joyful tactile interactions.
+**Objective**: Transition to a high-fidelity "Trello-First" aesthetic (`#00818E` Legacy Blue) with joyful tactile interactions.
 
 - **Action**:
     - **Trello Identity**: Refactored `DashboardShell` to use Trello Blue sidebar and Trello Gray (`#EBECF0`) canvas.
@@ -30,7 +30,7 @@
 **Objective**: Unified Brand Identity across Landing and Dashboard.
 
 - **Action**:
-    - **Landing Page**: Refactored `app/page.tsx` to use Trello Blue (`#0079BF`) as the primary brand color and "Sunny Yellow" (`bg-amber-400`) for accents/status indicators.
+    - **Landing Page**: Refactored `app/page.tsx` to use Trello Blue (`#00818E`) as the primary brand color and "Sunny Yellow" (`bg-amber-400`) for accents/status indicators.
     - **Dashboard**: Confirmed stable rendering of the "Modern Trello" aesthetic (Blue Sidebar, Gray Canvas, Capsule Pillars).
 - **Status**: **WEB SHELL COMPLETE** 🟢. Ready for Mobile.
 
@@ -55,7 +55,7 @@
 - **Result**: `apps/next` is now a 100% web-native Next.js app consuming shared logic from `packages/app`. 0% layout shift, 100% SEO-ready.
 
 ### 2025-12-21: The Decoupled Pivot (Phase 2.7)
-**Objective**: Break the "Universal UI" constraints to deliver a professional Panoramic Command Center (Web) and Pocket Command Center (Mobile).
+**Objective**: Break the "Universal UI" constraints to deliver a professional Panoramic Playbook Canvas (Web) and Pocket Playbook Canvas (Mobile).
 
 - **Core (The Brain)**:
     - **Established The Contract**: Created strict L1-L5 interfaces (`packages/app/types`) to unify the strategic hierarchy.
@@ -65,7 +65,7 @@
     - **Fixed Build**: Removed `nativewind/babel` from `apps/next`. Added `nativewind-env.d.ts` to `packages/app` to fix shared component types.
     - **Restored Entry Points**:
         - `/`: Public Landing Page (Static HTML).
-        - `/dashboard`: Private Command Center (Protected App).
+        - `/dashboard`: Private Playbook Canvas (Protected App).
 - **Result**: "Triple Target" foundation live.
 
 ### 2025-12-20: Pivot to Universal Kanban (Phase 2.6)

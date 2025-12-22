@@ -1,7 +1,7 @@
 # GrowthPad Product Blueprint (v3.0)
 
 **Codename:** Cornerstone
-**Context:** Strategic Business Command Center
+**Context:** Strategic Business Playbook Canvas
 **Targets:** 4-Target Matrix (Web x2, Native x2)
 
 ## 1. UI Philosophy: "Panoramic vs. Pocket"
@@ -14,7 +14,7 @@ Targets both Desktop and Mobile browsers.
 - **Mobile-Web**: Responsive stacking or horizontal swiping within the same codebase.
 - **Tool**: `shadcn/ui` ScrollArea (Responsive Flex).
 
-### The Pocket Command Center (Mobile)
+### The Pocket Playbook Canvas (Mobile)
 Designed for quick execution. It uses a **Linear Scrolling Feed**.
 - **Tool**: Segmented selection to focus on one pillar at a time.
 - **function**: each pillar occupies the mobile screen, with easy touch to expand and keep focus, whilst scrolling hard or tab-click will scroll to the next pillar

@@ -21,7 +21,7 @@
 
 ## ✅ Phase 2.6: Trello Blue UI Overhaul
 Objective: Pivot to "SlothUI" aesthetic with Trello Blue identity and capsule hierarchy.
-- [x] **Trello Sidebar**: `bg-[#0079BF]` frame + `bg-white/20` active states + "Go Pro" footer.
+- [x] **Trello Sidebar**: `bg-[#00818E]` frame + `bg-white/20` active states + "Go Pro" footer.
 - [x] **Capsule Pillars**: `rounded-full` status badges (Purple/Amber/Emerald) replacing border headers.
 - [x] **Leaf Card Hardening**: `rounded-xl` cards + Priority Badge + Avatar/Stats footer.
 - [x] **Environmental Depth**: Maintain `bg-slate-100` canvas for contrast.
@@ -40,7 +40,7 @@ Objective: Inject premium SlothUI details (Control Strip, Mood Tags, Deep Brandi
 - [x] **Walkthrough**: Refreshed `docs/walkthrough.md` with new project structure.
 - [x] **Rules Update**: Polished `docs/rules/construction.md` for assembly protocol.
 
-## 🚧 Phase 4: Mobile "Pocket" Command Center
+## 🚧 Phase 4: Mobile "Pocket" Playbook Canvas
 - [ ] **Linear Feed**: Implement `PillarSegmentedControl` in `apps/expo`.
 - [ ] **Data Hookup**: Connect Mobile Feed to shared `useWorkboard` hook.
 - [ ] **High-Agency Accordions**: Build recursive L3-L5 view for small screens.
