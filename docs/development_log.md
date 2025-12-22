@@ -7,6 +7,15 @@
 
 ---
 
+### 2025-12-22: Collapsible Sidebar & Code Audit (Phase 2.8)
+**Objective**: Enhance sidebar utility without sacrificing Trello aesthetics, and rigidly enforce code quality rules.
+
+- **Action**:
+    - **Collapsible Sidebar**: Implemented `w-72` to `w-20` transition with an adaptive "Zap" brand icon and "Glass Pill" search toggle.
+    - **Shadow Depth**: Increased sidebar shadow opacity (`0.4`) for better layering over the canvas.
+    - **Code Rules**: Audited `DashboardShell.tsx` against `docs/rules/code.md`, refactoring large ternaries into clean "boring" helper components (`SidebarBrand`, `PremiumCard`).
+- **Result**: A polished, space-efficient workspace that respects the "Pragmatism First" coding standard.
+
 ### 2025-12-21: Documentation Audit & Alignment (Phase 2.9)
 **Objective**: Synchronize all internal docs with the v3.0 Decoupled Shell implementation.
 

@@ -44,7 +44,7 @@ cd apps/expo && yarn android
 
 ### B. The Panoramic Web Shell (`apps/next`)
 - **Landing Page**: `apps/next/app/page.tsx` (centered, responsive SaaS template).
-- **Dashboard**: `apps/next/app/dashboard/page.tsx` (SaaS wrapper with `DashboardShell`).
+- **Dashboard**: `apps/next/app/dashboard/page.tsx` (SaaS wrapper with `DashboardShell` + Collapsible Sidebar).
 - **Workboard Canvas**: `apps/next/components/layout/Canvas.tsx` (Horizontal Board via `ScrollArea`).
 
 ### C. The Pocket Mobile Shell (`apps/expo`)

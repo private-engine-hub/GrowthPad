@@ -39,10 +39,12 @@ The entry point uses the **Primary Blue** for authority and **Sunny Yellow** for
 The Panoramic Playbook Canvas leverages maximum screen estate.
 
 ### Sidebar (Trello Identity)
+- **Behavior**: Collapsible (`w-72` ↔ `w-20`) with smooth `300ms` transition.
+- **Shadow**: Deep, prominent shadow (`4px_0_24px_rgba(0,0,0,0.4)`) for clear separation from canvas.
 - **Background**: Solid `bg-trello-blue`.
-- **Search**: "Glass" style (`bg-white/10`) with subtle backdrop blur.
-- **Interaction**: Nav items use `bg-white/20` when active, creating a recessed light-pool effect.
-- **Premium Footer**: A dedicated "Glass Card" (`bg-gradient-to-br`) for high-value upgrades, replacing simple text links.
+- **Search**: Adaptive "Glass" style (`bg-white/10`); full visual on expand, icon-only button on collapse.
+- **Interaction**: Nav items use `bg-white/20` when active. Labels hide on collapse with tooltip fallback.
+- **Premium Footer**: Collapses from a "Glass Card" (`bg-gradient-to-br`) to a minimal Star Icon button.
 
 ### Header Control Strip
 - **Zones**: Split into Utility (Title + Global Actions) and Navigation (Tabs).

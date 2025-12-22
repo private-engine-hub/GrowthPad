@@ -72,7 +72,7 @@ export default function LandingPage() {
                     </h1>
 
                     <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-lg sm:leading-8">
-                        Swap the guesswork for the gameplan that actually makes you money
+                        A gameplan engine for your business that makes you money
                     </p>
 
                     <div className="flex flex-wrap items-center justify-center gap-4">
