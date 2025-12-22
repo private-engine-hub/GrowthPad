@@ -73,7 +73,7 @@ function JobCard({ job }: { job: L5_Job }) {
             </div>
 
             <p className={cn(
-                "text-sm font-medium text-slate-700 break-words flex-1 min-w-0 leading-snug group-hover:text-slate-900 transition-colors",
+                "text-xs font-medium text-slate-700 break-words flex-1 min-w-0 leading-snug group-hover:text-slate-900 transition-colors",
                 job.status === 'done' && "line-through decoration-slate-400 font-normal"
             )}>
                 {job.title}
