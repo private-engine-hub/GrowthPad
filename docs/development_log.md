@@ -7,6 +7,15 @@
 
 ---
 
+### 2025-12-22: Job Card Cleanliness (Phase 2.9)
+**Objective**: Optimize L5 Job Cards for high-density scanning ("List View" feel).
+
+- **Action**:
+    - **Surgical Density**: Removed shadows/borders from Job items while preserving them on parent Objective cards.
+    - **Joyful Icons**: Replaced text badges with Lucide icons (Flame, Zap, Sprout) for priority.
+    - **Layout Fixes**: Applied `whitespace-normal` (Pillar) and `min-w-0` (Flex) to resolve text overflow issues.
+- **Result**: A cleaner, denser, and more scanable workboard.
+
 ### 2025-12-22: Supabase Readiness & Strategy Expansion (Phase 3.0)
 **Objective**: Prepare the "Shared Brain" for a live PostgreSQL connection while expanding the strategic data model.
 

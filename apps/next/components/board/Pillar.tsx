@@ -18,7 +18,7 @@ export function Pillar({ title, description, icon, children, className }: Pillar
     const headerColor = getPillarHeaderColor(title)
 
     return (
-        <Card className={cn("w-[350px] shrink-0 flex flex-col h-[calc(100vh-180px)] shadow-none bg-transparent border-none", className)}>
+        <Card className={cn("w-[350px] shrink-0 flex flex-col h-[calc(100vh-180px)] shadow-none bg-transparent border-none whitespace-normal", className)}>
             {/* Chunky Capsule Header */}
             <div className="px-1 mb-3 flex items-center gap-2">
                 <Badge className={cn("flex-1 justify-center rounded-full px-4 py-1.5 text-sm font-bold shadow-sm hover:shadow-md transition-all text-white border-none", headerColor)}>

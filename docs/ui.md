@@ -65,6 +65,12 @@ Designed to feel tactile and physical.
 - **Anatomy**:
     - **Top**: Condensed L5 Title + "Mood Pills" (e.g., High Priority in `bg-rose-50`).
     - **Footer**: Left-aligned AI markers (`text-trello-green`) and right-aligned Avatar Stacks.
+### Dense Job List (L5)
+Optimized for high-density scanning within Phase containers.
+- **Physics**: Static state is flat (`shadow-none`, `border-none`). Interactive state is `hover:bg-slate-50`.
+- **Layout**: "List Density" padding (`py-1.5 px-3`) with constrained text wrapping (`min-w-0`, `break-words`).
+- **Joy**: Use inline Lucide icons (🔥 Flame, ⚡ Zap, 🌱 Sprout) for priority.
+- **AI**: Inline `✨` indicator to reduce visual noise.
 
 ### Chunky Capsule Pillars
 Replacing standard headers with distinct status-badges.

@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { L3_Objective, L4_Phase, L5_Job } from "app/types"
-import { CheckCircle2, Circle, Clock } from "lucide-react"
+import { CheckCircle2, Circle, Clock, Flame, Zap, Sprout } from "lucide-react"
 
 // --- THE CASCADE COMPONENTS ---
 
@@ -21,9 +21,7 @@ export function ObjectiveCascade({ objective }: ObjectiveCascadeProps) {
                     <StatusIcon status={objective.status} />
                     <div className="flex flex-col">
                         <span className="text-sm font-semibold text-slate-900">{objective.title}</span>
-                        <div className="flex gap-2 mt-1">
-                            {/* We could map tags here if they existed on L3 */}
-                        </div>
+                        {/* We could map tags here if they existed on L3 */}
                     </div>
                 </div>
             </AccordionTrigger>
@@ -33,11 +31,11 @@ export function ObjectiveCascade({ objective }: ObjectiveCascadeProps) {
                     {objective.phases.map(phase => (
                         <div key={phase.id} className="space-y-3">
                             <div className="flex items-center gap-2">
-                                <Badge variant="outline" className="text-[10px] uppercase tracking-widest text-muted-foreground border-slate-200 bg-white">
+                                <span className="text-[11px] font-medium uppercase text-slate-400 tracking-wide">
                                     {phase.title}
-                                </Badge>
+                                </span>
                             </div>
-                            <div className="space-y-2">
+                            <div className="space-y-1"> {/* Reduced spacing for list density */}
                                 {phase.jobs.map(job => (
                                     <JobCard key={job.id} job={job} />
                                 ))}
@@ -50,50 +48,47 @@ export function ObjectiveCascade({ objective }: ObjectiveCascadeProps) {
     )
 }
 
-
-
 function JobCard({ job }: { job: L5_Job }) {
+    // Determine priority based on keywords or random if missing (Mock Logic)
+    // In real app, this would be job.priority
+    const getPriority = (title: string) => {
+        const t = title.toLowerCase()
+        if (t.includes('urgent') || t.includes('security') || t.includes('audit')) return 'high'
+        if (t.includes('draft') || t.includes('model') || t.includes('optimization')) return 'medium'
+        return 'low'
+    }
+
+    const priority = getPriority(job.title)
+
     return (
-        <Card className={cn(
-            "group relative bg-white p-4 rounded-xl shadow-sm border-b-2 border-slate-200 hover:shadow-md cursor-grab active:cursor-grabbing hover:-translate-y-0.5 transition-all duration-200 mb-3",
-            job.status === 'done' && "opacity-60 bg-slate-50 border-slate-200 shadow-none hover:shadow-none cursor-default"
+        <div className={cn(
+            "group flex items-start gap-2 py-1.5 px-3 rounded-lg bg-white hover:bg-slate-50 hover:shadow-sm transition-all duration-200 cursor-pointer",
+            job.status === 'done' && "opacity-50"
         )}>
-            <div className="flex flex-col gap-3">
-
-                {/* SlothUI Mood Tags */}
-                <div className="flex items-center gap-2">
-                    <Badge className="bg-rose-50 text-rose-700 hover:bg-rose-100 border-rose-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider shadow-none">
-                        High Priority
-                    </Badge>
-                </div>
-
-                {/* Title */}
-                <p className={cn("text-sm font-semibold text-slate-800 leading-snug", job.status === 'done' && "line-through decoration-slate-400 font-medium")}>
-                    {job.title}
-                </p>
-
-                {/* SlothUI Footer: Avatar Stack & AI */}
-                <div className="mt-1 flex items-center justify-between border-t border-slate-100 pt-3">
-                    <div className="flex items-center gap-2">
-                        {job.aiGeneratedAssets && (
-                            <span className="text-trello-green text-[10px] font-bold flex items-center gap-1 bg-green-50 px-1.5 py-0.5 rounded-full">
-                                ✨ AI
-                            </span>
-                        )}
-                    </div>
-
-                    {/* Stacked Avatars */}
-                    {!job.status && (
-                        <div className="flex -space-x-2">
-                            <div className="w-6 h-6 rounded-full bg-indigo-100 border-2 border-white ring-1 ring-slate-100 flex items-center justify-center text-[8px] font-bold text-indigo-500">
-                                CM
-                            </div>
-                            <div className="w-6 h-6 rounded-full bg-slate-200 border-2 border-white ring-1 ring-slate-100" />
-                        </div>
-                    )}
-                </div>
+            {/* Joyful Priority Icon */}
+            <div className="shrink-0 mt-0.5">
+                {priority === 'high' && <Flame size={14} className="text-rose-500 fill-rose-50" />}
+                {priority === 'medium' && <Zap size={14} className="text-amber-500 fill-amber-50" />}
+                {priority === 'low' && <Sprout size={14} className="text-emerald-500" />}
             </div>
-        </Card>
+
+            <p className={cn(
+                "text-sm font-medium text-slate-700 break-words flex-1 min-w-0 leading-snug group-hover:text-slate-900 transition-colors",
+                job.status === 'done' && "line-through decoration-slate-400 font-normal"
+            )}>
+                {job.title}
+                {job.aiGeneratedAssets && (
+                    <span className="ml-1.5 text-[10px] items-center inline-flex gap-0.5 text-green-600 font-bold opacity-80 group-hover:opacity-100">
+                        ✨ AI
+                    </span>
+                )}
+            </p>
+
+            {/* Hidden Avatar on Hover (Optional Delight) */}
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity flex -space-x-1">
+                <div className="w-4 h-4 rounded-full bg-slate-200 border border-white" />
+            </div>
+        </div>
     )
 }
 
