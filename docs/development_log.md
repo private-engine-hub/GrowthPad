@@ -16,6 +16,16 @@
     - **Layout Fixes**: Applied `whitespace-normal` (Pillar) and `min-w-0` (Flex) to resolve text overflow issues.
 - **Result**: A cleaner, denser, and more scanable workboard.
  
+### 2025-12-22: Platform Refactor & Sidebar Polish (Phase 4.1)
+**Objective**: Transition to a professional `/platform` namespace and solve navigation UX friction.
+
+- **Action**:
+    - **Namespace Refactor**: Migrated `/dashboard` routes to `/platform` (Home, Dashboard, Planner).
+    - **Navigation Highlighting**: Implemented `usePathname` in `DashboardShell.tsx` to ensure sidebar tabs correctly highlight when active.
+    - **Home Entry**: Created `/platform/home` as a designated landing area.
+    - **Sidebar Tidy**: Added "Home" button to the primary navigation group.
+- **Result**: A more scalable application structure with intuitive, "glowing" navigation.
+
 ### 2025-12-22: Strategy Tree Map (Phase 4.0)
 **Objective**: Build a high-density "Planner View" (`/dashboard/planner`) for vertical strategic visualization.
  

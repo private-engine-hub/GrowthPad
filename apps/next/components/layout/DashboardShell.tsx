@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react"
-import { LucideIcon, LayoutDashboard, BarChart3, Settings, HelpCircle, Layers, Zap, Search, Star, Share2, Plus, ChevronLeft, ChevronRight, ListTree } from "lucide-react"
+import { LucideIcon, LayoutDashboard, BarChart3, Settings, HelpCircle, Layers, Zap, Search, Star, Share2, Plus, ChevronLeft, ChevronRight, ListTree, Home } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 
@@ -38,6 +38,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
                     </div>
 
                     <div className="flex-1 py-4 space-y-1">
+                        <NavItem icon={Home} label="Home" href="/platform/home" isCollapsed={isCollapsed} />
                         <NavItem icon={LayoutDashboard} label="Workboard" href="/platform/dashboard" isCollapsed={isCollapsed} />
                         <NavItem icon={ListTree} label="Strategy Map" href="/platform/planner" isCollapsed={isCollapsed} />
                         <NavItem icon={Layers} label="Playbooks" href="/platform/playbooks" isCollapsed={isCollapsed} />

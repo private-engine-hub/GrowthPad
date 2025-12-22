@@ -36,17 +36,18 @@ The entry point uses the **Primary Blue** for authority and **Sunny Yellow** for
 
 ---
 
-## 📊 3. Dashboard Shell (`/dashboard`)
+## 📊 3. Platform Shell (`/platform`)
 
 The Panoramic Playbook Canvas leverages maximum screen estate.
 
-### Sidebar (Trello Identity)
+### Sidebar (Navigation Shell)
+- **Namespace**: All core application routes are under `/platform`.
 - **Behavior**: Collapsible (`w-72` ↔ `w-20`) with smooth `300ms` transition.
 - **Shadow**: Deep, prominent shadow (`4px_0_24px_rgba(0,0,0,0.4)`) for clear separation from canvas.
 - **Background**: Solid `bg-trello-blue`.
-- **Search**: Adaptive "Glass" style (`bg-white/10`); full visual on expand, icon-only button on collapse.
-- **Interaction**: Nav items use `bg-white/20` when active. Labels hide on collapse with tooltip fallback.
-- **Premium Footer**: Collapses from a "Glass Card" (`bg-gradient-to-br`) to a minimal Star Icon button.
+- **Active State**: Navigation items use `bg-white/20` and a shadow effect when the current route matches (`usePathname`).
+- **Home Entry**: A prominent "Home" button resides at the top of the primary navigation group.
+- **Micro-Physics**: Labels hide on collapse with icon-only view and tooltip fallbacks.
 
 ### Header Control Strip
 - **Zones**: Split into Utility (Title + Global Actions) and Navigation (Tabs).
@@ -79,6 +80,12 @@ Optimized for high-density scanning within Phase containers.
 Replacing standard headers with distinct status-badges.
 - **Logic**: Header color is determined by the Pillar title (Financial=Red, Operational=Yellow, Market=Green).
 - **Shape**: `rounded-full` high-contrast capsules that sit *above* the card stack.
+
+### The Strategy Map (`/platform/planner`)
+A high-density, full-width vertical view for strategic planning.
+- **Structure**: Full-width collapsible Pillar rows (L1) -> Vertical Phases (L3) -> Detailed Job Rows (L5).
+- **Interactivity**: Headers expand/collapse groups. Rows reveal detailed metadata (Avatar, Status, Context).
+- **Density**: Uses `text-sm` for titles and `text-xs` for metadata. No dates are shown to preserve strategic focus.
 
 ---
 

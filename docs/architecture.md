@@ -21,7 +21,7 @@ These two shells consume one **Brain** to deliver a consistent experience across
 growthpad/
 ├── apps/
 │   ├── next/              # WEB SHELL (Next.js + shadcn/ui)
-│   │   ├── app/           # App Router (page.tsx, dashboard/, login/)
+│   │   ├── app/           # App Router (page.tsx, platform/, login/)
 │   │   ├── components/    # Web-native UI (layout/, ui/, board/)
 │   │   └── tailwind.config.js # Configured for standard Web centering
 │   └── expo/              # NATIVE SHELL (React Native + NativeWind)
@@ -40,7 +40,8 @@ growthpad/
 We use **Standard Web Primitives** to ensure 0% layout shift (CLS) and 100% SEO/Performance.
 
 *   **Framework**: Next.js (App Router) + Tailwind + shadcn/ui (Radix).
-*   **Decoupled Layout**: `DashboardShell.tsx` implements the SaaS wrapper using standard `header`, `aside`, and `main` tags.
+*   **Core Namespace**: `/platform` (e.g., `/platform/home`, `/platform/dashboard`, `/platform/planner`).
+*   **Layout Wrapper**: `DashboardShell.tsx` implements the SaaS wrapper with dynamic `usePathname` highlighting.
 *   **Horizontal Canvas**: `Canvas.tsx` uses `shadcn/ui` `ScrollArea` for a "Trello-style" side-by-side pillar layout.
 *   **Pillars**: Fixed-width (`350px`) cards with internal scroll areas.
 *   **Typography**: Dashboard uses **Plus Jakarta Sans 300** (Light) for the base interface to ensure high-density scanability.
