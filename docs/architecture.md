@@ -99,6 +99,15 @@ Both shells (Web and Mobile) consume the same "Brain" via the monorepo, leveragi
 
 ---
 
+## 7. Code Integrity (The "Boring" Rule)
+We prioritize stable, standard patterns over clever custom logic.
+- **Standard**: If an industry-standard template exists, use it.
+- **DRY**: Code should be DRY where sensible
+- **Pruning**: Delete unused code and abstract repeated patterns quickly.
+- **Compliance**: All code must satisfy `docs/rules/code.md`.
+
+---
+
 ## ZZ. Appendix
 
 ### **Table of Technologies and How They Interact**

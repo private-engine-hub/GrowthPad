@@ -26,8 +26,11 @@ You must strictly separate logic from presentation.
 2. **Layout Shells**:
    - **Marketing**: Responsive, centered containers (`mx-auto`).
    - **App**: `DashboardShell` (Sidebar + Content).
-3. **Alignment**: Every element must belong to a **Grid** or **Flex** container. ambiguous placement? **Center it**.
-4. **Constraints**: Standard Tailwind scales only (`p-4`, `m-6`). No arbitrary pixel values.
+3. **Mobile Web Strategy (Next.js)**: 
+   - Use standard Tailwind breakpoints (`md:`, `lg:`) to transition between Desktop (Panoramic) and Mobile-Web (Vertical Stack or Tabbed).
+   - Sidebar should transition from fixed to `hidden` or a Hamburger Overlay on screens `< 768px`.
+4. **Alignment**: Every element must belong to a **Grid** or **Flex** container.
+5. **Constraints**: Standard Tailwind scales only (`p-4`, `m-6`). No arbitrary pixel values.
 
 ---
 

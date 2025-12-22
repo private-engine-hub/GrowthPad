@@ -73,6 +73,17 @@ Replacing standard headers with distinct status-badges.
 
 ---
 
+## 📱 5. Mobile Web Adaptation (`apps/next` smaller screens)
+
+The web shell must remain functional on touch browsers without using Native logic.
+
+- **The Stacking Canvas**: On screens `< md`, the horizontal pillar layout transitions to a vertical scroll stack. 
+- **Fat Taps**: Increase padding on interactive elements (Buttons/Links) to a minimum of `h-11` or `p-3` for touch accuracy.
+- **Sidebar Ghosting**: The blue sidebar hides entirely; access is moved to a top-header hamburger menu or bottom-nav pivot.
+- **Micro-Physics**: Disable `hover:` effects on touch devices to prevent sticky hover states.
+
+---
+
 ## ✅ Design Checklist
 1. **Depth**: Ensure white cards sit on a gray canvas (`bg-trello-gray`).
 2. **Branding**: Headings/Sidebar must use `trello-blue`.
