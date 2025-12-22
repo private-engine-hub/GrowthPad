@@ -72,6 +72,7 @@ Optimized for high-density scanning within Phase containers.
 - **Physics**: Static state is flat (`shadow-none`, `border-none`). Interactive state is `hover:bg-slate-50`.
 - **Layout**: "List Density" padding (`py-1.5 px-3`) with constrained text wrapping (`min-w-0`, `break-words`).
 - **Typography**: Uses **text-xs** (12px) for maximum information density in the strategic cascade.
+- **Row Variant**: In `StrategicStack`, jobs are full-width rows with RHS metadata (Avatar, Status) permanently visible.
 - **Joy**: Use inline Lucide icons (🔥 Flame, ⚡ Zap, 🌱 Sprout) for priority.
 
 ### Chunky Capsule Pillars

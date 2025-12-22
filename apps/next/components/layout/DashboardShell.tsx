@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react"
-import { LucideIcon, LayoutDashboard, BarChart3, Settings, HelpCircle, Layers, Zap, Search, Star, Share2, Plus, ChevronLeft, ChevronRight } from "lucide-react"
+import { LucideIcon, LayoutDashboard, BarChart3, Settings, HelpCircle, Layers, Zap, Search, Star, Share2, Plus, ChevronLeft, ChevronRight, ListTree } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 
@@ -38,9 +38,10 @@ export function DashboardShell({ children }: DashboardShellProps) {
                     </div>
 
                     <div className="flex-1 py-4 space-y-1">
-                        <NavItem icon={LayoutDashboard} label="Workboard" href="/dashboard" active isCollapsed={isCollapsed} />
-                        <NavItem icon={Layers} label="Playbooks" href="/dashboard/playbooks" isCollapsed={isCollapsed} />
-                        <NavItem icon={BarChart3} label="Analytics" href="/dashboard/analytics" isCollapsed={isCollapsed} />
+                        <NavItem icon={LayoutDashboard} label="Workboard" href="/platform/dashboard" isCollapsed={isCollapsed} />
+                        <NavItem icon={ListTree} label="Strategy Map" href="/platform/planner" isCollapsed={isCollapsed} />
+                        <NavItem icon={Layers} label="Playbooks" href="/platform/playbooks" isCollapsed={isCollapsed} />
+                        <NavItem icon={BarChart3} label="Analytics" href="/platform/analytics" isCollapsed={isCollapsed} />
                     </div>
 
                     <div className={cn("mt-auto pt-6 border-t border-white/10 w-full", isCollapsed ? "flex flex-col items-center border-none pt-2" : "")}>
@@ -161,13 +162,20 @@ function PremiumCard({ isCollapsed }: { isCollapsed: boolean }) {
     )
 }
 
-function NavItem({ icon: Icon, label, href, active, isCollapsed }: { icon: LucideIcon, label: string, href: string, active?: boolean, isCollapsed?: boolean }) {
+import { usePathname } from "next/navigation"
+
+// ... (imports remain the same, just adding usePathname)
+
+function NavItem({ icon: Icon, label, href, isCollapsed }: { icon: LucideIcon, label: string, href: string, isCollapsed?: boolean }) {
+    const pathname = usePathname()
+    const isActive = pathname === href
+
     return (
         <Link
             href={href}
             className={cn(
                 "flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 group h-10",
-                active
+                isActive
                     ? "bg-white/20 text-white shadow-sm"
                     : "text-blue-50/80 hover:bg-white/10 hover:text-white",
                 isCollapsed && "justify-center px-0 w-10 mx-auto"

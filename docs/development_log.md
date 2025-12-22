@@ -15,6 +15,16 @@
     - **Joyful Icons**: Replaced text badges with Lucide icons (Flame, Zap, Sprout) for priority.
     - **Layout Fixes**: Applied `whitespace-normal` (Pillar) and `min-w-0` (Flex) to resolve text overflow issues.
 - **Result**: A cleaner, denser, and more scanable workboard.
+ 
+### 2025-12-22: Strategy Tree Map (Phase 4.0)
+**Objective**: Build a high-density "Planner View" (`/dashboard/planner`) for vertical strategic visualization.
+ 
+- **Action**:
+    - **Engine**: Implemented `StrategicStack.tsx`, a recursive interactive tree engine.
+    - **Layout**: Adopted a full-width expansive canvas with full-row Pillars (L1) and Phases (L3).
+    - **Interactivity**: Built smooth Expand/Collapse physics with Framer Motion and persistent RHS metadata for Jobs.
+    - **Typography**: Standardized on Plus Jakarta Sans 300 to match the brand refresh.
+- **Result**: A powerful new "Strategy Map" module that complements the horizontal Workboard.
 
 ### 2025-12-22: Supabase Readiness & Strategy Expansion (Phase 3.0)
 **Objective**: Prepare the "Shared Brain" for a live PostgreSQL connection while expanding the strategic data model.
