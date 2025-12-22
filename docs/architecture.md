@@ -82,12 +82,35 @@ Both shells (Web and Mobile) consume the same "Brain" via the monorepo, leveragi
   * Ensures seamless **data consistency**, **offline support**, and **real-time synchronization** of the **L1-L5 cascade**.
 
 
+### **5.1 Data Layer Strategy (Dual-Mode)**
+
+The architecture is designed to operate in two modes to support rapid prototyping and production scalability:
+
+1.  **Mock Mode (Default)**:
+    *   **Source**: `packages/app/data.ts`
+    *   **Mechanism**: `useWorkboard` returns static JSON constants.
+    *   **Use Case**: UI development without network latency or DB dependencies.
+
+2.  **Live Mode (Supabase)**:
+    *   **Source**: PostgreSQL (Supabase).
+    *   **Mechanism**: `useWorkboard` uses `TanStack Query` to fetch nested relations.
+    *   **Use Case**: Production data persistence and real-time sync.
+
+#### **Backend Switchover Protocol**
+To toggle from **Mock** to **Live**:
+1.  **Uncomment Hook**: Enable the `useQuery` block in `packages/app/hooks/use-workboard.ts`.
+2.  **Environment**: Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` to `.env.local`.
+3.  **Schema**: Run `docs/db/schema.sql` in the Supabase SQL Editor.
+
+---
+
 ### **Benefits**:
 
 * **Real-Time Sync**: Instant updates across platforms, ensuring **data consistency**.
 * **Caching**: Efficient **client-side caching** reduces redundant requests and enhances performance.
 * **Unified Logic**: Shared **brain** logic between shells, maintaining consistent behavior.
 * **Offline Support**: Works seamlessly even with no internet connection, syncing once back online.
+
 
 ---
 

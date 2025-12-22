@@ -5,14 +5,13 @@ import { WorkboardState, L1_Pillar, L1_PillarId } from '../types'
 /**
  * useWorkboard
  * The central hook for the GrowthPad Strategic Workboard.
- * Currently consumes local mock data, but structured to support 
- * future TanStack Query / Supabase integration.
+ * Currently consumes local mock data. When ready for Supabase,
+ * replace this with the TanStack Query implementation.
  */
 export function useWorkboard() {
-    // In the future, this will use useQuery()
     const data: WorkboardState = WORKBOARD_STATE
 
-    const pillars = data.pillars
+    const pillars = useMemo(() => data.pillars, [data.pillars])
 
     const getPillar = (id: L1_PillarId): L1_Pillar | undefined => {
         return pillars.find(p => p.id === id)

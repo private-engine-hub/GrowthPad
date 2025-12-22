@@ -1,5 +1,13 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { SafeArea } from './safe-area'
 
+// Create a client
+const queryClient = new QueryClient()
+
 export function Provider({ children }: { children: React.ReactNode }) {
-  return <SafeArea>{children}</SafeArea>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <SafeArea>{children}</SafeArea>
+    </QueryClientProvider>
+  )
 }

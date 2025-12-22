@@ -41,6 +41,7 @@ cd apps/expo && yarn android
 - **Location**: `packages/app`
 - **Logic**: All data sourcing via `useWorkboard()`.
 - **Types**: Strategic hierarchy (L1-L5).
+- **Status**: **Plug & Play**. Currently in **Mock Mode**. To switch to **Live Mode**, see the [Backend Switchover Protocol](architecture.md#51-data-layer-strategy-dual-mode).
 
 ### B. The Panoramic Web Shell (`apps/next`)
 - **Landing Page**: `apps/next/app/page.tsx` (centered, responsive SaaS template).

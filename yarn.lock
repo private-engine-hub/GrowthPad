@@ -3812,12 +3812,92 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@supabase/auth-js@npm:2.89.0":
+  version: 2.89.0
+  resolution: "@supabase/auth-js@npm:2.89.0"
+  dependencies:
+    tslib: 2.8.1
+  checksum: a509f0e99fedbd7993c1d080f5f50c6e072c93458faaeb3639bae3e3e98efef3a706b9104c928c8bfa151bd8cbb8c230bf179d3d7596c808239e672f84f5c0ed
+  languageName: node
+  linkType: hard
+
+"@supabase/functions-js@npm:2.89.0":
+  version: 2.89.0
+  resolution: "@supabase/functions-js@npm:2.89.0"
+  dependencies:
+    tslib: 2.8.1
+  checksum: 692f343e9cb8a3772ec123a21982fadc54d3de8f0e939467ec64280eabda81f90f9c3b097d299954994552d6c4856303d0854bdd0fcef0901b8e15d423c473e6
+  languageName: node
+  linkType: hard
+
+"@supabase/postgrest-js@npm:2.89.0":
+  version: 2.89.0
+  resolution: "@supabase/postgrest-js@npm:2.89.0"
+  dependencies:
+    tslib: 2.8.1
+  checksum: 15b7f6c38b1f549a416803da6b4f7e06f88b6edb73fa159ffdf6375cfa0332a304a7b8d294e05820514bc9d0a4356b0a12d06b2ad46c63d0eb6e9d4d14243bfa
+  languageName: node
+  linkType: hard
+
+"@supabase/realtime-js@npm:2.89.0":
+  version: 2.89.0
+  resolution: "@supabase/realtime-js@npm:2.89.0"
+  dependencies:
+    "@types/phoenix": ^1.6.6
+    "@types/ws": ^8.18.1
+    tslib: 2.8.1
+    ws: ^8.18.2
+  checksum: da1c876d42993c9e81b3b3164f58a40603cb50f486341ddfc78428ef68c04cca37af22280e7902734b640289f1e4723b5acbee33ac01dac26dd79f9223674e04
+  languageName: node
+  linkType: hard
+
+"@supabase/storage-js@npm:2.89.0":
+  version: 2.89.0
+  resolution: "@supabase/storage-js@npm:2.89.0"
+  dependencies:
+    iceberg-js: ^0.8.1
+    tslib: 2.8.1
+  checksum: 83616b8348b0fe94f57dfa255fdef908b99ca0820f6b1ca22e3d4b32302dd6677455a9cddd0472b4597d12d702bbe5d8437eb547f044e5cda1b1b294afaf6f31
+  languageName: node
+  linkType: hard
+
+"@supabase/supabase-js@npm:^2.89.0":
+  version: 2.89.0
+  resolution: "@supabase/supabase-js@npm:2.89.0"
+  dependencies:
+    "@supabase/auth-js": 2.89.0
+    "@supabase/functions-js": 2.89.0
+    "@supabase/postgrest-js": 2.89.0
+    "@supabase/realtime-js": 2.89.0
+    "@supabase/storage-js": 2.89.0
+  checksum: 557a5614660f2424aad5c4ef1b8ef0e3b687212b609272814a409639d995e278018e8f5d4069e0e6834d3f2101e7e6c08057af0294400269abcb58f0e5fe05ed
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:0.5.2":
   version: 0.5.2
   resolution: "@swc/helpers@npm:0.5.2"
   dependencies:
     tslib: ^2.4.0
   checksum: 51d7e3d8bd56818c49d6bfbd715f0dbeedc13cf723af41166e45c03e37f109336bbcb57a1f2020f4015957721aeb21e1a7fff281233d797ff7d3dd1f447fa258
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:5.90.12":
+  version: 5.90.12
+  resolution: "@tanstack/query-core@npm:5.90.12"
+  checksum: aea62bb1bdd19ac1e9f7850cfc401542bebeb0e96aefa5523c1aa3be26b2e033fe90d568b43c82c4dfd6f1dbd875449047abae651159fd32699977408fc16e93
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.90.12":
+  version: 5.90.12
+  resolution: "@tanstack/react-query@npm:5.90.12"
+  dependencies:
+    "@tanstack/query-core": 5.90.12
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: eeedf9c6d110bb6a86b196e9a05c522f1649f323a1ef8c69cf801b853fc2f3e86fdd2ea2cdcc086250e8c170c49308fb88f7d9c8277e15737786890275a27493
   languageName: node
   linkType: hard
 
@@ -3960,6 +4040,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/phoenix@npm:^1.6.6":
+  version: 1.6.7
+  resolution: "@types/phoenix@npm:1.6.7"
+  checksum: 768b6ceb1661eae1e276d7af851c91cfee228e21d9ccbdd110c76ccda01e94661fd7bfd6ea93c7acbb30c2bc516608ae960fd0db4bb7e7f8372f4f862efe0900
+  languageName: node
+  linkType: hard
+
 "@types/prop-types@npm:*":
   version: 15.7.15
   resolution: "@types/prop-types@npm:15.7.15"
@@ -4014,6 +4101,15 @@ __metadata:
   version: 4.0.5
   resolution: "@types/tough-cookie@npm:4.0.5"
   checksum: f19409d0190b179331586365912920d192733112a195e870c7f18d20ac8adb7ad0b0ff69dad430dba8bc2be09593453a719cfea92dc3bda19748fd158fe1498d
+  languageName: node
+  linkType: hard
+
+"@types/ws@npm:^8.18.1":
+  version: 8.18.1
+  resolution: "@types/ws@npm:8.18.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: 0331b14cde388e2805af66cad3e3f51857db8e68ed91e5b99750915e96fe7572e58296dc99999331bbcf08f0ff00a227a0bb214e991f53c2a5aca7b0e71173fa
   languageName: node
   linkType: hard
 
@@ -4550,6 +4646,8 @@ __metadata:
   resolution: "app@workspace:packages/app"
   dependencies:
     "@gorhom/bottom-sheet": ^5.2.8
+    "@supabase/supabase-js": ^2.89.0
+    "@tanstack/react-query": ^5.90.12
     class-variance-authority: ^0.7.1
     clsx: ^2.1.1
     framer-motion: ^12.23.26
@@ -8431,6 +8529,13 @@ __metadata:
   version: 1.1.0
   resolution: "hyphenate-style-name@npm:1.1.0"
   checksum: b9ed74e29181d96bd58a2d0e62fc4a19879db591dba268275829ff0ae595fcdf11faafaeaa63330a45c3004664d7db1f0fc7cdb372af8ee4615ed8260302c207
+  languageName: node
+  linkType: hard
+
+"iceberg-js@npm:^0.8.1":
+  version: 0.8.1
+  resolution: "iceberg-js@npm:0.8.1"
+  checksum: 679e52f82a285b3e1da69bfb7c6c54af95067ca56293299b4ffcc196329a4f2eeb1502fe55c0b44cc80e9eb1bf34001b76ee9f0e13268a753d0cfe8d27072e56
   languageName: node
   linkType: hard
 
@@ -14566,17 +14671,17 @@ solito@latest:
   languageName: node
   linkType: hard
 
+"tslib@npm:2.8.1, tslib@npm:^2.0.1, tslib@npm:^2.1.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0":
+  version: 2.8.1
+  resolution: "tslib@npm:2.8.1"
+  checksum: e4aba30e632b8c8902b47587fd13345e2827fa639e7c3121074d5ee0880723282411a8838f830b55100cbe4517672f84a2472667d355b81e8af165a55dc6203a
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^1.8.1":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^2.0.1, tslib@npm:^2.1.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0":
-  version: 2.8.1
-  resolution: "tslib@npm:2.8.1"
-  checksum: e4aba30e632b8c8902b47587fd13345e2827fa639e7c3121074d5ee0880723282411a8838f830b55100cbe4517672f84a2472667d355b81e8af165a55dc6203a
   languageName: node
   linkType: hard
 
@@ -15493,7 +15598,7 @@ solito@latest:
   languageName: node
   linkType: hard
 
-"ws@npm:^8.11.0, ws@npm:^8.12.1":
+"ws@npm:^8.11.0, ws@npm:^8.12.1, ws@npm:^8.18.2":
   version: 8.18.3
   resolution: "ws@npm:8.18.3"
   peerDependencies:

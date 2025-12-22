@@ -7,6 +7,16 @@
 
 ---
 
+### 2025-12-22: Supabase Readiness & Strategy Expansion (Phase 3.0)
+**Objective**: Prepare the "Shared Brain" for a live PostgreSQL connection while expanding the strategic data model.
+
+- **Action**:
+    - **Supabase Client**: Installed `@supabase/supabase-js`, `@tanstack/react-query`, and configured `packages/app/provider/supabase.ts` with env var support.
+    - **Relational Schema**: Created `docs/db/schema.sql` implementing the 5-Layer Cascade with strict foreign keys and `order` sequencing.
+    - **Strategic Data**: Expanded `data.ts` to include 6 distinct SMB strategies (SaaS, Trade, Agency, Retail) for high-density UI testing.
+    - **Ready-to-Switchover**: Refactored `useWorkboard` to be "Supabase-Aware". It currently serves local mock data but contains the commented-out production SQL query, ready for instant toggle.
+- **Result**: Backend architecture is now "Plug & Play" ready for Supabase.
+
 ### 2025-12-22: Collapsible Sidebar & Code Audit (Phase 2.8)
 **Objective**: Enhance sidebar utility without sacrificing Trello aesthetics, and rigidly enforce code quality rules.
 
