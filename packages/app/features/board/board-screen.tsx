@@ -13,7 +13,7 @@ export function BoardScreen() {
             <View className="px-6 py-4 border-b border-slate-100 flex-row items-center justify-between z-10 bg-white/90 blur-lg backdrop-blur shadow-sm">
                 <View>
                     <H1 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">GrowthPad</H1>
-                    <Text className="text-slate-500 text-sm hidden md:flex">Strategic Command Center</Text>
+                    <Text className="text-slate-500 text-sm hidden md:flex">Strategic Playbook Canvas</Text>
                 </View>
                 <View className="flex-row gap-3">
                     <View className="h-8 w-8 rounded-full bg-blue-500 justify-center items-center">

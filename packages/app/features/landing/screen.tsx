@@ -27,7 +27,7 @@ export function LandingScreen() {
                     Accelerate Your Business <Text className="text-blue-600">Growth</Text>
                 </H1>
                 <Lead className="text-slate-500 text-center max-w-2xl">
-                    The unified strategic command center for modern SaaS founders.
+                    The unified strategic playbook canvas for modern SaaS founders.
                     Manage objectives, track jobs, and scale with conviction.
                 </Lead>
                 <View className="mt-10 flex-row gap-4">

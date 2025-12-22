@@ -70,7 +70,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
                 <header className="bg-background border-b border-border sticky top-0 z-10">
                     {/* Zone 1: Utility & Title */}
                     <div className="flex items-center justify-between px-8 py-4">
-                        <h1 className="text-2xl font-black tracking-tight text-slate-800">Command Center</h1>
+                        <h1 className="text-2xl font-black tracking-tight text-slate-800">Playbook Canvas</h1>
                         <div className="flex items-center gap-4">
                             <button className="h-9 w-9 rounded-full flex items-center justify-center hover:bg-slate-100 text-slate-500 transition-colors">
                                 <Share2 className="h-5 w-5" />

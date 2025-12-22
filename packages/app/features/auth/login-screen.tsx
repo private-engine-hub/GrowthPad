@@ -24,7 +24,7 @@ export function LoginScreen() {
                         </View>
                         <H1 className="text-3xl text-slate-900 border-none">Sign In</H1>
                         <Lead className="text-center text-slate-500 mt-2 px-4">
-                            One-click access to your strategic command center with Supabase & Google
+                            One-click access to your strategic playbook canvas with Supabase & Google
                         </Lead>
                     </CardHeader>
 

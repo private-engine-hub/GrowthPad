@@ -19,7 +19,7 @@ export function WorkboardScreen() {
     const renderHeader = () => (
         <View className="mb-8 px-6 pt-6">
             <H1 className="text-slate-900 font-black tracking-tight">Growth Workboard</H1>
-            <Text className="text-slate-400 text-lg">Unified Strategic Command Center</Text>
+            <Text className="text-slate-400 text-lg">Unified Strategic Playbook Canvas</Text>
         </View>
     );
 

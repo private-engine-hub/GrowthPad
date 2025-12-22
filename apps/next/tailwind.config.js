@@ -57,7 +57,7 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         trello: {
-          blue: "#0079BF",
+          blue: "#00818E",
           gray: "#EBECF0",
           yellow: "#FBBF24",
           green: "#22C55E",

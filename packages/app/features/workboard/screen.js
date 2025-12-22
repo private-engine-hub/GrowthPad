@@ -7,12 +7,18 @@ import { PILLARS, THEMES, MOCK_OBJECTIVES } from '../../data';
 import { cn } from '../../utils';
 import { useState } from 'react';
 export function WorkboardScreen() {
-    return (_jsxs(ScrollView, { className: "flex-1 bg-slate-50 p-4", children: [_jsxs(View, { className: "mb-6", children: [_jsx(H1, { className: "text-slate-900", children: "Growth Workboard" }), _jsx(Text, { className: "text-slate-500", children: "Unified Strategic Command Center" })] }), _jsx(View, { className: "gap-6 pb-12", children: PILLARS.map((pillar) => (_jsxs(View, { className: "gap-4", children: [_jsxs(View, { className: "rounded-lg bg-[#0052cc] p-3 shadow-sm", children: [_jsx(H3, { className: "text-white", children: pillar.title }), _jsx(Small, { className: "text-blue-100", children: pillar.description })] }), THEMES.filter((t) => t.pillarId === pillar.id).map((theme) => {
-                            const themeObjectives = MOCK_OBJECTIVES.filter((o) => o.themeId === theme.id);
-                            if (themeObjectives.length === 0)
-                                return null;
-                            return (_jsxs(Card, { className: "border-l-4 border-l-blue-500", children: [_jsx(CardHeader, { className: "pb-2", children: _jsx(CardTitle, { className: "text-lg text-slate-700", children: theme.title }) }), _jsx(CardContent, { children: _jsx(Accordion, { className: "gap-2", children: themeObjectives.map((objective) => (_jsx(ObjectiveItem, { objective: objective }, objective.id))) }) })] }, theme.id));
-                        })] }, pillar.id))) })] }));
+    return (_jsxs(ScrollView, {
+        className: "flex-1 bg-slate-50 p-4", children: [_jsxs(View, { className: "mb-6", children: [_jsx(H1, { className: "text-slate-900", children: "Growth Workboard" }), _jsx(Text, { className: "text-slate-500", children: "Unified Strategic Playbook Canvas" })] }), _jsx(View, {
+            className: "gap-6 pb-12", children: PILLARS.map((pillar) => (_jsxs(View, {
+                className: "gap-4", children: [_jsxs(View, { className: "rounded-lg bg-[#0052cc] p-3 shadow-sm", children: [_jsx(H3, { className: "text-white", children: pillar.title }), _jsx(Small, { className: "text-blue-100", children: pillar.description })] }), THEMES.filter((t) => t.pillarId === pillar.id).map((theme) => {
+                    const themeObjectives = MOCK_OBJECTIVES.filter((o) => o.themeId === theme.id);
+                    if (themeObjectives.length === 0)
+                        return null;
+                    return (_jsxs(Card, { className: "border-l-4 border-l-blue-500", children: [_jsx(CardHeader, { className: "pb-2", children: _jsx(CardTitle, { className: "text-lg text-slate-700", children: theme.title }) }), _jsx(CardContent, { children: _jsx(Accordion, { className: "gap-2", children: themeObjectives.map((objective) => (_jsx(ObjectiveItem, { objective: objective }, objective.id))) }) })] }, theme.id));
+                })]
+            }, pillar.id)))
+        })]
+    }));
 }
 function ObjectiveItem({ objective }) {
     const [isOpen, setIsOpen] = useState(false);

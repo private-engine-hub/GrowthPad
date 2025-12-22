@@ -19,8 +19,8 @@ export default function LandingPage() {
             <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
                 <div className="container mx-auto flex h-16 items-center justify-between px-4">
                     {/* Logo Block */}
-                    <div className="flex items-center gap-2 font-black text-xl tracking-tight text-[#0079BF]">
-                        <div className="h-8 w-8 rounded-lg bg-[#0079BF] flex items-center justify-center">
+                    <div className="flex items-center gap-2 font-black text-xl tracking-tight text-[#00818E]">
+                        <div className="h-8 w-8 rounded-lg bg-[#00818E] flex items-center justify-center">
                             <Zap className="h-5 w-5 text-white" />
                         </div>
                         GrowthPad
@@ -61,24 +61,23 @@ export default function LandingPage() {
           -------------------- 
         */}
                 <section className="container mx-auto flex flex-col items-center gap-8 py-24 text-center md:py-32 px-4">
-                    <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-[#0079BF] bg-blue-50 border-blue-100">
+                    <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-[#00818E] bg-blue-50 border-blue-100">
                         <span className="flex h-2 w-2 rounded-full bg-amber-400 mr-2 animate-pulse"></span>
                         v3.0 Public Beta Live
                     </div>
 
-                    <h1 className="max-w-[64rem] text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-[#0079BF]">
+                    <h1 className="max-w-[64rem] text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-[#00818E]">
                         Your growth roadmap <br className="hidden sm:inline" />
                         <span className="text-amber-400">on easy mode</span>
                     </h1>
 
                     <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-lg sm:leading-8">
-                        Stop checking 15 different tools. GrowthPad unifies your financial models,
-                        operational OKRs, and market tasks into a single panoramic command center.
+                        Swap the guesswork for the gameplan that actually makes you money
                     </p>
 
                     <div className="flex flex-wrap items-center justify-center gap-4">
                         <Link href="/dashboard">
-                            <Button size="lg" className="h-12 px-8 text-lg bg-[#0079BF] hover:bg-[#026AA7] text-white">
+                            <Button size="lg" className="h-12 px-8 text-lg bg-[#00818E] hover:bg-[#026AA7] text-white">
                                 Launch Dashboard <ArrowRight className="ml-2 h-4 w-4" />
                             </Button>
                         </Link>
