@@ -15,8 +15,9 @@ Targets both Desktop and Mobile browsers.
 - **Tool**: `shadcn/ui` ScrollArea (Responsive Flex).
 
 ### The Pocket Command Center (Mobile)
-Designed for quick execution. It uses a **Linear Strategy Feed**.
+Designed for quick execution. It uses a **Linear Scrolling Feed**.
 - **Tool**: Segmented selection to focus on one pillar at a time.
+- **function**: each pillar occupies the mobile screen, with easy touch to expand and keep focus, whilst scrolling hard or tab-click will scroll to the next pillar
 - **Interaction**: Bottom sheets for task mutation.
 
 ---

@@ -9,7 +9,7 @@ GrowthPad employs a **"Shared Brain, Decoupled Shells"** architecture. We have a
 
 1.  **Web Shell (`apps/next`)**: A single, responsive Next.js application targeting both **Desktop** (Panoramic layout) and **Mobile-Web** (Responsive/Touch-optimized) using standard web tech.
 2.  **Native Shell (`apps/expo`)**: A high-agency mobile experience targeting **iOS** and **Android** using React Native primitives.
-3.  **The Brain (`packages/app`)**: The shared source of truth for logic and state.
+3.  **The Brain (`packages/app`)**: The shared source of truth for logic and state. Note that 
 
 These two shells consume one **Brain** to deliver a consistent experience across four hardware targets.
 
@@ -59,11 +59,35 @@ We focus on **Linear Command** density for the pocket experience.
 
 ## 5. The Shared Brain (`packages/app`)
 
-Both shells consume the same "Brain" via the monorepo.
+Both shells (Web and Mobile) consume the same "Brain" via the monorepo, leveraging **TanStack Query** and **Supabase** for data syncing and caching.
 
-*   **Logic Hooks**: `useWorkboard()` returns a nested L1-L5 object. The shells are "dumb" and only loop through this data.
-*   **Type Safety**: The L1-L5 Strategic Cascade is the core interface for both platforms.
-*   **Hydration**: By using standard HTML on Web, we avoid React Native Web hydration mismatches entirely.
+### **Core Features**:
+
+* **Logic Hooks**:`useWorkboard()` returns a nested **L1-L5** object. Both shells are "dumb" and only loop through this data, ensuring consistent business logic across platforms.
+
+* **Type Safety**: The **L1-L5 Strategic Cascade** is the core interface for both platforms, maintained with **TypeScript** to ensure type-safe communication.
+
+* **Hydration**: By using **standard HTML** on the Web, we avoid **React Native Web hydration mismatches** entirely.
+
+### **Data Syncing and Caching with TanStack Query & Supabase**:
+
+* **Supabase**:
+
+  * Provides the real-time **PostgreSQL** database, handling **live data syncing** between Web and Mobile.
+  * Powers **real-time updates**, allowing instant reflection of data changes across all clients.
+
+* **TanStack Query**:
+
+  * Handles **data-fetching**, **caching**, and **background syncing** for both Web and Mobile shells.
+  * Ensures seamless **data consistency**, **offline support**, and **real-time synchronization** of the **L1-L5 cascade**.
+
+
+### **Benefits**:
+
+* **Real-Time Sync**: Instant updates across platforms, ensuring **data consistency**.
+* **Caching**: Efficient **client-side caching** reduces redundant requests and enhances performance.
+* **Unified Logic**: Shared **brain** logic between shells, maintaining consistent behavior.
+* **Offline Support**: Works seamlessly even with no internet connection, syncing once back online.
 
 ---
 
@@ -72,3 +96,65 @@ Both shells consume the same "Brain" via the monorepo.
 *   **Bypassing Policies**: Use `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force` to run `npm run build` or `yarn web` in restricted environments.
 *   **Clean Builds**: Always clear `.next` cache if layout shifts appear unexplainable.
 *   **NativeWind**: Restricted to the "Brain" and "Native Shell". Web uses standard Tailwind utilities.
+
+---
+
+## ZZ. Appendix
+
+### **Table of Technologies and How They Interact**
+
+| **Category**     | **Technology/Library**          | **Description**                                                                                                                                                 | **Interacts With**                                                                                      |
+| ---------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Web Shell**    | **Next.js**                     | Full-stack framework for React, used for **server-side rendering (SSR)**, routing, and page management.                                                         | - `shadcn/ui` for UI components and layout<br>- `Tailwind CSS` for styling<br>- **The Brain** for logic |
+| **Web Shell**    | **Tailwind CSS**                | Utility-first CSS framework for rapid styling. Ensures high-performance and responsive layouts.                                                                 | - Used throughout the **Web Shell** to style components and layout (DashboardShell, Canvas, etc.)       |
+| **Web Shell**    | **shadcn/ui (Radix UI)**        | Provides pre-built, customizable components like buttons, modals, and cards (integrates Radix UI). Enables drag-and-drop, UI consistency, and dynamic behavior. | - Integrates with **Next.js** and **Tailwind CSS** to create UI layouts (Pillars, Horizontal Canvas)    |
+| **Web Shell**    | **Canvas & DashboardShell**     | These are custom components that structure the main **Trello-like** board layout, handling horizontal scroll areas and card grouping.                           | - Uses `shadcn/ui` components for interactivity<br>- **The Brain** to pull and update data              |
+| **Native Shell** | **React Native**                | Framework for building cross-platform mobile apps with **React**. Provides native components like `View`, `Text`, and `Pressable`.                              | - **NativeWind** for styling<br>- **@gorhom/bottom-sheet** for mobile UI elements                       |
+| **Native Shell** | **NativeWind**                  | A utility-first CSS framework for React Native that integrates well with **Tailwind CSS** and enables consistent styling across web and mobile.                 | - Integrates with **React Native** to apply consistent styling<br>- **The Brain** for mobile logic      |
+| **Native Shell** | **@gorhom/bottom-sheet**        | Bottom sheet component for deep task interaction and managing mobile-specific UI states.                                                                        | - Used in **Native Shell** to provide **deep task interactions** like modals or multi-level accordions  |
+| **Native Shell** | **PillarSegmentedControl**      | Custom component for segmenting and filtering the **L3, L4, and L5** cascade data (strategic view of the board).                                                | - Displays data pulled from **The Brain** using custom hooks (`useWorkboard`)                           |
+| **The Brain**    | **React Context API**           | Centralized state management solution to handle shared state across both shells (**Web** and **Mobile**).                                                       | - Powers all UI interactions in **Web** and **Mobile Shells** (Pillars, Canvas, Cards)                  |
+| **The Brain**    | **useWorkboard()**              | Custom hook that provides the **L1-L5 strategic cascade** logic for the shells. It returns structured data and task hierarchy.                                  | - Interacts with the UI components in both **Web Shell** and **Mobile Shell**                           |
+| **The Brain**    | **TypeScript**                  | Superset of JavaScript that enforces type safety, ensuring the architecture's stability.                                                                        | - Used across **The Brain** and ensures type safety in both shells                                      |
+| **The Brain**    | **NativeWind Type Definitions** | Provides type definitions for NativeWind (styling in React Native), ensuring type safety between mobile and web shells.                                         | - Used in **Native Shell** to ensure that style props and component behaviors are consistent            |
+
+---
+
+### **How Technologies Interact Across the Architecture**
+
+* **Web Shell (`apps/next`)**:
+
+  * The **Next.js** framework handles routing and server-side rendering (SSR) for the **Web Shell**.
+  * **shadcn/ui** (Radix UI) is used to build dynamic UI components like buttons, cards, and modals, which interact with **Tailwind CSS** for styling.
+  * The layout components like **DashboardShell** and **Canvas** are responsible for rendering the **Pillars** and providing the **Trello-style** workspace, pulling data from **The Brain** via **useWorkboard()**.
+
+* **Native Shell (`apps/expo`)**:
+
+  * **React Native** forms the foundation for building the cross-platform mobile app, while **NativeWind** is used to apply styling to the app in a **Tailwind-like** manner.
+  * **@gorhom/bottom-sheet** is used for deep task interaction, allowing users to manipulate complex data within the **Mobile Shell**.
+  * The **PillarSegmentedControl** manages the segmented navigation for **L3-L5** cascades of data, enabling users to filter and interact with the different levels of the strategic workspace.
+  * Like the **Web Shell**, the **Mobile Shell** consumes **The Brain** for shared business logic and state management.
+
+* **The Brain (`packages/app`)**:
+
+  * The **React Context API** in the **Brain** stores the shared state that drives both **Web** and **Mobile Shells**. This state includes task data, project data, and user progress.
+  * **useWorkboard()** provides custom hooks to access and manage the L1-L5 data cascade and other business logic, ensuring **consistent data flows** between the shells.
+  * **TypeScript** ensures type safety throughout, especially in managing complex task data and UI interactions, ensuring consistency across both shells.
+
+---
+
+### **Tech Stack Interactions at a Glance**
+
+* **Frontend (UI)**:
+
+  * **Web Shell**: Next.js + Tailwind CSS + shadcn/ui (Radix UI) for a dynamic, responsive UI.
+  * **Native Shell**: React Native + NativeWind for consistent styling and UI behavior across mobile platforms.
+
+* **State Management**:
+
+  * **The Brain**: React Context API + TypeScript ensures type safety and manages shared logic between the Web and Mobile Shells.
+
+* **UI Components & Interactions**:
+
+  * **Drag-and-Drop**: Implemented via **shadcn/ui** (Web) and **React DnD/React Beautiful DnD** for the board-like, interactive design.
+  * **Mobile-Specific UI**: Deep interaction like bottom sheets is enabled by **@gorhom/bottom-sheet** in the **Native Shell**.
