@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from '../provider/query'
 import { supabase } from '../provider/supabase'
 import { WorkboardState, L1_Pillar, L1_PillarId, L3_Objective, L4_Phase, L5_Job } from '../types'
 
@@ -8,7 +8,7 @@ import { WorkboardState, L1_Pillar, L1_PillarId, L3_Objective, L4_Phase, L5_Job 
  * Fetches the entire workboard state from Supabase.
  * Uses a nested select to retrieve the full hierarchy in one round trip.
  */
-const fetchWorkboard = async (): Promise<WorkboardState> => {
+export const fetchWorkboard = async (): Promise<WorkboardState> => {
     const { data, error } = await supabase
         .from('pillars')
         .select(`

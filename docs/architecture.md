@@ -120,27 +120,19 @@ GrowthPad uses an automated **Semantic Release** pipeline to ensure repository s
 
   * Handles **data-fetching**, **caching**, and **background syncing** for both Web and Mobile shells.
   * Ensures seamless **data consistency**, **offline support**, and **real-time synchronization** of the **L1-L5 cascade**.
+### 5.1 Data Layer Strategy (Supabase Integration)
+-   **Live Mode (Active)**: `useWorkboard` fetches nested relations directly from Supabase via TanStack Query.
+-   **Mock Mode (Legacy)**: Controlled via the `enabled` flag in the hook for local development if needed.
+-   **Connectivity**: Authenticated via `NEXT_PUBLIC_SUPABASE_ANON_KEY` and handled via the Shell-Owned Context.
 
-
-### **5.1 Data Layer Strategy (Dual-Mode)**
-
-The architecture is designed to operate in two modes to support rapid prototyping and production scalability:
-
-1.  **Mock Mode (Default)**:
-    *   **Source**: `Supabase Database` (Tables: pillars, objectives, phases, jobs)
-    *   **Mechanism**: `useWorkboard` returns static JSON constants.
-    *   **Use Case**: UI development without network latency or DB dependencies.
-
-2.  **Live Mode (Supabase)**:
-    *   **Source**: PostgreSQL (Supabase).
-    *   **Mechanism**: `useWorkboard` uses `TanStack Query` to fetch nested relations.
-    *   **Use Case**: Production data persistence and real-time sync.
-
-#### **Backend Switchover Protocol**
-To toggle from **Mock** to **Live**:
-1.  **Uncomment Hook**: Enable the `useQuery` block in `packages/app/hooks/use-workboard.ts`.
-2.  **Environment**: Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` to `.env.local`.
-3.  **Schema**: Run the initialization script in `packages/app/db/schema.sql` in the Supabase SQL Editor.
+### 5.2 Context Ownership (Architecture Inversion)
+GrowthPad uses an **"Architecture Inversion"** model for stateful libraries (e.g., TanStack Query).
+*   **The Problem**: Hosting Providers inside transpiled shared packages can cause "Context Identity Mismatch" where the Provider and Consumer load different instances of the same library.
+*   **The Solution**: The **Shell owns the State**.
+    *   `QueryClientProvider` is instantiated in the app shell (`apps/next/app/providers.tsx`).
+    *   Stateful hooks (like `useWorkboard`) are instantiated in the app shell.
+    *   The **Brain** (`packages/app`) provides **Stateless Business Logic**: pure fetch functions, type definitions, and stateless UI components.
+    *   **Single Gateway**: `packages/app/provider/query.ts` provides a unified re-export point to ensure library version consistency.
 
 ---
 

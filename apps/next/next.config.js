@@ -22,18 +22,8 @@ const nextConfig = {
     'lucide-react-native',
     'clsx',
     'tailwind-merge',
-    'class-variance-authority',
-    '@tanstack/react-query'
+    'class-variance-authority'
   ],
-  webpack: (config) => {
-    // Force singleton instances across monorepo to prevent Context mismatch
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'react': path.dirname(require.resolve('react/package.json')),
-      '@tanstack/react-query': path.dirname(require.resolve('@tanstack/react-query/package.json'))
-    }
-    return config
-  }
 }
 
 module.exports = withExpo(nextConfig)

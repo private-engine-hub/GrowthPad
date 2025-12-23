@@ -7,6 +7,18 @@
 
 ---
 
+### 2025-12-23 8:15PM: Supabase Integration & The "No QueryClient" Saga
+**Objective**: Transition from local mock data to live Supabase persistence using TanStack Query, resolving persistent monorepo context issues.
+
+- **Action**:
+    - **Live Fetching**: Refactored `useWorkboard` to fetch hierarchical L1-L5 data from Supabase.
+    - **Context Fix (Architecture Inversion)**: Resolved a persistent `No QueryClient set` error caused by monorepo dual-instantiation. Moved `QueryClientProvider` and hook instantiation from the shared package (`packages/app`) to the app shell (`apps/next`).
+    - **Connectivity Verified**: Confirmed successful data retrieval from Supabase using verified API keys.
+    - **Single Gateway**: Established `packages/app/provider/query.ts` as the unified re-export point for all Query-related logic to prevent future duplication.
+- **Result**: The application now successfully fetches live strategic data from Supabase. The "Shell-Owned Context" pattern is established as the standard for stateful monorepo integration.
+
+---
+
 ### 2025-12-23 6:15PM: Automated Release Pipeline (Phase 6)
 **Objective**: Automate versioning and protect repository integrity via CI/CD automation.
 
