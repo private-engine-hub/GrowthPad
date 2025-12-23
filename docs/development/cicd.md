@@ -38,9 +38,9 @@ and more...
 
 ### The Flow
 
-1. **Main:** Always deployable. Represents the current state of production.
-2. **Develop:** The "integration" branch where features merge before a release.
-3. **Feature Branches:** Where the actual work collects. Never commit directly to `main` or `dev`. Always merge to `dev`. and then `dev` to `main` (`prd`)
+1. **Main:** Always deployable. Represents the current state of production. **Direct commits are blocked by Husky.**
+2. **Dev:** The "integration" branch where features merge before a release.
+3. **Feature Branches:** Where the actual work collects. Never commit directly to `main` or `dev`. Always merge to `dev` and then `dev` to `main`.
 
 ---
 
