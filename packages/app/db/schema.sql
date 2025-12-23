@@ -63,4 +63,3 @@ ON CONFLICT (id) DO NOTHING;
 
 -- Note: Enable Row Level Security (RLS) on all tables once Supabase Auth is configured.
 -- Example: ALTER TABLE jobs ENABLE ROW LEVEL SECURITY;
-

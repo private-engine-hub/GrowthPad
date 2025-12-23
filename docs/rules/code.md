@@ -10,7 +10,11 @@ Produce **stable, boring, and predictable** code. Prioritize industry-standard b
 
 *   **KISS (Keep It Simple, Stupid):** Choose the most straightforward path. If a native language feature works, use it instead of a custom utility.
 *   **YAGNI (You Aren't Gonna Need It):** No speculative features. Implement only what is required for the current task.
-*   **Prefer Boilerplate:** Use standard implementations (e.g., standard middleware, hooks, or decorators). Do not reinvent wheels.
+### 1.3 Commit Discipline (Priority: CRITICAL)
+- **Atomic Commits**: One commit per logical change.
+- **Nomenclature**: Must follow `type[scope]: message` (e.g., `feat[ui]: add sidebar`).
+- **Enforcement**: Hooks will block commits that violate this format.
+- **Why**: This powers our automated Semantic Release pipeline.
 
 ### 1.1 Golden Source Registries (Priority: CRITICAL)
 - **Zero Magic Values**: Hardcoded strings, paths, or magic numbers (e.g., `"/platform/workboard"` or `1000 * 60`) are **forbidden** in UI components.

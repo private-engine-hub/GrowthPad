@@ -28,6 +28,7 @@ growthpad/
 │       └── features/      # Mobile-optimized strategic feed
 └── packages/
     └── app/               # THE BRAIN (Shared Central Logic)
+        ├── db/            # Relational Schema (SQL)
         ├── hooks/         # useWorkboard(), useJobs()
         ├── types/         # L1-L5 Strategic Cascade Interfaces
         └── nativewind-env.d.ts # Shared type definitions
@@ -132,7 +133,7 @@ The architecture is designed to operate in two modes to support rapid prototypin
 To toggle from **Mock** to **Live**:
 1.  **Uncomment Hook**: Enable the `useQuery` block in `packages/app/hooks/use-workboard.ts`.
 2.  **Environment**: Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` to `.env.local`.
-3.  **Schema**: Run `docs/db/schema.sql` in the Supabase SQL Editor.
+3.  **Schema**: Run the initialization script in `packages/app/db/schema.sql` in the Supabase SQL Editor.
 
 ---
 

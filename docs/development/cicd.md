@@ -1,8 +1,4 @@
-Adopting the `type[scope]: message` format is a great choice for enterprise environments—the square brackets often make the scope "pop" visually in a dense Git log compared to standard parentheses.
-
-Here are the foundational best practices for enterprise-grade version control and collaboration.
-
----
+# CICD Overview
 
 ## 💎 The Anatomy of a Great Commit
 
@@ -30,14 +26,15 @@ The gold standard of enterprise dev is the **Atomic Commit**. This means one com
 
 Consistency in branching prevents the "Where is the latest code?" syndrome.
 
-### Branch Naming: `category/ticket-id-description`
-
+### Branch Naming: `category/ticketid-description`
+Note: feat useses the 't' ticket id, fix uses the 'f' ticket id, refactor uses the 'r' ticket id, docs uses the 'd' ticket id.
 | Category | Purpose | Example |
 | --- | --- | --- |
-| `feat/` | New functionality | `feat/DEV-402-sso-integration` |
-| `fix/` | Bug fixes | `fix/BUG-99-header-misalignment` |
-| `refactor/` | Code cleanup (no logic change) | `refactor/DEV-500-clean-hooks` |
-| `docs/` | Documentation only | `docs/DEV-12-api-readme` |
+| `feat/` | New functionality | `feat/t402-sso-integration` |
+| `fix/` | Bug fixes | `fix/f979-header-misalignment` |
+| `refactor/` | Code cleanup (no logic change) | `refactor/r509-clean-hooks` |
+| `docs/` | Documentation only | `docs/d012-api-readme` |
+and more...
 
 ### The Flow
 
