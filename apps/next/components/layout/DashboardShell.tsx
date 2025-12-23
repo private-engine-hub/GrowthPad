@@ -178,7 +178,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
                 </header>
 
                 {/* Content Canvas */}
-                <div className="flex-1 overflow-hidden relative p-6">
+                <div className="flex-1 overflow-auto relative p-6">
                     {children}
                 </div>
             </main>

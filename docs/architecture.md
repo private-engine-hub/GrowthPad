@@ -74,6 +74,15 @@ The Brain is the **only** source of business logic.
 -   **Components**: Usage of raw `next/link` or strings is **forbidden**. Use `<AppLink route="name">` instead.
 -   **Deep Links**: Native Shell is configured for `growthpad://` scheme handling.
 
+### 5.3 Navigation Switchover Protocol
+To transition from **Mock Mode** to **Live Production**, follow these steps:
+1.  **Auth Guard**: Replace the stub in `navigation/guards.ts` with a call to `@supabase/ssr` to verify real JWT sessions in Next.js Middleware.
+2.  **Analytics**: Replace the `console.log` in `navigation/analytics.ts` with a production provider (e.g., Segment, PostHog, or Google Analytics).
+3.  **Base URL**: Update your `.env` and `.env.local` files to point `NEXT_PUBLIC_APP_URL` to your production domain (e.g., `app.growthpad.com`).
+4.  **Deep Linking**: Finalize the `app.json` association with your production domain's `apple-app-site-association` and `assetlinks.json` files.
+
+---
+
 ### **Core Features**:
 
 * **Logic Hooks**:`useWorkboard()` returns a nested **L1-L5** object. Both shells are "dumb" and only loop through this data, ensuring consistent business logic across platforms.
