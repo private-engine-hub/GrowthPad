@@ -78,6 +78,10 @@
 ### Phase 4: Mobile Hardening (NEXT)
 - [ ] Implement `PillarSegmentedControl` <!-- id: 10 -->
 - [ ] Connect Mobile Feed to Brain <!-- id: 11 -->
+- [ ] Linear Feed: Implement PillarSegmentedControl in apps/expo.
+- [ ] Data Hookup: Connect Mobile Feed to shared useWorkboard hook.
+- [ ] High-Agency Accordions: Build recursive L3-L5 view for small screens.
+- [ ] Native Bottom Sheets: Implement @gorhom/bottom-sheet for job editing.
 
 ### 🗄️ Phase 5: Supabase Migration (READY)
 - [x] Formulate Relational L1-L5 Schema <!-- id: 50 -->
@@ -86,3 +90,7 @@
 - [x] Implement Supabase Client in `packages/app` <!-- id: 53 -->
 - [x] Migrate `useWorkboard` hook to Real DB <!-- id: 54 -->
 
+📅 Roadmap: Data & Intelligence
+- [ ] Supabase Integration: Sync local state to persistent backend.
+- [ ] Build RAG LLM with Gemini Google.
+- [ ] AI Strategy Engine: Ingest playbooks and generate custom workboards.

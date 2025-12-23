@@ -127,7 +127,7 @@ GrowthPad uses an automated **Semantic Release** pipeline to ensure repository s
 The architecture is designed to operate in two modes to support rapid prototyping and production scalability:
 
 1.  **Mock Mode (Default)**:
-    *   **Source**: `packages/app/data.ts`
+    *   **Source**: `Supabase Database` (Tables: pillars, objectives, phases, jobs)
     *   **Mechanism**: `useWorkboard` returns static JSON constants.
     *   **Use Case**: UI development without network latency or DB dependencies.
 
