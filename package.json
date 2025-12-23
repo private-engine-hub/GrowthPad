@@ -42,5 +42,5 @@
     "**/expo-router/**"
   ],
   "packageManager": "yarn@3.6.3",
-  "version": "1.0.0-dev.1"
+  "version": "1.0.0"
 }
