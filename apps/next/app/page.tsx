@@ -1,8 +1,9 @@
 'use client'
 
-import Link from 'next/link'
-import { ArrowRight, Layout, Zap, CheckCircle2, Menu } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import Link from "next/link"
+import { ArrowRight, Check, Zap, Layout, Smartphone, Globe, Shield, Database, BarChart3, Users, Clock, Target } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { AppLink } from "@/components/navigation/AppLink"
 
 /**
  * 🚀 Landing Shell
@@ -75,17 +76,16 @@ export default function LandingPage() {
                         A gameplan engine for your business that makes you money
                     </p>
 
-                    <div className="flex flex-wrap items-center justify-center gap-4">
-                        <Link href="/dashboard">
-                            <Button size="lg" className="h-12 px-8 text-lg bg-[#00818E] hover:bg-[#026AA7] text-white">
-                                Launch Dashboard <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
-                        </Link>
-                        <Link href="#demo">
-                            <Button variant="outline" size="lg" className="h-12 px-8 text-lg">
-                                View Demo
-                            </Button>
-                        </Link>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-300">
+                        <AppLink
+                            route="dashboard"
+                            className="h-12 px-8 rounded-lg bg-[#00818E] hover:bg-[#006C77] text-white font-bold text-lg shadow-lg shadow-blue-900/20 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+                        >
+                            Launch Dashboard <ArrowRight size={18} />
+                        </AppLink>
+                        <button className="h-12 px-8 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium border border-white/10 backdrop-blur-sm transition-all hover:border-white/20">
+                            View Demo
+                        </button>
                     </div>
                 </section>
 
@@ -134,7 +134,7 @@ export default function LandingPage() {
                         {/* Feature 3 */}
                         <div className="relative overflow-hidden rounded-xl border bg-card text-card-foreground p-2 hover:shadow-lg transition-all duration-200">
                             <div className="flex h-[180px] flex-col justify-between rounded-lg p-6">
-                                <CheckCircle2 className="h-10 w-10 text-primary" />
+                                <Check className="h-5 w-5 text-[#22C55E]" />
                                 <div className="space-y-2">
                                     <h3 className="font-bold">Strategic Cascade</h3>
                                     <p className="text-sm text-muted-foreground">

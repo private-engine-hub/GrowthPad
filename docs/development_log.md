@@ -16,6 +16,16 @@
     - **Layout Fixes**: Applied `whitespace-normal` (Pillar) and `min-w-0` (Flex) to resolve text overflow issues.
 - **Result**: A cleaner, denser, and more scanable workboard.
  
+### 2025-12-23 2:25PM: Phase 5.0: Universal Navigation System
+- **Objective**: Establish a centralized, type-safe navigation layer for Decoupled Shells.
+- **Changes**:
+    - Created "Golden Registry" `routes.ts` in Shared Brain.
+    - Implemented `useAppNavigation()` hook for clean logic separation.
+    - Built `<AppLink>` components for Web Shell to replace raw strings.
+    - Configured Deep Link scheme (`growthpad://`) for Native Shell.
+    - Standardized Environment Variables via `.env.example`.
+- **Outcome**: Navigation is now "String-Free" and future-proofed for Mobile Deep Linking.
+
 ### 2025-12-22: Platform Refactor & Sidebar Polish (Phase 4.1)
 **Objective**: Transition to a professional `/platform` namespace and solve navigation UX friction.
 
@@ -23,7 +33,6 @@
     - **Namespace Refactor**: Migrated `/dashboard` routes to `/platform` (Home, Dashboard, Planner).
     - **Navigation Highlighting**: Implemented `usePathname` in `DashboardShell.tsx` to ensure sidebar tabs correctly highlight when active.
     - **Home Entry**: Created `/platform/home` as a designated landing area.
-    - **Sidebar Tidy**: Added "Home" button to the primary navigation group.
 - **Result**: A more scalable application structure with intuitive, "glowing" navigation.
 
 ### 2025-12-22: Strategy Tree Map (Phase 4.0)

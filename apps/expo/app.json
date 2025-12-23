@@ -1,39 +1,48 @@
 {
   "expo": {
-    "name": "solito-nativewind",
-    "slug": "solito-nativewind",
+    "name": "GrowthPad",
+    "slug": "growthpad",
     "version": "1.0.0",
-    "scheme": "solito-nativewind",
-    "platforms": [
-      "ios",
-      "android"
-    ],
-    "orientation": "default",
+    "scheme": "growthpad",
+    "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
       "supportsTablet": true,
-      "userInterfaceStyle": "automatic",
-      "requireFullScreen": true
+      "bundleIdentifier": "com.growthpad.app",
+      "associatedDomains": [
+        "applinks:app.growthpad.com"
+      ]
     },
     "android": {
-      "userInterfaceStyle": "automatic",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.growthpad.app",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "app.growthpad.com",
+              "pathPrefix": "/platform"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
     },
-    "plugins": [
-      "expo-router"
-    ],
     "experiments": {
       "tsconfigPaths": true,
       "typedRoutes": true

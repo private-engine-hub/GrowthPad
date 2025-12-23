@@ -51,7 +51,8 @@ The Panoramic Playbook Canvas leverages maximum screen estate.
 
 ### Header Control Strip
 - **Zones**: Split into Utility (Title + Global Actions) and Navigation (Tabs).
-- **Tabs**: Horizontal text tabs (`TabItem`) with bottom-border active states (`border-b-2 border-trello-blue`).
+- **Tabs**: "Pill-Shaped" buttons (`bg-blue-50 text-trello-blue`) for active state, offering a tangible "pressed" feel.
+- **Actions**: Global actions (Share, Run Simulation) are top-right.
 
 ### The Panoramic Canvas
 - **Background**: Classic Trello Gray (`bg-trello-gray`).

@@ -61,8 +61,18 @@ We focus on **Linear Command** density for the pocket experience.
 ---
 
 ## 5. The Shared Brain (`packages/app`)
+The Brain is the **only** source of business logic.
 
-Both shells (Web and Mobile) consume the same "Brain" via the monorepo, leveraging **TanStack Query** and **Supabase** for data syncing and caching.
+### 5.1 Data Layer Strategy (Dual-Mode)
+-   **Mock Mode**: `useWorkboard(true)` returns instant, local JSON data. Ideal for UI prototyping.
+-   **Live Mode**: `useWorkboard(false)` connects to Supabase via `@supabase/ssr`.
+-   **Switching**: Controlled via `enabled` flag in the hook, or ultimately an Env Var.
+
+### 5.2 Navigation Layer (Phase 5)
+-   **Registry**: `APP_ROUTES` (`navigation/routes.ts`) is the Single Source of Truth for *all* URLs.
+-   **Resolver**: `getAbsoluteUrl()` handles environment-aware domain prefixes (Dev vs Prod).
+-   **Components**: Usage of raw `next/link` or strings is **forbidden**. Use `<AppLink route="name">` instead.
+-   **Deep Links**: Native Shell is configured for `growthpad://` scheme handling.
 
 ### **Core Features**:
 
