@@ -1,0 +1,46 @@
+name: Automated Release
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+permissions:
+  contents: write # Required for creating tags and committing version.ts
+  issues: write   # Required for commenting on issues (if linked)
+  pull-requests: write # Required for commenting on PRs
+
+jobs:
+  release:
+    name: Semantic Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for semantic-release to analyze commit history
+          persist-credentials: false # We use a custom token or GITHUB_TOKEN via semantic-release config
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 23 # Use v23 of semantic-release
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/git
+            @semantic-release/exec
+            @semantic-release/github
+            conventional-changelog-conventionalcommits
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # (Optional) Required if publishing to npm registry
