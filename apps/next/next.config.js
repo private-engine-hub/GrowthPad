@@ -1,4 +1,5 @@
 const { withExpo } = require('@expo/next-adapter')
+const path = require('path')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

@@ -1,5 +1,5 @@
 Initial Analysis:
-"Analyze this Flutter project structure and give me an overview of the codebase. Check if it follows Flutter best practices and identify any major architectural issues."
+"Analyze this project structure and give me an overview of the codebase. Check if it follows best practices and identify any major architectural issues."
 Code Quality Checks:
 "Review the code quality across the project. Look for:
 - Proper error handling and null safety

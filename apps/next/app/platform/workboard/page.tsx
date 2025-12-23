@@ -5,7 +5,7 @@ import { Canvas } from "@/components/layout/Canvas"
 import { Pillar } from "@/components/board/Pillar"
 import { ObjectiveCascade } from "@/components/board/Cascade"
 import { Accordion } from "@/components/ui/accordion"
-import { useWorkboard } from "app/hooks/use-workboard"
+import { useWorkboard } from "@/hooks/use-workboard"
 import { DollarSign, Activity, TrendingUp } from "lucide-react"
 
 export default function DashboardPage() {
