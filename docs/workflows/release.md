@@ -3,9 +3,9 @@
 ## 🚀 The Release Cycle
 GrowthPad uses **Semantic Release** to automate versioning, changelogs, and publishing. The version number is determined strictly by the commit history.
 
-### Main vs Develop
+### Main vs Dev
 *   **`main`**: The official release branch. Merging to `main` creates a new production tag (e.g., `v1.2.3`).
-*   **`develop`**: The integration branch. Merging to `develop` creates a pre-release tag (e.g., `v1.3.0-beta.1`).
+*   **`dev`**: The integration branch. Merging to `dev` creates a pre-release tag (e.g., `v1.3.0-beta.1`).
 
 ---
 

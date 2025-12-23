@@ -40,7 +40,7 @@ and more...
 
 1. **Main:** Always deployable. Represents the current state of production.
 2. **Develop:** The "integration" branch where features merge before a release.
-3. **Feature Branches:** Where the actual work happens. Never commit directly to `main` or `develop`.
+3. **Feature Branches:** Where the actual work collects. Never commit directly to `main` or `dev`. Always merge to `dev`. and then `dev` to `main` (`prd`)
 
 ---
 
