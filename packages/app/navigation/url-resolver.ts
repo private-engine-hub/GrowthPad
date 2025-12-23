@@ -2,14 +2,17 @@ import { APP_ROUTES, RouteKey } from './routes';
 
 // Base URL from environment (set per deployment)
 const getBaseUrl = (): string => {
-    // Server-side (Next.js API routes, emails)
+    // 1. Explicit Environment Override (Standard SaaS Pattern)
     if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
-    // Native (Expo)
+
+    // 2. Native Override
     if (process.env.EXPO_PUBLIC_APP_URL) return process.env.EXPO_PUBLIC_APP_URL;
-    // Client-side fallback
+
+    // 3. Fallback for Local Dev (Client-Side)
     if (typeof window !== 'undefined') return window.location.origin;
-    // Default (should not reach here in production)
-    return 'https://app.growthpad.com';
+
+    // 4. Default Safety Net (Production)
+    return 'https://growthpad.app';
 };
 
 export const getAbsoluteUrl = (routeKey: RouteKey): string => {

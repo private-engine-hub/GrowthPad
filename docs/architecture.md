@@ -78,8 +78,18 @@ The Brain is the **only** source of business logic.
 To transition from **Mock Mode** to **Live Production**, follow these steps:
 1.  **Auth Guard**: Replace the stub in `navigation/guards.ts` with a call to `@supabase/ssr` to verify real JWT sessions in Next.js Middleware.
 2.  **Analytics**: Replace the `console.log` in `navigation/analytics.ts` with a production provider (e.g., Segment, PostHog, or Google Analytics).
-3.  **Base URL**: Update your `.env` and `.env.local` files to point `NEXT_PUBLIC_APP_URL` to your production domain (e.g., `app.growthpad.com`).
+3.  **Base URL**: Update your `.env` and `.env.local` files to point `NEXT_PUBLIC_APP_URL` to your production domain (e.g., `growthpad.app`).
 4.  **Deep Linking**: Finalize the `app.json` association with your production domain's `apple-app-site-association` and `assetlinks.json` files.
+
+### 5.4 Data Sovereignty & Auth Delegation
+GrowthPad uses a **Proxy Auth** model to keep the codebase clean.
+- **Site URL** (Supabase): `https://growthpad.app`
+- **Redirect Allow List**:
+    - `http://localhost:3000/**` (Dev)
+    - `https://stg.growthpad.app/**` (Staging)
+    - `https://growthpad.app/**` (Production)
+    - `growthpad://**` (Mobile Deep Link)
+- **Mechanism**: The shell initiates auth, Supabase handles the provider (Google/Email), and redirects back to the shell with a session. The shell never touches passwords.
 
 ---
 
