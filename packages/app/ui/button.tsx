@@ -2,12 +2,14 @@ import { Pressable, Text, View } from 'react-native';
 import { useRouter } from 'solito/navigation';
 import { cn } from '../utils';
 import React from 'react';
+import { APP_ROUTES, RouteKey } from '../navigation/routes';
 
 interface ButtonProps extends Omit<React.ComponentPropsWithoutRef<typeof Pressable>, 'children'> {
     variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
     size?: 'sm' | 'md' | 'lg' | 'icon';
     label?: string;
     href?: string;
+    route?: RouteKey;
     icon?: React.ReactNode;
     textClassName?: string;
     children?: React.ReactNode;
@@ -19,6 +21,7 @@ export function Button({
     size = 'md',
     label,
     href,
+    route,
     icon,
     className,
     textClassName,
@@ -52,7 +55,9 @@ export function Button({
     };
 
     const handlePress = (e: any) => {
-        if (href) {
+        if (route) {
+            push(APP_ROUTES[route].path);
+        } else if (href) {
             push(href);
         }
         if (onPress) {

@@ -12,13 +12,17 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 
 You must strictly separate logic from presentation.
 
-* **Shared Brain (`packages/app`)**: **The Only Source of Truth.** Contains Hooks, Types (L1-L5), and Schemas.
+* **Shared Brain (`packages/app`)**: **The Only Source of Truth.** Contains Hooks, Types (L1-L5), Schemas, and the **Navigation Registry** (`/navigation/routes.ts`).
 * **Web Shell (`apps/next`)**: Pure Web. HTML5 + Tailwind + shadcn/ui. **Forbidden: React Native Web primitives.**
 * **Native Shell (`apps/expo`)**: Pure Native. React Native primitives + NativeWind v4.
 
 ---
 
-## 2. The "Template-First" Mandate
+## 2. The "Registry-First" Mandate
+**Avoid hardcoded paths.** Every URL must be defined in the Shared Brain. 
+1. Use `<AppLink>` for all Next.js links.
+2. Use the `route` prop for all shared `Button` components.
+3. Use `useAppNavigation()` for imperative navigation.
 
 **Never build from scratch.** Use the following hierarchy:
 

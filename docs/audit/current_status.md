@@ -38,7 +38,7 @@ The GrowthPad codebase has been audited for compliance with the **"Shared Brain,
 ## 4. Remediation History (Resolved Issues)
 - **Stale Registry**: Removed `NativeWindRegistry` (Web mismatch).
 - **Vertical Stacking**: Replaced CSS Grid with `ScrollArea` for the Canvas.
-- **Double Shell**: Fixed nested sidebars in `dashboard/page.tsx`.
+- **Double Shell**: Fixed nested sidebars in `/platform/workboard`.
 - **Typo Purge**: Renamed `/docs/comit` to `/docs/commit`.
 
 ## 5. Next Audit Milestone

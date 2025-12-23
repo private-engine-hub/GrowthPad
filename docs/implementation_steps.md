@@ -7,7 +7,7 @@
 
 ## ✅ Phase 1: Clean Slate & Decoupling
 - [x] **Architecture Pivot**: Severed React Native Web dependencies in `apps/next`.
-- [x] **Entry Points**: Established `/` (Landing) and `/dashboard` separation.
+- [x] **Entry Points**: Established `/` (Landing) and `/platform/workboard` separation.
 - [x] **Registry Removal**: Deleted `NativeWindRegistry` and `StyleSheet` usage from Web.
 - [x] **Type Hardening**: Established L1-L5 cascade as the unified data contract.
 

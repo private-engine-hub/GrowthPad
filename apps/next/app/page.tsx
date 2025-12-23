@@ -48,9 +48,9 @@ export default function LandingPage() {
                         >
                             Log in
                         </Link>
-                        <Link href="/dashboard">
+                        <AppLink route="dashboard">
                             <Button>Get Started</Button>
-                        </Link>
+                        </AppLink>
                     </div>
                 </div>
             </header>
@@ -81,7 +81,7 @@ export default function LandingPage() {
                             route="dashboard"
                             className="h-12 px-8 rounded-lg bg-[#00818E] hover:bg-[#006C77] text-white font-bold text-lg shadow-lg shadow-blue-900/20 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
                         >
-                            Launch Dashboard <ArrowRight size={18} />
+                            Launch Workboard <ArrowRight size={18} />
                         </AppLink>
                         <button className="h-12 px-8 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium border border-white/10 backdrop-blur-sm transition-all hover:border-white/20">
                             View Demo

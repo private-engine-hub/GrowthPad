@@ -40,7 +40,7 @@ growthpad/
 We use **Standard Web Primitives** to ensure 0% layout shift (CLS) and 100% SEO/Performance.
 
 *   **Framework**: Next.js (App Router) + Tailwind + shadcn/ui (Radix).
-*   **Core Namespace**: `/platform` (e.g., `/platform/home`, `/platform/dashboard`, `/platform/planner`).
+*   **Core Namespace**: `/platform` (e.g., `/platform/home`, `/platform/workboard`, `/platform/planner`).
 *   **Layout Wrapper**: `DashboardShell.tsx` implements the SaaS wrapper with dynamic `usePathname` highlighting.
 *   **Horizontal Canvas**: `Canvas.tsx` uses `shadcn/ui` `ScrollArea` for a "Trello-style" side-by-side pillar layout.
 *   **Pillars**: Fixed-width (`350px`) cards with internal scroll areas.

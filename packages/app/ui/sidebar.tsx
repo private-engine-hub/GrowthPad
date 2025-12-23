@@ -1,20 +1,22 @@
 import { View, Pressable } from 'react-native';
 import { Text, H3, Small } from './typography';
 import { useRouter } from 'solito/navigation';
-import { Layout, Users, Settings, Activity, Shield } from 'lucide-react-native';
+import { Layout, Users, Settings, Activity, Shield, ListTree } from 'lucide-react-native';
 import { cn } from '../utils';
 
+import { APP_ROUTES } from '../navigation/routes';
+
 const navItems = [
-    { href: '/dashboard', icon: Layout, label: 'Workboard' },
-    { href: '/dashboard/team', icon: Users, label: 'Team' },
-    { href: '/dashboard/activity', icon: Activity, label: 'Activity' },
-    { href: '/dashboard/settings', icon: Settings, label: 'Settings' },
+    { href: APP_ROUTES.dashboard.path, icon: Layout, label: 'Workboard' },
+    { href: APP_ROUTES.planner.path, icon: ListTree, label: 'Strategy Map' },
+    { href: APP_ROUTES.playbooks.path, icon: Activity, label: 'Playbooks' },
+    { href: APP_ROUTES.settings.path, icon: Settings, label: 'Settings' },
 ];
 
 export function Sidebar({ className }: { className?: string }) {
     const { push } = useRouter();
     // Path detection would go here in a full app
-    const currentPath = '/dashboard';
+    const currentPath = '/platform/workboard';
 
     return (
         <View className={cn("bg-slate-50 border-r border-slate-200 h-full p-6", className)}>

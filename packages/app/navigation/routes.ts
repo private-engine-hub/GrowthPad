@@ -25,7 +25,7 @@ export const APP_ROUTES: Record<RouteKey, RouteConfig> = {
 
     // === Platform Routes (Protected) ===
     home: { path: '/platform/home', name: 'Home' },
-    dashboard: { path: '/platform/dashboard', name: 'Workboard' },
+    dashboard: { path: '/platform/workboard', name: 'Workboard' },
     planner: { path: '/platform/planner', name: 'Strategy Map' },
     playbooks: { path: '/platform/playbooks', name: 'Playbooks' },
     analytics: { path: '/platform/analytics', name: 'Analytics' },

@@ -16,6 +16,13 @@
     - **Layout Fixes**: Applied `whitespace-normal` (Pillar) and `min-w-0` (Flex) to resolve text overflow issues.
 - **Result**: A cleaner, denser, and more scanable workboard.
  
+### 2025-12-23 3:35PM: Workboard Rename
+**Objective**: Align technical routing with product terminology.
+- **Action**: 
+    - Updated `APP_ROUTES` registry to map `dashboard` key to `/platform/workboard`.
+    - Renamed physical directory `apps/next/app/platform/dashboard` to `workboard`.
+- **Result**: "Workboard" is now the primary domain term for the main strategy canvas.
+
 ### 2025-12-23 2:25PM: Phase 5.0: Universal Navigation System
 - **Objective**: Establish a centralized, type-safe navigation layer for Decoupled Shells.
 - **Changes**:

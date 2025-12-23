@@ -35,7 +35,7 @@ export function LoginScreen() {
                           supabase.auth.signInWithOAuth({ provider: 'google' })
                         */}
                         <Button
-                            href="/dashboard"
+                            route="dashboard"
                             variant="outline"
                             size="lg"
                             className="w-full border-slate-200 py-4 h-16"

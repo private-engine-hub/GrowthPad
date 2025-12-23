@@ -8,15 +8,24 @@ Produce **stable, boring, and predictable** code. Prioritize industry-standard b
 
 ## 1. The Pragmatism First Rule (Priority: CRITICAL)
 
-* **KISS (Keep It Simple, Stupid):** Choose the most straightforward path. If a native language feature works, use it instead of a custom utility.
-* **YAGNI (You Aren't Gonna Need It):** No speculative features. Implement only what is required for the current task.
-* **Prefer Boilerplate:** Use standard implementations (e.g., standard middleware, hooks, or decorators). Do not reinvent wheels.
+*   **KISS (Keep It Simple, Stupid):** Choose the most straightforward path. If a native language feature works, use it instead of a custom utility.
+*   **YAGNI (You Aren't Gonna Need It):** No speculative features. Implement only what is required for the current task.
+*   **Prefer Boilerplate:** Use standard implementations (e.g., standard middleware, hooks, or decorators). Do not reinvent wheels.
+
+### 1.1 Golden Source Registries (Priority: CRITICAL)
+- **Zero Magic Values**: Hardcoded strings, paths, or magic numbers (e.g., `"/platform/workboard"` or `1000 * 60`) are **forbidden** in UI components.
+- **Centralized Abstraction**: All application metadata, constants, and business rules must live in the **Shared Brain** (`packages/app`) in typed registries.
+- **Standard Registry Usage**:
+    - **Navigation**: Use `APP_ROUTES` registry exclusively.
+    - **Feature Flags**: Use the `flags.ts` registry.
+    - **Assets/Constants**: Use shared data/config files.
+- **Platform Parity**: High-level components should accept registry **keys** (e.g., `route="dashboard"`) rather than raw values, delegating the resolution to the component logic.
 
 ## 2. Cleanliness & Maintenance (Priority: HIGH)
 
-* **DRY (Don't Repeat Yourself):** If a pattern or logic repeats more than twice, abstract it into a reusable function/component.
-* **Immediate Pruning:** Delete all dead code (unused imports, variables, or commented-out blocks) immediately.
-* **Human-Readable Naming:** Use clear, conventional names. Avoid obscure abbreviations.
+*   **DRY (Don't Repeat Yourself):** If a pattern or logic repeats more than twice, abstract it into a reusable function/component.
+*   **Immediate Pruning:** Delete all dead code (unused imports, variables, or commented-out blocks) immediately.
+*   **Human-Readable Naming:** Use clear, conventional names. Avoid obscure abbreviations.
 
 ## 3. Structural Integrity (Priority: SECONDARY)
 
