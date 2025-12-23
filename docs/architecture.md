@@ -31,6 +31,7 @@ growthpad/
         ├── db/            # Relational Schema (SQL)
         ├── hooks/         # useWorkboard(), useJobs()
         ├── types/         # L1-L5 Strategic Cascade Interfaces
+        ├── version.ts     # Versioning Registry (v1.0.0)
         └── nativewind-env.d.ts # Shared type definitions
 ```
 
@@ -91,6 +92,12 @@ GrowthPad uses a **Proxy Auth** model to keep the codebase clean.
     - `https://growthpad.app/**` (Production)
     - `growthpad://**` (Mobile Deep Link)
 - **Mechanism**: The shell initiates auth, Supabase handles the provider (Google/Email), and redirects back to the shell with a session. The shell never touches passwords.
+
+### 5.5 Release Integrity & Build Identity
+GrowthPad uses an automated **Semantic Release** pipeline to ensure repository stability.
+- **Branch Protection**: Direct commits to `main` are blocked by Husky. Updates are only permitted via merges from `dev`.
+- **Commit Enforcement**: Husky + Commitlint enforce the `type[scope]: message` atomic format.
+- **Build Identity**: `packages/app/version.ts` is the single source of truth for the application version. It is updated automatically by the CI pipeline upon every successful release to `main` or `dev`.
 
 ---
 

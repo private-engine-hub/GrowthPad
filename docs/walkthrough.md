@@ -63,6 +63,14 @@ The Web Workboard uses a side-by-side **Pillar** layout.
 ---
 
 ## 4. Verification
-- `npm run build` succeeds for `apps/next`.
-- Zero React Native Web primitives in the Web layout.
 - Container centering applied globally to marketing routes.
+- Branch protection prevents direct commits to `main`.
+
+---
+
+## 5. Release & Repository Integrity
+We use an automated pipeline to maintain high software standards.
+- **Commit Guard**: Husky + Commitlint enforce `type[scope]: message` format.
+- **Branch Guard**: Direct commits to `main` are blocked; it only accepts merges from `dev`.
+- **Automated Versioning**: Semantic Release manages versions based on commit history.
+- **Registry**: `packages/app/version.ts` tracks the current build version across all shells.

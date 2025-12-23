@@ -69,10 +69,39 @@ In enterprise software, code changes frequently, but **decisions** stay. When yo
 
 ---
 
+---
+
+## 💎 Automated Versioning
+
+GrowthPad uses **Semantic Release** to eliminate manual versioning overhead. Every commit to `main` or `dev` is analyzed to determine the next logical version.
+
+### The Version Registry
+All platforms (Web/Native) consume the version from a single "Source of Truth":
+- **Location**: `packages/app/version.ts`
+- **Automation**: This file is updated by the CI pipeline. **Never edit it manually.**
+- **Usage**: `import { APP_VERSION } from 'packages/app/version';`
+
+### Release Logic
+| Commit Type | Version Impact | Resulting Tag |
+| :--- | :--- | :--- |
+| `feat[...]!` | **MAJOR** | `v2.0.0` |
+| `feat[...]` | **MINOR** | `v1.2.0` |
+| `fix[...]` | **PATCH** | `v1.1.1` |
+
+---
+
 ## 🤖 Automating the Standards
 
-Humans are forgetful. Use tools to enforce these rules so you don't have to be the "Commit Police" in code reviews:
+Humans are forgetful. We use automation to protect the repository's historical integrity:
 
-* **Husky:** Prevents commits that don't follow your `type[scope]` format.
-* **Lint-Staged:** Runs your linter/formatter only on the files you've changed.
-* **Semantic Release:** Automatically calculates version numbers (1.2.3) based on your commit types.
+* **Husky**: 
+    - `commit-msg`: Enforces the `type[scope]` format.
+    - `pre-commit`: Blocks direct commits to `main` (Main belongs to the robots 🤖).
+* **Commitlint**: Validates that every message contains a valid type and required scope.
+* **Semantic Release**: Calculates the version, updates `package.json` and `version.ts`, generates a `CHANGELOG.md`, and creates the GitHub Release.
+
+### Verification
+To preview what the next version would be without actually releasing:
+```bash
+npm run release -- --dry-run
+```
