@@ -1,71 +1,124 @@
 import { useMemo } from 'react'
 import { useQuery } from '../provider/query'
 import { supabase } from '../provider/supabase'
-import { WorkboardState, L1_Pillar, L1_PillarId, L3_Objective, L4_Phase, L5_Job } from '../types'
+import { WorkboardState, L0_Mission } from '../types'
 
 /**
  * fetchWorkboard
  * Fetches the entire workboard state from Supabase.
  * Uses a nested select to retrieve the full hierarchy in one round trip.
  */
+// fetchWorkboard: Retrieval of the 6-Layer Hierarchy (Mission -> Job)
 export const fetchWorkboard = async (): Promise<WorkboardState> => {
-    const { data, error } = await supabase
-        .from('pillars')
+    // 1. Fetch Hierarchy (Mission -> Jobs)
+    const { data: missionsData, error: missionError } = await supabase
+        .from('missions')
         .select(`
             id,
             title,
             description,
-            objectives (
+            status,
+            moves (
                 id,
                 title,
+                description,
+                order,
                 status,
-                phases (
+                objectives (
                     id,
                     title,
-                    order,
-                    jobs (
+                    status,
+                    pillar_id,
+                    theme_id,
+                    initiatives (
                         id,
                         title,
+                        description,
+                        order,
                         status,
-                        theme_id,
-                        ai_generated_assets
+                        phases (
+                            id,
+                            title,
+                            order,
+                            jobs (
+                                id,
+                                title,
+                                status,
+                                ai_generated_assets
+                            )
+                        )
                     )
                 )
             )
         `)
-        .order('id') // Order pillars (or use a dedicated order field if available)
+        .order('created_at', { ascending: true }); // Missions order
 
-    if (error) {
-        throw new Error(error.message)
-    }
+    // 2. Fetch DIM Tables
+    const { data: pillarsData, error: pillarError } = await supabase
+        .from('pillars')
+        .select('id, title, description');
 
-    // Map database snake_case to frontend camelCase
-    const pillars: L1_Pillar[] = data.map((p: any) => ({
-        id: p.id as L1_PillarId,
-        title: p.title,
-        description: p.description,
-        objectives: p.objectives.map((o: any) => ({
-            id: o.id,
-            title: o.title,
-            status: o.status,
-            phases: o.phases
-                .sort((a: any, b: any) => a.order - b.order)
-                .map((ph: any) => ({
-                    id: ph.id,
-                    title: ph.title,
-                    order: ph.order,
-                    jobs: ph.jobs.map((j: any) => ({
-                        id: j.id,
-                        title: j.title,
-                        status: j.status,
-                        themeId: j.theme_id,
-                        aiGeneratedAssets: j.ai_generated_assets
+    const { data: themesData, error: themeError } = await supabase
+        .from('themes')
+        .select('id, title, color');
+
+    if (missionError) throw new Error(missionError.message);
+    if (pillarError) throw new Error(pillarError.message);
+    if (themeError) throw new Error(themeError.message);
+
+    // 3. Map & Sort Response
+    const missions: L0_Mission[] = missionsData.map((m: any) => ({
+        id: m.id,
+        title: m.title,
+        description: m.description,
+        status: m.status,
+        moves: (m.moves || [])
+            .sort((a: any, b: any) => a.order - b.order)
+            .map((mv: any) => ({
+                id: mv.id,
+                title: mv.title,
+                description: mv.description,
+                order: mv.order,
+                status: mv.status,
+                objectives: (mv.objectives || [])
+                    .map((o: any) => ({
+                        id: o.id,
+                        title: o.title,
+                        status: o.status,
+                        pillarId: o.pillar_id,
+                        themeId: o.theme_id,
+                        initiatives: (o.initiatives || [])
+                            .sort((a: any, b: any) => a.order - b.order)
+                            .map((i: any) => ({
+                                id: i.id,
+                                title: i.title,
+                                description: i.description,
+                                order: i.order,
+                                status: i.status,
+                                phases: (i.phases || [])
+                                    .sort((a: any, b: any) => a.order - b.order)
+                                    .map((p: any) => ({
+                                        id: p.id,
+                                        title: p.title,
+                                        order: p.order,
+                                        jobs: (p.jobs || [])
+                                            .map((j: any) => ({
+                                                id: j.id,
+                                                title: j.title,
+                                                status: j.status,
+                                                aiGeneratedAssets: j.ai_generated_assets
+                                            }))
+                                    }))
+                            }))
                     }))
-                }))
-        }))
-    }))
+            }))
+    }));
 
-    return { pillars }
+    return {
+        missions,
+        pillars: pillarsData as any[],
+        themes: themesData as any[]
+    };
 }
 
 /**
@@ -79,15 +132,14 @@ export function useWorkboard() {
         queryFn: fetchWorkboard
     })
 
+    const missions = useMemo(() => data?.missions || [], [data])
     const pillars = useMemo(() => data?.pillars || [], [data])
-
-    const getPillar = (id: L1_PillarId): L1_Pillar | undefined => {
-        return pillars.find(p => p.id === id)
-    }
+    const themes = useMemo(() => data?.themes || [], [data])
 
     return {
+        missions,
         pillars,
-        getPillar,
+        themes,
         isLoading,
         error
     }

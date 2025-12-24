@@ -33,7 +33,7 @@ const HomeScreen = () => {
         transition={{
           type: 'timing',
           duration: 150,
-        }}
+        } as any}
       >
         <Text selectable={false} className="text-base font-bold mt-5">
           Moti Link

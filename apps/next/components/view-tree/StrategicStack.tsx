@@ -2,57 +2,86 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronRight, ChevronDown, Flame, Zap, Sprout, Plus, MoreHorizontal } from "lucide-react"
+import { ChevronRight, ChevronDown, Flame, Zap, Sprout, Plus, MoreHorizontal, Target, Layers, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useWorkboard } from "app/hooks/use-workboard"
-import { L1_Pillar, L3_Objective, L4_Phase, L5_Job } from "app/types"
+import { L0_Mission, L1_Move, L2_Objective, L3_Initiative, L4_Phase, L5_Job, DIM_Pillar, DIM_Theme } from "app/types"
 import { Badge } from "@/components/ui/badge"
 
 export function StrategicStack() {
-    const { pillars } = useWorkboard()
+    const { missions, pillars, themes } = useWorkboard()
 
-    if (!pillars) return null
+    if (!missions || missions.length === 0) return (
+        <div className="flex flex-col items-center justify-center p-12 text-slate-400">
+            <Layers size={48} className="mb-4 opacity-50" />
+            <p>No strategy defined yet.</p>
+        </div>
+    )
 
     return (
-        <div className="w-full space-y-4 pb-20">
-            <div className="flex items-center justify-between mb-8">
+        <div className="w-full space-y-8 pb-20">
+            <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-slate-800 tracking-tight">Strategy Map</h2>
                 <div className="flex gap-2">
                     <span className="text-xs font-medium text-slate-400">Interactive Tree View</span>
                 </div>
             </div>
 
-            {pillars.map((pillar) => (
-                <PillarRow key={pillar.id} pillar={pillar} />
+            {missions.map((mission) => (
+                <MissionRow
+                    key={mission.id}
+                    mission={mission}
+                    pillars={pillars || []}
+                    themes={themes || []}
+                />
             ))}
         </div>
     )
 }
 
-function PillarRow({ pillar }: { pillar: L1_Pillar }) {
+function MissionRow({ mission, pillars, themes }: { mission: L0_Mission, pillars: DIM_Pillar[], themes: DIM_Theme[] }) {
+    return (
+        <div className="space-y-6">
+            {/* L0: Mission Header */}
+            <div className="bg-slate-900 text-white p-6 rounded-xl shadow-lg">
+                <div className="flex items-start gap-4">
+                    <div className="p-3 bg-white/10 rounded-lg">
+                        <Target className="text-emerald-400" size={24} />
+                    </div>
+                    <div>
+                        <div className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-1">Mission</div>
+                        <h3 className="text-2xl font-bold tracking-tight">{mission.title}</h3>
+                        {mission.description && (
+                            <p className="text-slate-300 mt-2 text-sm leading-relaxed max-w-2xl">{mission.description}</p>
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            {/* L1: Moves */}
+            <div className="space-y-4 pl-4 border-l-2 border-slate-100/50">
+                {mission.moves.map(move => (
+                    <MoveRow
+                        key={move.id}
+                        move={move}
+                        pillars={pillars}
+                        themes={themes}
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+function MoveRow({ move, pillars, themes }: { move: L1_Move, pillars: DIM_Pillar[], themes: DIM_Theme[] }) {
     const [isExpanded, setIsExpanded] = useState(true)
-
-    const colorMap: Record<string, string> = {
-        'financial': 'border-l-rose-500 bg-rose-50/10',
-        'operational': 'border-l-amber-500 bg-amber-50/10',
-        'market': 'border-l-emerald-500 bg-emerald-50/10'
-    }
-
-    const badgeMap: Record<string, string> = {
-        'financial': 'bg-rose-100 text-rose-700',
-        'operational': 'bg-amber-100 text-amber-700',
-        'market': 'bg-emerald-100 text-emerald-700'
-    }
 
     return (
         <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
-            {/* L1 Header Row */}
+            {/* L1 Header */}
             <div
                 onClick={() => setIsExpanded(!isExpanded)}
-                className={cn(
-                    "flex items-center gap-4 p-4 cursor-pointer hover:bg-slate-50 transition-colors border-l-4",
-                    colorMap[pillar.id] || 'border-l-slate-400'
-                )}
+                className="flex items-center gap-4 p-4 cursor-pointer hover:bg-slate-50 transition-colors border-l-4 border-l-indigo-500"
             >
                 <div className={cn("transition-transform duration-200", isExpanded ? "rotate-90" : "rotate-0")}>
                     <ChevronRight size={18} className="text-slate-400" />
@@ -60,15 +89,22 @@ function PillarRow({ pillar }: { pillar: L1_Pillar }) {
 
                 <div className="flex-1">
                     <div className="flex items-center gap-3">
-                        <h3 className="text-lg font-bold text-slate-800">{pillar.title}</h3>
-                        <Badge variant="secondary" className={cn("font-bold border-none", badgeMap[pillar.id])}>
-                            {pillar.objectives.length} Objectives
-                        </Badge>
+                        <span className="text-xs font-bold text-indigo-500 uppercase tracking-wider bg-indigo-50 px-2 py-0.5 rounded">
+                            Move #{move.order}
+                        </span>
+                        <h3 className="text-lg font-bold text-slate-800">{move.title}</h3>
                     </div>
+                    {move.description && (
+                        <p className="text-xs text-slate-500 mt-1 pl-[105px] truncate">{move.description}</p>
+                    )}
                 </div>
+
+                <Badge variant="secondary" className="font-bold border-none bg-slate-100 text-slate-600">
+                    {move.objectives.length} Objectives
+                </Badge>
             </div>
 
-            {/* Expansion Content */}
+            {/* Expansion Content (Objectives) */}
             <AnimatePresence>
                 {isExpanded && (
                     <motion.div
@@ -78,9 +114,14 @@ function PillarRow({ pillar }: { pillar: L1_Pillar }) {
                         transition={{ duration: 0.2 }}
                         className="border-t border-slate-100"
                     >
-                        <div className="p-6 space-y-6 bg-slate-50/30">
-                            {pillar.objectives.map(obj => (
-                                <ObjectiveNode key={obj.id} objective={obj} />
+                        <div className="p-6 space-y-8 bg-slate-50/30">
+                            {move.objectives.map(obj => (
+                                <ObjectiveNode
+                                    key={obj.id}
+                                    objective={obj}
+                                    pillars={pillars}
+                                    themes={themes}
+                                />
                             ))}
                         </div>
                     </motion.div>
@@ -90,9 +131,13 @@ function PillarRow({ pillar }: { pillar: L1_Pillar }) {
     )
 }
 
-function ObjectiveNode({ objective }: { objective: L3_Objective }) {
+function ObjectiveNode({ objective, pillars, themes }: { objective: L2_Objective, pillars: DIM_Pillar[], themes: DIM_Theme[] }) {
+    // Resolve DIMs
+    const pillar = pillars.find(p => p.id === objective.pillarId)
+    const theme = themes.find(t => t.id === objective.themeId)
+
     // Determine status color
-    const statusColor = objective.status === 'completed' ? 'bg-green-500' : 'bg-slate-300';
+    const statusColor = objective.status === 'completed' ? 'bg-green-500' : 'bg-blue-500';
 
     return (
         <div className="relative group">
@@ -106,16 +151,32 @@ function ObjectiveNode({ objective }: { objective: L3_Objective }) {
                 </div>
 
                 <div className="flex-1 space-y-4">
-                    {/* L3 Header */}
-                    <div className="flex items-baseline justify-between border-b border-dashed border-slate-200 pb-2">
-                        <h4 className="text-sm font-bold text-slate-800">{objective.title}</h4>
-                        <span className="text-[10px] font-medium text-slate-400 uppercase tracking-widest">{objective.phases.length} Phases</span>
+                    {/* L2 Header */}
+                    <div className="flex items-start justify-between border-b border-dashed border-slate-200 pb-3">
+                        <div>
+                            <div className="flex items-center gap-2 mb-1">
+                                <h4 className="text-base font-bold text-slate-800">{objective.title}</h4>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                {pillar && (
+                                    <Badge variant="outline" className="text-[10px] uppercase font-bold text-slate-500 border-slate-200 bg-white">
+                                        {pillar.title}
+                                    </Badge>
+                                )}
+                                {theme && (
+                                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-100/50 border border-slate-100">
+                                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: theme.color }} />
+                                        <span className="text-[10px] font-medium text-slate-600">{theme.title}</span>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Children (Phases) */}
+                    {/* Children (Initiatives) */}
                     <div className="space-y-6 pl-2">
-                        {objective.phases.map(phase => (
-                            <PhaseNode key={phase.id} phase={phase} />
+                        {objective.initiatives.map(init => (
+                            <InitiativeNode key={init.id} initiative={init} />
                         ))}
                     </div>
                 </div>
@@ -124,33 +185,44 @@ function ObjectiveNode({ objective }: { objective: L3_Objective }) {
     )
 }
 
-function PhaseNode({ phase }: { phase: L4_Phase }) {
+function InitiativeNode({ initiative }: { initiative: L3_Initiative }) {
     return (
         <div className="relative pl-6">
             {/* L-Shape Connector */}
             <div className="absolute left-0 top-3 w-4 h-px bg-slate-300" />
             <div className="absolute left-0 top-0 bottom-0 w-px bg-slate-200 -mt-2" />
 
-            <div className="space-y-3">
+            <div className="space-y-3 bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
                 <div className="flex items-center gap-2">
-                    <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider bg-slate-100 px-1.5 py-0.5 rounded">
-                        {phase.title}
-                    </span>
-                    <div className="h-px bg-slate-100 flex-1" />
+                    <div className="w-1 h-4 bg-indigo-400 rounded-full" />
+                    <h5 className="text-sm font-bold text-slate-700">{initiative.title}</h5>
                 </div>
 
-                <div className="flex flex-col space-y-2">
-                    {phase.jobs.map(job => (
-                        <JobLeaf key={job.id} job={job} />
+                {/* Phases */}
+                <div className="pl-4 space-y-4 pt-2">
+                    {initiative.phases.map(phase => (
+                        <PhaseNode key={phase.id} phase={phase} />
                     ))}
-                    {/* Add Job Button (Row Style) */}
-                    <button className="flex items-center gap-3 px-3 py-2 rounded-md border border-dashed border-slate-200 text-slate-400 hover:text-slate-600 hover:border-slate-300 hover:bg-slate-50 transition-all group w-full">
-                        <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-slate-200">
-                            <Plus size={12} />
-                        </div>
-                        <span className="text-xs font-medium">Add Job</span>
-                    </button>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+function PhaseNode({ phase }: { phase: L4_Phase }) {
+    return (
+        <div className="relative">
+            <div className="flex items-center gap-2 mb-3">
+                <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider bg-slate-50 px-1.5 py-0.5 rounded">
+                    {phase.title}
+                </span>
+                <div className="h-px bg-slate-100 flex-1" />
+            </div>
+
+            <div className="flex flex-col space-y-2">
+                {phase.jobs.map(job => (
+                    <JobLeaf key={job.id} job={job} />
+                ))}
             </div>
         </div>
     )
@@ -167,7 +239,7 @@ function JobLeaf({ job }: { job: L5_Job }) {
 
     return (
         <div className={cn(
-            "group flex items-center gap-3 px-3 py-2 bg-white rounded-md border border-slate-100 hover:border-slate-300 hover:shadow-sm transition-all cursor-pointer relative",
+            "group flex items-center gap-3 px-3 py-2.5 bg-white rounded-md border border-slate-100 hover:border-slate-300 hover:shadow-sm transition-all cursor-pointer relative",
             job.status === 'done' && "bg-slate-50 opacity-60"
         )}>
             {/* Priority Indicator Line */}
@@ -178,7 +250,7 @@ function JobLeaf({ job }: { job: L5_Job }) {
                 priority === 'low' && "bg-emerald-500",
             )} />
 
-            {/* Joy Icon */}
+            {/* Icon */}
             <div className="shrink-0 ml-1.5">
                 {priority === 'high' && <Flame size={14} className="text-rose-500" />}
                 {priority === 'medium' && <Zap size={14} className="text-amber-500" />}
@@ -196,25 +268,17 @@ function JobLeaf({ job }: { job: L5_Job }) {
             <div className="flex items-center gap-4 transition-opacity duration-200">
                 {job.aiGeneratedAssets && (
                     <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100 flex items-center gap-1">
-                        ✨ AI Insight
+                        ✨ AI
                     </span>
                 )}
 
                 {/* Mock Status */}
                 <div className="flex items-center gap-1.5">
                     <span className={cn("w-1.5 h-1.5 rounded-full", job.status === 'done' ? "bg-green-500" : "bg-amber-400")}></span>
-                    <span className="text-xs font-medium text-slate-500">{job.status === 'done' ? 'Complete' : 'On Track'}</span>
                 </div>
-
-                {/* Mock Avatar */}
-                <div className="w-6 h-6 rounded-full bg-indigo-100 border border-white shadow-sm flex items-center justify-center text-[9px] font-bold text-indigo-600">
-                    CM
-                </div>
-
-                <div className="h-4 w-px bg-slate-200" />
 
                 {/* Context Menu */}
-                <button className="text-slate-400 hover:text-slate-600">
+                <button className="text-slate-400 hover:text-slate-600 opacity-0 group-hover:opacity-100">
                     <MoreHorizontal size={16} />
                 </button>
             </div>
