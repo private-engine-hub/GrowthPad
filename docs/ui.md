@@ -16,6 +16,26 @@ The brand balances legacy workplace blue with sunny growth accents.
 | **Canvas (Gray)** | `#EBECF0` | `trello-gray` | The "floor" of the playbook canvas. |
 | **Success (Green)** | `#22C55E` | `trello-green` | AI Success indicators, completed tasks. |
 | **Error (Red)** | `#F43F5E` | `trello-red` | Critical blocking pillars. |
+| **Indigo (Secondary)** | `#7A75F6` | `trello-indigo` | Secondary CTAs, hover states, or link accents. |
+| **Sky (Secondary)** | `#3AC7FF` | `trello-sky` | Informational callouts or data visualization. |
+| **Orange (Secondary)** | `#F09B0E` | `trello-orange` | Warning states or mid-level priority markers. |
+| **Gold (Secondary)** | `#FFC700` | `trello-gold` | Achievement badges or "Pro" feature highlights. |
+| **Pink (Secondary)** | `#FF85AE` | `trello-pink` | Creative elements or distinctive tag markers. |
+| **Lime (Secondary)** | `#6CC053` | `trello-lime` | Alternative success state or active progress bars. |
+
+
+Element	Hex Code	Tailwind Token	Description
+Primary (Blue)	#00818E	trello-blue	Sidebar background, Header text, Primary CTAs.
+Accent (Yellow)	#FBBF24	trello-yellow	Sunlight highlighting, status alerts, "Roadmap Mode".
+Canvas (Gray)	#EBECF0	trello-gray	The "floor" of the playbook canvas.
+Success (Green)	#22C55E	trello-green	AI Success indicators, completed tasks.
+Error (Red)	#F43F5E	trello-red	Critical blocking pillars.
+Indigo (Secondary)	#7A75F6	trello-indigo	Secondary CTAs, hover states, or link accents.
+Sky (Secondary)	#3AC7FF	trello-sky	Informational callouts or data visualization.
+Orange (Secondary)	#F09B0E	trello-orange	Warning states or mid-level priority markers.
+Gold (Secondary)	#FFC700	trello-gold	Achievement badges or "Pro" feature highlights.
+Pink (Secondary)	#FF85AE	trello-pink	Creative elements or distinctive tag markers.
+Lime (Secondary)	#6CC053	trello-lime	Alternative success state or active progress bars.
 
 ### Typography
 - **Primary Font**: **Plus Jakarta Sans** (Light 300).
