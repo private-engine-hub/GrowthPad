@@ -54,20 +54,20 @@ async function testFetch() {
 
     console.log(`✅ Found ${missions.length} Missions.`);
 
-    missions.forEach(m => {
+    missions.forEach((m: any) => {
         console.log(`\n📂 Mission: ${m.title} (${m.id})`);
         if (!m.moves || m.moves.length === 0) {
             console.log("   ⚠️ No Moves linked.");
             return;
         }
 
-        m.moves.forEach(mv => {
+        m.moves.forEach((mv: any) => {
             console.log(`   ➡️ Move: ${mv.title}`);
             if (!mv.objectives || mv.objectives.length === 0) {
                 console.log("      ⚠️ 0 Objectives returned (Possible Relationship Issue)");
             } else {
                 console.log(`      ✅ ${mv.objectives.length} Objectives found.`);
-                mv.objectives.forEach(o => {
+                mv.objectives.forEach((o: any) => {
                     console.log(`         🎯 Obj: ${o.title}`);
                     if (o.initiatives && o.initiatives.length > 0) {
                         console.log(`            ✅ ${o.initiatives.length} Initiatives`);

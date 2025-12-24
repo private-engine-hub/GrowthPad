@@ -3,7 +3,20 @@
 **Project**: GrowthPad
 **Start Date**: 2025-12-18
 
-## Status: 🟢 STABLE (Phase 3 Prep: Decoupled Shells Complete)
+## Status: 🟢 STABLE (Phase 4.0: Strategy Hierarchy Pivot Complete)
+
+---
+
+### 2025-12-24: Phase 4.0: The Strategic Hierarchy Pivot (v4.0)
+**Objective**: Architecture evolution from 5 to 6 layers. Establish `Mission` as the North Star and decouple metadata into Dimension (DIM) tables.
+
+- **Action**:
+    - **6-Layer Cascade**: Implemented `Mission (L0)` -> `Move (L1)` -> `Objective (L2)` -> `Initiative (L3)` -> `Phase (L4)` -> `Job (L5)`.
+    - **Dimension Tables**: Decoupled `Pillars` and `Themes` into standalone relational tables. Objectives now "reference" these dimensions rather than being owned by them.
+    - **Relational Schema (v4.0)**: Deployed `schema.sql` and `reboot.sql` to Supabase with strict foreign key integrity and cascaded deletes.
+    - **UI Implementation**: Rewrote `StrategicStack.tsx` (Strategic Planner) to render the new tree.
+    - **Aesthetic Refinement**: Standardized `font-black` (900) for L0 Mission headers and project-wide high-density typography standards in `docs/ui.md`.
+- **Result**: The strategic data model is now "Enterprise Grade," allowing for complex multi-mission scaling while maintaining clear visual accountability.
 
 ---
 

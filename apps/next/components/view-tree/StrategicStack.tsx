@@ -41,20 +41,31 @@ export function StrategicStack() {
 
 function MissionRow({ mission, pillars, themes }: { mission: L0_Mission, pillars: DIM_Pillar[], themes: DIM_Theme[] }) {
     return (
-        <div className="space-y-6">
-            {/* L0: Mission Header */}
-            <div className="bg-trello-yellow text-slate-900 p-6 rounded-xl shadow-lg border border-yellow-500/20">
-                <div className="flex items-start gap-4">
-                    <div className="p-3 bg-slate-900/10 rounded-lg">
-                        <Target className="text-slate-900" size={24} />
+        <div className="space-y-8">
+            {/* L0: Mission Header - Premium Plaque Style */}
+            <div className="bg-white text-slate-900 px-10 py-10 rounded-2xl shadow-xl border-t-8 border-t-trello-yellow relative overflow-hidden">
+                {/* Subtle Background Mark */}
+                <div className="absolute top-0 right-0 p-6 opacity-[0.03] select-none pointer-events-none text-trello-yellow">
+                    <Target size={120} />
+                </div>
+
+                <div className="flex flex-col items-center text-center relative z-10">
+                    <div className="flex items-center gap-3 mb-4 bg-slate-50 px-3 py-1 rounded-full border border-slate-100 shadow-sm">
+                        <Target className="text-trello-yellow fill-trello-yellow/10" size={12} />
+                        <span className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em]">The North Star</span>
                     </div>
-                    <div>
-                        <div className="text-xs font-bold text-slate-800 uppercase tracking-widest mb-1">Mission</div>
-                        <h3 className="text-2xl font-black tracking-tighter">{mission.title}</h3>
-                        {mission.description && (
-                            <p className="text-slate-800/70 mt-2 text-sm leading-relaxed max-w-2xl font-light">{mission.description}</p>
-                        )}
-                    </div>
+
+                    <h1 className="text-3xl lg:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9] max-w-4xl mx-auto drop-shadow-sm">
+                        {mission.title}
+                    </h1>
+
+                    {mission.description && (
+                        <p className="text-slate-500 mt-6 text-base leading-relaxed max-w-2xl font-light italic opacity-80">
+                            "{mission.description}"
+                        </p>
+                    )}
+
+
                 </div>
             </div>
 
