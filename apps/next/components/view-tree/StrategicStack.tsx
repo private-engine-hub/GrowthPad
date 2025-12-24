@@ -21,9 +21,9 @@ export function StrategicStack() {
     return (
         <div className="w-full space-y-8 pb-20">
             <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-slate-800 tracking-tight">Strategy Map</h2>
+                <h2 className="text-xl font-black text-slate-800 tracking-tighter">Strategy Map</h2>
                 <div className="flex gap-2">
-                    <span className="text-xs font-medium text-slate-400">Interactive Tree View</span>
+                    <span className="text-xs font-semibold text-slate-400">Interactive Tree View</span>
                 </div>
             </div>
 
@@ -43,16 +43,16 @@ function MissionRow({ mission, pillars, themes }: { mission: L0_Mission, pillars
     return (
         <div className="space-y-6">
             {/* L0: Mission Header */}
-            <div className="bg-slate-900 text-white p-6 rounded-xl shadow-lg">
+            <div className="bg-trello-yellow text-slate-900 p-6 rounded-xl shadow-lg border border-yellow-500/20">
                 <div className="flex items-start gap-4">
-                    <div className="p-3 bg-white/10 rounded-lg">
-                        <Target className="text-emerald-400" size={24} />
+                    <div className="p-3 bg-slate-900/10 rounded-lg">
+                        <Target className="text-slate-900" size={24} />
                     </div>
                     <div>
-                        <div className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-1">Mission</div>
-                        <h3 className="text-2xl font-bold tracking-tight">{mission.title}</h3>
+                        <div className="text-xs font-bold text-slate-800 uppercase tracking-widest mb-1">Mission</div>
+                        <h3 className="text-2xl font-black tracking-tighter">{mission.title}</h3>
                         {mission.description && (
-                            <p className="text-slate-300 mt-2 text-sm leading-relaxed max-w-2xl">{mission.description}</p>
+                            <p className="text-slate-800/70 mt-2 text-sm leading-relaxed max-w-2xl font-light">{mission.description}</p>
                         )}
                     </div>
                 </div>
@@ -92,10 +92,10 @@ function MoveRow({ move, pillars, themes }: { move: L1_Move, pillars: DIM_Pillar
                         <span className="text-xs font-bold text-indigo-500 uppercase tracking-wider bg-indigo-50 px-2 py-0.5 rounded">
                             Move #{move.order}
                         </span>
-                        <h3 className="text-lg font-bold text-slate-800">{move.title}</h3>
+                        <h3 className="text-lg font-bold text-slate-800 tracking-tight">{move.title}</h3>
                     </div>
                     {move.description && (
-                        <p className="text-xs text-slate-500 mt-1 pl-[105px] truncate">{move.description}</p>
+                        <p className="text-xs text-slate-500 mt-1 pl-[105px] truncate font-light">{move.description}</p>
                     )}
                 </div>
 
@@ -155,7 +155,7 @@ function ObjectiveNode({ objective, pillars, themes }: { objective: L2_Objective
                     <div className="flex items-start justify-between border-b border-dashed border-slate-200 pb-3">
                         <div>
                             <div className="flex items-center gap-2 mb-1">
-                                <h4 className="text-base font-bold text-slate-800">{objective.title}</h4>
+                                <h4 className="text-base font-bold text-slate-800 tracking-tight">{objective.title}</h4>
                             </div>
                             <div className="flex items-center gap-2">
                                 {pillar && (
@@ -166,7 +166,7 @@ function ObjectiveNode({ objective, pillars, themes }: { objective: L2_Objective
                                 {theme && (
                                     <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-100/50 border border-slate-100">
                                         <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: theme.color }} />
-                                        <span className="text-[10px] font-medium text-slate-600">{theme.title}</span>
+                                        <span className="text-[10px] font-bold uppercase text-slate-600">{theme.title}</span>
                                     </div>
                                 )}
                             </div>
@@ -258,7 +258,7 @@ function JobLeaf({ job }: { job: L5_Job }) {
             </div>
 
             <span className={cn(
-                "text-sm font-medium text-slate-700 leading-snug flex-1",
+                "text-sm font-normal text-slate-700 leading-snug flex-1",
                 job.status === 'done' && "line-through text-slate-400"
             )}>
                 {job.title}

@@ -1,4 +1,4 @@
-# GrowthPad Product Blueprint (v3.0)
+# GrowthPad Product Blueprint (v4.0)
 
 **Codename:** Cornerstone
 **Context:** Strategic Business Playbook Canvas
@@ -22,17 +22,22 @@ Designed for quick execution. It uses a **Linear Scrolling Feed**.
 
 ---
 
-## 2. The 5-Layer Strategic Cascade
+## 2. The 6-Layer Strategic Cascade
 
-All data in GrowthPad follows a strict relational hierarchy:
+All data in GrowthPad follows a strict relational hierarchy with parallel dimension lookups (Pillars/Themes).
 
 | Layer | Entity | Purpose |
 | :--- | :--- | :--- |
-| **L1** | **`Pillar`** | Top-level business vertical (Financial, Operational, Market). |
-| **L2** | **`Theme`** | The "Why" behind the goal (e.g., Retention, Efficiency). |
-| **L3** | **`Objective`** | A high-level milestone (e.g., "Reduce Staff Churn"). |
-| **L4** | **`Phase`** | Logical grouping of tasks (e.g., "Diagnosis", "Execution"). |
+| **L0** | **`Mission`** | The North Star (Root). Single source of ultimate intent. |
+| **L1** | **`Move`** | The "How" (Strategy/Tactic). High-level directional shift. |
+| **L2** | **`Objective`** | High-level milestones (e.g. "Reduce Churn"). Linked to DIMs. |
+| **L3** | **`Initiative`** | Grouped work or programs aimed at an objective. |
+| **L4** | **`Phase`** | Logical grouping of tasks (e.g. "Diagnosis", "Execution"). |
 | **L5** | **`Job`** | The actionable "Leaf" (The task). |
+
+> [!NOTE]
+> **Pillars** and **Themes** are now Dimension Tables (DIM) linked to L2 Objectives, providing vertical/thematic context without constraining the structural tree.
+
 
 ---
 

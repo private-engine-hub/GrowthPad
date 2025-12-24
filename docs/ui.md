@@ -77,16 +77,16 @@ Optimized for high-density scanning within Phase containers.
 - **Row Variant**: In `StrategicStack`, jobs are full-width rows with RHS metadata (Avatar, Status) permanently visible.
 - **Joy**: Use inline Lucide icons (🔥 Flame, ⚡ Zap, 🌱 Sprout) for priority.
 
-### Chunky Capsule Pillars
-Replacing standard headers with distinct status-badges.
-- **Logic**: Header color is determined by the Pillar title (Financial=Red, Operational=Yellow, Market=Green).
-- **Shape**: `rounded-full` high-contrast capsules that sit *above* the card stack.
+### Dimensional Meta-Badges
+Pillars and Themes provide thematic context to Objectives.
+- **Logic**: Pillar color is fixed (Financial=Rose, Operational=Amber, Market=Emerald). Theme color is dynamic based on DB `color` field.
+- **Shape**: `rounded-full` high-contrast capsules with `text-[10px]` bold labels, sitting within the Objective header area.
 
 ### The Strategy Map (`/platform/planner`)
-A high-density, full-width vertical view for strategic planning.
-- **Structure**: Full-width collapsible Pillar rows (L1) -> Vertical Phases (L3) -> Detailed Job Rows (L5).
-- **Interactivity**: Headers expand/collapse groups. Rows reveal detailed metadata (Avatar, Status, Context).
-- **Density**: Uses `text-sm` for titles and `text-xs` for metadata. No dates are shown to preserve strategic focus.
+A high-density, full-width vertical tree for strategic planning.
+- **Structure**: Collapsible **Mission (L0)** header -> **Move (L1)** sections -> **Objective (L2)** nodes with DIM badges -> **Initiative (L3)** containers -> **Phase (L4)** logic groups -> **Job (L5)** rows.
+- **Interactivity**: Missions and Moves provide structural grouping. Objectives and Initiatives show internal work progress.
+- **Density**: Uses `font-black` headings for Missions, `font-bold` for Objectives, and `font-light` (Jakarta 300) for descriptions to maximize information density. No dates are shown to preserve strategic focus.
 
 ---
 

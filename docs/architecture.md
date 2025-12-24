@@ -1,8 +1,8 @@
-# GrowthPad Architecture (v3.0)
+# GrowthPad Architecture (v4.0)
 
-**Current Version**: 3.0 (Decoupled Shells)
-**Last Updated**: 2025-12-21
-**Strategic Pivot**: Shared Brain, Decoupled Shells
+**Current Version**: 4.0 (Strategic Pivot)
+**Last Updated**: 2025-12-24
+**Strategic Pivot**: 6-Layer Hierarchy + Dimension Tables
 
 ## 1. Executive Summary
 GrowthPad employs a **"Shared Brain, Decoupled Shells"** architecture. We have abandoned "Universal UI" in the presentation layer to deliver elite, platform-native experiences while maintaining 100% logic parity.
@@ -28,10 +28,10 @@ growthpad/
 │       └── features/      # Mobile-optimized strategic feed
 └── packages/
     └── app/               # THE BRAIN (Shared Central Logic)
-        ├── db/            # Relational Schema (SQL)
-        ├── hooks/         # useWorkboard(), useJobs()
-        ├── types/         # L1-L5 Strategic Cascade Interfaces
-        ├── version.ts     # Versioning Registry (v1.0.0)
+        ├── db/            # Relational Schema (SQL v4.0)
+        ├── hooks/         # useWorkboard() (6-layer fetch)
+        ├── types/         # L0-L5 Strategic Cascade Interfaces
+        ├── version.ts     # Versioning Registry (v4.0.0)
         └── nativewind-env.d.ts # Shared type definitions
 ```
 
@@ -103,9 +103,15 @@ GrowthPad uses an automated **Semantic Release** pipeline to ensure repository s
 
 ### **Core Features**:
 
-* **Logic Hooks**:`useWorkboard()` returns a nested **L1-L5** object. Both shells are "dumb" and only loop through this data, ensuring consistent business logic across platforms.
+* **Logic Hooks**:`useWorkboard()` returns a nested **L0-L5** object. Both shells are "dumb" and only loop through this data, ensuring consistent business logic across platforms.
 
-* **Type Safety**: The **L1-L5 Strategic Cascade** is the core interface for both platforms, maintained with **TypeScript** to ensure type-safe communication.
+* **Type Safety**: The **L0-L5 Strategic Cascade** is the core interface for both platforms, maintained with **TypeScript** to ensure type-safe communication.
+  * **L0**: Mission
+  * **L1**: Move
+  * **L2**: Objective (Linked to Pillars/Themes)
+  * **L3**: Initiative
+  * **L4**: Phase
+  * **L5**: Job (Actionable "Leaf")
 
 * **Hydration**: By using **standard HTML** on the Web, we avoid **React Native Web hydration mismatches** entirely.
 
